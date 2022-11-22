@@ -1,0 +1,6 @@
+gprclean -P learningada.gpr
+gprbuild -P learningada.gpr
+cp main main_latest
+./main_latest > latestResults
+cat latestResults
+gprclean -P learningada.gpr
