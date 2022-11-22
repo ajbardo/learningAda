@@ -34,3 +34,13 @@ Constraints:
 -109 <= nums[i] <= 109  
 -109 <= target <= 109  
 Only one valid answer exists.  
+  
+Test data:  
+array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);  
+
+Expected result:  
+array2 := (1,4)  
+
+Obtained data:  
+array2 := (1,4)  
+Conclusion: Static test successfully passed    
