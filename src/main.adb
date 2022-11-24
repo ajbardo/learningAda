@@ -2,7 +2,8 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 procedure main is
 -- main 
--- 1.0-1.0 twoSum
+-- 1.0-1.1 twoSum
+-- 1.0-1.0 palindrome
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -10,36 +11,54 @@ procedure main is
 -- * Possible third digit to track minor changes that do not affect functionality (0.0.3,0.1.7)
 -- * Comments with the resume of the content with * character
 -- _______________
--- 0.1-0.0 Global variables
+-- 0.2-0.0 Global variables
+-- Global use arrays
 -- maxIndex10 : Integer
 -- type arrayOf10 is array(0 .. 9) of Integer
 -- array10 : arrayOf10
 -- type arrayOf2 is array(0 .. 1) of Integer
 -- array2 : arrayOf2;
+-- input variables for the functions
+-- integerInputA : Integer;
+-- output variables for the functions
+-- integerResultA : Integer;
+-- testPass : Integer;
+-- testPassed : Integer;
+-- testTotal : Integer;
 -- _______________
--- 1.0-1.0 procedure twoSum(target : Integer:=0)
+-- 1.0-1.1 procedure twoSum(target : Integer:=0)
 -- * Calculate positions of two numbers in an array such that they add matches the target
--- * Static test with 10 position array 
+-- * Static test with 10 position array
+-- * New static test for the negative conditional
+--
+-- 1.0-1.0 procedure palindrome(number : Integer)
+-- * Check if number is palindrome
+-- * Static test with input integer
+-- * Static test with input integer for the negative conditional
 --
 --
 --
 --
 --
---
---
---
-	
+	-- Global use arrays
 	maxIndex10 : Integer := 10;
 	type arrayOf10 is array(0 .. 9) of Integer;
 	array10 : arrayOf10;
 	
 	type arrayOf2 is array(0 .. 1) of Integer;
 	array2 : arrayOf2;
-	
-	
+
+
+	-- input variables for the functions
+    integerInputA : Integer;
+
+	-- output variables for the functions
 	integerResultA : Integer;
+
+    --variables for the test stadistics
 	testPass : Integer;
 	testPassed : Integer;
+	testTotal : Integer;
 	
 	procedure twoSum(target : Integer:=0) is 
 		rest : integer := 0;
@@ -47,8 +66,6 @@ procedure main is
 		pos2 : integer := 0;
 	begin
 		array2 := (100, 100);
-		Put_Line ("Starting twoSum");
-		
 		while pos1 < maxIndex10 loop
 			rest := target - array10(pos1);
 			pos2 := pos1 + 1;
@@ -67,23 +84,76 @@ procedure main is
 			end loop;
 			pos1 := pos1 + 1;
 		end loop;
-		
-		Put_Line ("Ending twoSum");
 	end twoSum;
+
+    procedure palindrome(number : Integer) is
+        tempNum : Integer;
+        auxNum : Integer;
+        rest : Integer;
+        inverseNum : Integer := 0;
+    begin
+        tempNum := number;
+        while tempNum > 0 loop
+            auxNum := Integer(Float(tempNum) / 10.0);
+            rest := Integer(tempNum - auxNum * 10);
+            inverseNum := inverseNum * 10 + rest;
+            tempNum := auxNum;
+        end loop;
+        integerResultA := 0;
+        if inverseNum = number then
+            integerResultA := 1;
+        end if;
+    end Palindrome;
 
 begin
 	Put_Line ("Starting main execution");
 	testPass := 0;
-	integerResultA := 7;
+	testPassed := 0;
+	testTotal := 0;
+
+    testTotal := testTotal + 1;
+	integerInputA := 7;
 	array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
-	twoSum(integerResultA);
+	twoSum(integerInputA);
 	if array2(0) = 1 and array2(1) = 4 then
 		testPass := 1;
 		testPassed := testPassed + 1;
 	end if;
-	Put_Line ("Result of the test for twoSum with status: "&Integer'Image(testPass));
+	Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
+
+    testTotal := testTotal + 1;
+    testPass := 0;
+	integerInputA := 12;
+	array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
+	twoSum(integerInputA);
+	if array2(0) = 0 and array2(1) = 5 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    testPass := 0;
+    integerResultA := 0;
+    integerInputA := 12344321;
+	palindrome(integerInputA);
+	if integerResultA = 1 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    testPass := 0;
+	integerResultA := 1;
+	integerInputA := 12345321;
+	palindrome(integerInputA);
+	if integerResultA = 0 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
 	
-	
-	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testPassed));
+	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
 end main;
