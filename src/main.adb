@@ -1,9 +1,11 @@
 with Ada.Text_IO; use Ada.Text_IO;
+with ADA.Strings.Fixed; use ADA.Strings.Fixed;
 
 procedure main is
 -- main 
 -- 1.0-1.1 twoSum
 -- 1.0-1.0 palindrome
+-- 1.0-1.0 romantointeger
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -36,10 +38,11 @@ procedure main is
 -- * Static test with input integer
 -- * Static test with input integer for the negative conditional
 --
---
---
---
---
+-- 1.0-1.0 procedure romantointeger(romanNum : String)
+-- * Transform from roman number to integer
+-- * Static positive test for the method
+
+
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
 	type arrayOf10 is array(0 .. 9) of Integer;
@@ -51,6 +54,7 @@ procedure main is
 
 	-- input variables for the functions
     integerInputA : Integer;
+    stringInputA : String := "         ";
 
 	-- output variables for the functions
 	integerResultA : Integer;
@@ -105,6 +109,34 @@ procedure main is
         end if;
     end Palindrome;
 
+    procedure romantointeger(romanNum : String) is
+        romanone                : String := "I";
+        romanfive               : String := "V";
+        romanten                : String := "X";
+        romanfifty              : String := "L";
+        romanonehundred         : String := "C";
+        romanfivehundred        : String := "D";
+        romanthousand           : String := "M";
+        count                   : Integer;
+
+    begin
+        integerResultA := 0;
+        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanone);
+        integerResultA := integerResultA + Integer(count*1);
+        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfive);
+        integerResultA := integerResultA + Integer(count*5);
+        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanten);
+        integerResultA := integerResultA + Integer(count*10);
+        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfifty);
+        integerResultA := integerResultA + Integer(count*50);
+        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanonehundred);
+        integerResultA := integerResultA + Integer(count*100);
+        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfivehundred);
+        integerResultA := integerResultA + Integer(count*500);
+        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanthousand);
+        integerResultA := integerResultA + Integer(count*1000);
+    end romantointeger;
+
 begin
 	Put_Line ("Starting main execution");
 	testPass := 0;
@@ -153,7 +185,27 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
-	
+
+	stringInputA := "    LVIII";
+	romantointeger(stringInputA);
+	testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 58 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+
+	stringInputA := "     VIII";
+	romantointeger(stringInputA);
+	testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 8 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
 end main;
