@@ -2,7 +2,8 @@
 1 - Abstract v0.1 - First approach  
 2 - Exercises v0.3 - Added 2.1 - Two Sum  
 2.1 - Two Sum  v1.1 - Added from https://leetcode.com/problems/two-sum/  
-2.9 - Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/    
+2.9 - Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
+2.13 - Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
 ## 1 - Abstract
 Project to store the results of the learning path from https://leetcode.com but using ADA programming language.  
 As reference for the ADA programming language development will be used https://learn.adacore.com/index.html.  

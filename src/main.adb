@@ -5,7 +5,7 @@ procedure main is
 -- main 
 -- 1.0-1.1 twoSum
 -- 1.0-1.0 palindrome
--- 1.0-1.0 romantointeger
+-- 1.1-1.1 romantointeger
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -32,13 +32,12 @@ procedure main is
 -- * Calculate positions of two numbers in an array such that they add matches the target
 -- * Static test with 10 position array
 -- * New static test for the negative conditional
---
 -- 1.0-1.0 procedure palindrome(number : Integer)
 -- * Check if number is palindrome
 -- * Static test with input integer
 -- * Static test with input integer for the negative conditional
---
--- 1.0-1.0 procedure romantointeger(romanNum : String)
+-- 1.1-1.1 procedure romantointeger(romanNum : String)
+-- 1.0 procedure auxromantointeger(romanNum : String)
 -- * Transform from roman number to integer
 -- * Static positive test for the method
 
@@ -54,6 +53,8 @@ procedure main is
 
 	-- input variables for the functions
     integerInputA : Integer;
+    integerInputB : Integer;
+    integerInputC : Integer;
     stringInputA : String := "         ";
 
 	-- output variables for the functions
@@ -109,7 +110,7 @@ procedure main is
         end if;
     end Palindrome;
 
-    procedure romantointeger(romanNum : String) is
+    procedure auxromantointeger(romanNum : String) is
         romanone                : String := "I";
         romanfive               : String := "V";
         romanten                : String := "X";
@@ -117,24 +118,65 @@ procedure main is
         romanonehundred         : String := "C";
         romanfivehundred        : String := "D";
         romanthousand           : String := "M";
-        count                   : Integer;
-
+        count                   : Integer      ;
     begin
-        integerResultA := 0;
+        integerResultA:=0;
         count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanone);
-        integerResultA := integerResultA + Integer(count*1);
-        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfive);
-        integerResultA := integerResultA + Integer(count*5);
-        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanten);
-        integerResultA := integerResultA + Integer(count*10);
-        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfifty);
-        integerResultA := integerResultA + Integer(count*50);
-        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanonehundred);
-        integerResultA := integerResultA + Integer(count*100);
-        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfivehundred);
-        integerResultA := integerResultA + Integer(count*500);
-        count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanthousand);
-        integerResultA := integerResultA + Integer(count*1000);
+        integerResultA := Integer(count*1);
+        if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfive);
+            integerResultA := Integer(count*5);
+        end if;
+        if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanten);
+            integerResultA := Integer(count*10);
+        end if;
+        if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfifty);
+            integerResultA := Integer(count*50);
+        end if;
+        if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanonehundred);
+            integerResultA := Integer(count*100);
+        end if;
+        if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfivehundred);
+            integerResultA := Integer(count*500);
+        end if;
+        if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanthousand);
+            integerResultA := Integer(count*1000);
+        end if;
+    end auxromantointeger;
+
+    procedure romantointeger(romanNum : String) is
+        count : Integer;
+        auxString : String := "   ";
+    begin
+        integerInputC := 0;
+        for pos in 1 .. romanNum'Length-1 loop
+            -- getting a string with the char stringExample = "'I'"
+            auxString := romanNum(pos)'Image;
+            auxromantointeger(auxString);
+            -- Saving the old result
+            integerInputB := integerResultA;
+            auxString := romanNum(pos+1)'Image;
+            auxromantointeger(auxString);
+            -- roman calculus of the number
+            if integerInputB < integerResultA then
+                integerInputC := integerInputC - integerInputB;
+            else
+                integerInputC := integerInputC + integerInputB;
+            end if;
+        end loop;
+
+        -- adding the last number always
+        auxString := romanNum(romanNum'Length)'Image;
+        auxromantointeger(auxString);
+        integerInputC := integerInputC + integerResultA;
+        -- saving the result in the integer that will eb checked
+        integerResultA:=integerInputC;
+
     end romantointeger;
 
 begin
@@ -186,11 +228,11 @@ begin
 	end if;
 	Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
 
-	stringInputA := "    LVIII";
+	stringInputA := "   XLVIII";
 	romantointeger(stringInputA);
 	testPass := 0;
 	testTotal := testTotal + 1;
-	if integerResultA = 58 then
+	if integerResultA = 48 then
 		testPass := 1;
 		testPassed := testPassed + 1;
 	end if;
