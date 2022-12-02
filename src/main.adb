@@ -6,6 +6,7 @@ procedure main is
 -- 1.0-1.1 twoSum
 -- 1.0-1.0 palindrome
 -- 1.1-1.1 romantointeger
+-- 0.1-0.0 longestcommonprefix
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -40,7 +41,8 @@ procedure main is
 -- 1.0 procedure auxromantointeger(romanNum : String)
 -- * Transform from roman number to integer
 -- * Static positive test for the method
-
+-- 0.1-0.0 procedure longestcommonprefix()
+-- newly created
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -178,6 +180,11 @@ procedure main is
         integerResultA:=integerInputC;
 
     end romantointeger;
+
+
+    procedure longestcommonprefix() is
+    begin
+    end longestcommonprefix;
 
 begin
 	Put_Line ("Starting main execution");
