@@ -1,12 +1,13 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with ADA.Strings.Fixed; use ADA.Strings.Fixed;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 procedure main is
--- main 
+-- main
 -- 1.0-1.1 twoSum
 -- 1.0-1.0 palindrome
 -- 1.1-1.1 romantointeger
--- 0.1-0.0 longestcommonprefix
+-- 0.2-0.0 longestcommonprefix
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -48,10 +49,12 @@ procedure main is
 	maxIndex10 : Integer := 10;
 	type arrayOf10 is array(0 .. 9) of Integer;
 	array10 : arrayOf10;
-	
+
 	type arrayOf2 is array(0 .. 1) of Integer;
 	array2 : arrayOf2;
 
+    type typearrayfUnboString is array (0 .. 2) of Unbounded_String;
+    arrayUnboString : typearrayfUnboString;
 
 	-- input variables for the functions
     integerInputA : Integer;
@@ -61,13 +64,14 @@ procedure main is
 
 	-- output variables for the functions
 	integerResultA : Integer;
+    unboStringA : Unbounded_String;
 
     --variables for the test stadistics
 	testPass : Integer;
 	testPassed : Integer;
 	testTotal : Integer;
-	
-	procedure twoSum(target : Integer:=0) is 
+
+	procedure twoSum(target : Integer:=0) is
 		rest : integer := 0;
 		pos1 : integer := 0;
 		pos2 : integer := 0;
@@ -152,7 +156,6 @@ procedure main is
     end auxromantointeger;
 
     procedure romantointeger(romanNum : String) is
-        count : Integer;
         auxString : String := "   ";
     begin
         integerInputC := 0;
@@ -173,7 +176,7 @@ procedure main is
         end loop;
 
         -- adding the last number always
-        auxString := romanNum(romanNum'Length)'Image;
+        auxString := romanNum(romanNum'Last)'Image;
         auxromantointeger(auxString);
         integerInputC := integerInputC + integerResultA;
         -- saving the result in the integer that will eb checked
@@ -181,9 +184,16 @@ procedure main is
 
     end romantointeger;
 
-
-    procedure longestcommonprefix() is
+    procedure longestcommonprefix is
     begin
+        Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(0)));
+        Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(1)));
+        Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(2)));
+        unboStringA := To_Unbounded_String(
+                Ada.Strings.Unbounded.Trim(
+
+                )
+            );
     end longestcommonprefix;
 
 begin
@@ -254,6 +264,11 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+    arrayUnboString(0) := To_Unbounded_String("abcfbca");
+    arrayUnboString(1) := To_Unbounded_String("abcfjht");
+    arrayUnboString(2) := To_Unbounded_String("abfjt");
+
+    longestcommonprefix;
 
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
