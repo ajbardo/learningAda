@@ -7,7 +7,7 @@ procedure main is
 -- 1.0-1.1 twoSum
 -- 1.0-1.0 palindrome
 -- 1.1-1.1 romantointeger
--- 0.2-0.0 longestcommonprefix
+-- 0.3-0.0 longestcommonprefix
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -42,8 +42,8 @@ procedure main is
 -- 1.0 procedure auxromantointeger(romanNum : String)
 -- * Transform from roman number to integer
 -- * Static positive test for the method
--- 0.1-0.0 procedure longestcommonprefix()
--- newly created
+-- 0.3-0.0 procedure longestcommonprefix()
+-- new approach
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -186,14 +186,11 @@ procedure main is
 
     procedure longestcommonprefix is
     begin
-        Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(0)));
-        Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(1)));
-        Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(2)));
-        unboStringA := To_Unbounded_String(
-                Ada.Strings.Unbounded.Trim(
-
-                )
-            );
+        for pos in 0 .. arrayUnboString'Length-1 loop
+            Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(pos)));
+            unboStringA := arrayUnboString(pos);
+            Put_Line ("+->"&Ada.Strings.Unbounded.To_String(unboStringA));
+        end loop;
     end longestcommonprefix;
 
 begin
