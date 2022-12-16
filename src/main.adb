@@ -1,13 +1,17 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with ADA.Strings.Fixed; use ADA.Strings.Fixed;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+
+with Ada.Strings;         use Ada.Strings;
+with Ada.Strings.Bounded;
+with Ada.Text_IO;         use Ada.Text_IO;
+
 
 procedure main is
 -- main
 -- 1.0-1.1 twoSum
 -- 1.0-1.0 palindrome
 -- 1.1-1.1 romantointeger
--- 0.3-0.0 longestcommonprefix
+-- 1.0-1.0 longestcommonprefix
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -42,8 +46,9 @@ procedure main is
 -- 1.0 procedure auxromantointeger(romanNum : String)
 -- * Transform from roman number to integer
 -- * Static positive test for the method
--- 0.3-0.0 procedure longestcommonprefix()
--- new approach
+-- 1.0-1.0 longestcommonprefix
+-- Procedure working with Bounded string of length = 10
+-- 4 static tests, 2 with partial positive cases, 1 with total positive case and 1 with negative case
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -53,8 +58,12 @@ procedure main is
 	type arrayOf2 is array(0 .. 1) of Integer;
 	array2 : arrayOf2;
 
-    type typearrayfUnboString is array (0 .. 2) of Unbounded_String;
-    arrayUnboString : typearrayfUnboString;
+    -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html#bounded-strings
+    package B_Str is new
+        Ada.Strings.Bounded.Generic_Bounded_Length (Max => 10);
+    use B_Str;
+    type StringBounArray is array (0 .. 2) of B_Str.Bounded_String;
+    StrBounString : StringBounArray;
 
 	-- input variables for the functions
     integerInputA : Integer;
@@ -64,7 +73,8 @@ procedure main is
 
 	-- output variables for the functions
 	integerResultA : Integer;
-    unboStringA : Unbounded_String;
+    bounStringResultA : Bounded_String;
+    bounStringResultB : Bounded_String;
 
     --variables for the test stadistics
 	testPass : Integer;
@@ -185,12 +195,29 @@ procedure main is
     end romantointeger;
 
     procedure longestcommonprefix is
+        letterPos : Integer := 0;
+        lastCommonPos : Integer := 1;
+        wordPos : Integer := 1;
     begin
-        for pos in 0 .. arrayUnboString'Length-1 loop
-            Put_Line ("-->"&Ada.Strings.Unbounded.To_String(arrayUnboString(pos)));
-            unboStringA := arrayUnboString(pos);
-            Put_Line ("+->"&Ada.Strings.Unbounded.To_String(unboStringA));
+        while letterPos < 10 loop
+            if letterPos < 10 then
+                letterPos := letterPos + 1;
+                bounStringResultA := To_Bounded_String(To_String(StrBounString(0))(1..letterPos));
+                wordPos := 1;
+                while wordPos < StrBounString'Length loop
+                    bounStringResultB := To_Bounded_String(To_String(StrBounString(wordPos))(1..letterPos));
+                    lastCommonPos := letterPos;
+                    if bounStringResultA /= bounStringResultB then
+                        lastCommonPos := letterPos - 1;
+                        letterPos := 20;
+                        wordPos := 20;
+                    end if;
+
+                    wordPos := wordPos + 1;
+                end loop;
+            end if;
         end loop;
+        bounStringResultA := To_Bounded_String(To_String(StrBounString(1))(1..lastCommonPos));
     end longestcommonprefix;
 
 begin
@@ -261,11 +288,54 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
-    arrayUnboString(0) := To_Unbounded_String("abcfbca");
-    arrayUnboString(1) := To_Unbounded_String("abcfjht");
-    arrayUnboString(2) := To_Unbounded_String("abfjt");
 
+    StrBounString(0) := To_Bounded_String("asdfghjklo");
+    StrBounString(1) := To_Bounded_String("asdfghtree");
+    StrBounString(2) := To_Bounded_String("asdfgmnbvc");
     longestcommonprefix;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if bounStringResultA = To_Bounded_String("asdfg") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
+	StrBounString(0) := To_Bounded_String("eraseunave");
+    StrBounString(1) := To_Bounded_String("eraseunave");
+    StrBounString(2) := To_Bounded_String("eraseunave");
+    longestcommonprefix;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if bounStringResultA = To_Bounded_String("eraseunave") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
+	StrBounString(0) := To_Bounded_String("eraseunave");
+    StrBounString(1) := To_Bounded_String("eraseunave");
+    StrBounString(2) := To_Bounded_String("erasenaves");
+    longestcommonprefix;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if bounStringResultA = To_Bounded_String("erase") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
+	StrBounString(0) := To_Bounded_String("asdfsafasd");
+    StrBounString(1) := To_Bounded_String("eraseunave");
+    StrBounString(2) := To_Bounded_String("zxczxcccxz");
+    longestcommonprefix;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if bounStringResultA = To_Bounded_String("") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
 
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
