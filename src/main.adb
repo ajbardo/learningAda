@@ -12,6 +12,7 @@ procedure main is
 -- 1.0-1.0 palindrome
 -- 1.1-1.1 romantointeger
 -- 1.0-1.0 longestcommonprefix
+-- 1.0-1.0 validparentheses
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -24,12 +25,27 @@ procedure main is
 -- maxIndex10 : Integer
 -- type arrayOf10 is array(0 .. 9) of Integer
 -- array10 : arrayOf10
+--
 -- type arrayOf2 is array(0 .. 1) of Integer
 -- array2 : arrayOf2;
+--
+-- package B_Str
+-- type StringBounArray
+-- StrBounString
+--
 -- input variables for the functions
 -- integerInputA : Integer;
+-- integerInputB : Integer;
+-- integerInputC : Integer;
+-- stringInputA : String := "         ";
+-- bounStringInputB : Bounded_String;
+--
 -- output variables for the functions
 -- integerResultA : Integer;
+-- bounStringResultA : Bounded_String;
+-- bounStringResultB : Bounded_String;
+--
+-- variables for the test stadistics
 -- testPass : Integer;
 -- testPassed : Integer;
 -- testTotal : Integer;
@@ -47,8 +63,11 @@ procedure main is
 -- * Transform from roman number to integer
 -- * Static positive test for the method
 -- 1.0-1.0 longestcommonprefix
--- Procedure working with Bounded string of length = 10
+-- Procedure working with array of 3 Bounded string of length = 10
 -- 4 static tests, 2 with partial positive cases, 1 with total positive case and 1 with negative case
+-- 1.0-1.0 validparentheses
+-- Procedure working with Bounded string of length = 10
+-- 8 static test cases, 4 positives and 4 negatives
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -70,6 +89,7 @@ procedure main is
     integerInputB : Integer;
     integerInputC : Integer;
     stringInputA : String := "         ";
+    bounStringInputB : Bounded_String;
 
 	-- output variables for the functions
 	integerResultA : Integer;
@@ -220,12 +240,85 @@ procedure main is
         bounStringResultA := To_Bounded_String(To_String(StrBounString(1))(1..lastCommonPos));
     end longestcommonprefix;
 
+    procedure validparentheses  is
+        letterPos : Integer := 1;
+        openbracktypeI : Integer := 0;
+        closebracktypeI : Integer := 0;
+        openbracktypeII : Integer := 0;
+        closebracktypeII : Integer := 0;
+        openbracktypeIII : Integer := 0;
+        closebracktypeIII : Integer := 0;
+        prevParentesis : Integer := 0;
+    begin
+        while letterPos < To_String(bounStringInputB)'Length+1 loop
+            case To_String(bounStringInputB)(letterPos) is
+                when '(' =>
+                    openbracktypeI := openbracktypeI + 1;
+                    prevParentesis := 1;
+                when ')' =>
+                    closebracktypeI := closebracktypeI + 1;
+                    if openbracktypeI = 0 then -- breaking case when you close a parentesis without opening it first
+                        exit;
+                    end if;
+                    if prevParentesis /= 1 then-- condition in case one type of parentesis is closing another type
+                        if prevParentesis /= 0 then
+                            exit;
+                        end if;
+                    end if;
+                    prevParentesis := 0;
+
+                when '[' =>
+                    openbracktypeII := openbracktypeII + 1;
+                    prevParentesis := 2;
+                when ']' =>
+                    closebracktypeII := closebracktypeII + 1;
+                    if openbracktypeII = 0 then -- breaking case when you close a parentesis without opening it first
+                        exit;
+                    end if;
+                    if prevParentesis /= 2 then-- condition in case one type of parentesis is closing another type
+                        if prevParentesis /= 0 then
+                            exit;
+                        end if;
+                    end if;
+                    prevParentesis := 0;
+
+                when '{' =>
+                    openbracktypeIII := openbracktypeIII + 1;
+                    prevParentesis := 3;
+                when '}' =>
+                    closebracktypeIII := closebracktypeIII + 1;
+                    if openbracktypeIII = 0 then -- breaking case when you close a parentesis without opening it first
+                        exit;
+                    end if;
+                    if prevParentesis /= 3 then-- condition in case one type of parentesis is closing another type
+                        if prevParentesis /= 0 then
+                            exit;
+                        end if;
+                    end if;
+                    prevParentesis := 0;
+                when others =>
+                    exit;
+            end case;
+           letterPos := letterPos + 1;
+        end loop;
+        integerResultA := 1;
+        if openbracktypeI /= closebracktypeI then
+            integerResultA := 0;
+        end if;
+        if openbracktypeII /= closebracktypeII then
+            integerResultA := 0;
+        end if;
+        if openbracktypeIII /= closebracktypeIII then
+            integerResultA := 0;
+        end if;
+    end validparentheses;
+
 begin
 	Put_Line ("Starting main execution");
 	testPass := 0;
 	testPassed := 0;
 	testTotal := 0;
-
+    --------------------------------------------------------------------------------------------
     testTotal := testTotal + 1;
 	integerInputA := 7;
 	array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
@@ -246,7 +339,7 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
-
+    --------------------------------------------------------------------------------------------
 	testTotal := testTotal + 1;
     testPass := 0;
     integerResultA := 0;
@@ -268,7 +361,7 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
-
+    --------------------------------------------------------------------------------------------
 	stringInputA := "   XLVIII";
 	romantointeger(stringInputA);
 	testPass := 0;
@@ -288,7 +381,7 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
-
+    --------------------------------------------------------------------------------------------
     StrBounString(0) := To_Bounded_String("asdfghjklo");
     StrBounString(1) := To_Bounded_String("asdfghtree");
     StrBounString(2) := To_Bounded_String("asdfgmnbvc");
@@ -336,7 +429,87 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+    --------------------------------------------------------------------------------------------
+    bounStringInputB := To_Bounded_String("()()()()()");--Output: true
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 1 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
 
+    bounStringInputB := To_Bounded_String("[][][][][]");--Output: true
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 1 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+    bounStringInputB := To_Bounded_String("{}{}{}{}{}");--Output: true
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 1 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+    bounStringInputB := To_Bounded_String("([{}]([]))");--Output: true
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 1 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+    bounStringInputB := To_Bounded_String("([{}](]]))");--Output: false
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 0 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+    bounStringInputB := To_Bounded_String("([{{{([]))");--Output: false
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 0 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+    bounStringInputB := To_Bounded_String("([{}]([]])");--Output: false
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 0 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+    bounStringInputB := To_Bounded_String("([{}]([])]");--Output: false
+    validparentheses;
+    testPass := 0;
+	testTotal := testTotal + 1;
+	if integerResultA = 0 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+    --------------------------------------------------------------------------------------------
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
 end main;

@@ -1,16 +1,19 @@
 # learningAda A0.1-E0.3
-1 - Abstract v0.1 - First approach  
-2 - Exercises v0.3 - Added 2.1 - Two Sum  
-2.1 - Two Sum  v1.1 - Added from https://leetcode.com/problems/two-sum/  
-2.9 - Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
-2.13 - Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
+* 1 - Abstract v0.1 - First approach  
+* 2 - Exercises v0.3 - Added 2.1 - Two Sum
+  * 2.1 - Two Sum  v1.1 - Added from https://leetcode.com/problems/two-sum/
+  * 2.9 - Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
+  * 2.13 - Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
+  * 2.14 - Longest Common Prefix v1.0 - Added from https://leetcode.com/problems/longest-common-prefix/
+  * 2.20 - Valid Parentheses  v0.1 - Added from https://leetcode.com/problems/valid-parentheses/
+***
 ## 1 - Abstract
 Project to store the results of the learning path from https://leetcode.com but using ADA programming language.  
 As reference for the ADA programming language development will be used https://learn.adacore.com/index.html.  
-
+***
 ## 2 - Exercises
 ### 2.1 Two Sum  
-### https://leetcode.com/problems/two-sum/  
+#### https://leetcode.com/problems/two-sum/  
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.  
 You may assume that each input would have exactly one solution, and you may not use the same element twice.  
 You can return the answer in any order.  
@@ -49,7 +52,7 @@ Conclusion: Static test successfully passed
     
   
 ### 2.9 Palindrome Number
-### https://leetcode.com/problems/palindrome-number/
+#### https://leetcode.com/problems/palindrome-number/
 Given an integer x, return true if x is a palindrome, and false otherwise.  
 Example 1:  
   
@@ -69,7 +72,7 @@ Constraints:
 
 
 ### 2.13 Roman to Integer
-### https://leetcode.com/problems/roman-to-integer/
+#### https://leetcode.com/problems/roman-to-integer/
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
 Symbol       Value
@@ -114,7 +117,7 @@ s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
 ### 2.14 Longest Common Prefix
-### https://leetcode.com/problems/longest-common-prefix/
+#### https://leetcode.com/problems/longest-common-prefix/
 Write a function to find the longest common prefix string amongst an array of strings.  
 
 If there is no common prefix, return an empty string "".  
@@ -126,4 +129,34 @@ Output: "fl"
 Example 2:    
 Input: strs = ["dog","racecar","car"]  
 Output: ""  
-Explanation: There is no common prefix among the input strings.  
+Explanation: There is no common prefix among the input strings.
+
+### 2.20 Valid Parentheses  
+#### https://leetcode.com/problems/valid-parentheses/
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.  
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+ 
+
+Example 1:
+
+Input: s = "()"
+Output: true
+Example 2:
+
+Input: s = "()[]{}"
+Output: true
+Example 3:
+
+Input: s = "(]"
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length <= 104
+s consists of parentheses only '()[]{}'.
