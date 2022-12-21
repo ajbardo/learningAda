@@ -5,7 +5,8 @@
   * 2.9 - Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
   * 2.13 - Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
   * 2.14 - Longest Common Prefix v1.0 - Added from https://leetcode.com/problems/longest-common-prefix/
-  * 2.20 - Valid Parentheses  v0.1 - Added from https://leetcode.com/problems/valid-parentheses/
+  * 2.20 - Valid Parentheses  v1.0 - Added from https://leetcode.com/problems/valid-parentheses/
+  * 2.21 - Merge Two Sorted Lists vX.Y - Added from https://leetcode.com/problems/merge-two-sorted-lists/
 ***
 ## 1 - Abstract
 Project to store the results of the learning path from https://leetcode.com but using ADA programming language.  
@@ -160,3 +161,34 @@ Constraints:
 
 1 <= s.length <= 104
 s consists of parentheses only '()[]{}'.
+
+
+### 2.21 Merge Two Sorted Lists
+#### https://leetcode.com/problems/merge-two-sorted-lists/
+Easy
+Companies
+You are given the heads of two sorted linked lists list1 and list2.
+
+Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+Return the head of the merged linked list.
+
+ 
+
+Example 1:
+
+1 -> 2 -> 4  
+1 -> 3 -> 4  
+1 -> 1 -> 2 -> 3 -> 4 -> 4
+
+Input: list1 = [1,2,4], list2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+Example 2:
+
+Input: list1 = [], list2 = []
+Output: []
+Example 3:
+
+Input: list1 = [], list2 = [0]
+Output: [0]
+ 
