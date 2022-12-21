@@ -13,6 +13,7 @@ procedure main is
 -- 1.1-1.1 romantointeger
 -- 1.0-1.0 longestcommonprefix
 -- 1.0-1.0 validparentheses
+-- 1.0-1.0 mergetwosortedlists
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -68,6 +69,11 @@ procedure main is
 -- 1.0-1.0 validparentheses
 -- Procedure working with Bounded string of length = 10
 -- 8 static test cases, 4 positives and 4 negatives
+-- 1.0-1.0 mergetwosortedlists
+-- working with 2 arrays of length 3
+-- outputt: array of 6 integers
+-- 6 static test cases
+
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -91,10 +97,20 @@ procedure main is
     stringInputA : String := "         ";
     bounStringInputB : Bounded_String;
 
+    --type arrayOf3Index is range 1 .. 3; --removed until discover how to work with index out of fors
+    type arrayOf3 is array(1 .. 3) of Integer;
+	array3A : arrayOf3;
+	array3B : arrayOf3;
+
+
 	-- output variables for the functions
 	integerResultA : Integer;
     bounStringResultA : Bounded_String;
     bounStringResultB : Bounded_String;
+
+    --type arrayOf6Index is range 1 .. 6;--removed until discover how to work with index out of fors
+    type arrayOf6 is array(1 .. 6) of Integer;
+	array6A : arrayOf6;
 
     --variables for the test stadistics
 	testPass : Integer;
@@ -313,6 +329,48 @@ procedure main is
         end if;
     end validparentheses;
 
+    procedure mergetwosortedlists  is
+        -- indexes temporally removed
+        --indexA : arrayOf3Index := 1;
+        --indexB : arrayOf3Index := 1;
+        --pos : arrayOf6Index := 1;
+        indexA : Integer := 1;
+        indexB : Integer := 1;
+        pos : Integer := 1;
+        tempMax : Integer := 0;
+    begin
+
+        while pos < array6A'Length+1 loop
+            if indexA < array3A'Length+1 then
+                if indexB < array3B'Length+1 then
+                    if array3A(indexA) < array3B(indexB) then
+                        array6A(pos) := array3A(indexA);
+                        indexA := indexA + 1;
+                    elsif array3B(indexB) < array3A(indexA) then
+                        array6A(pos) := array3B(indexB);
+                        indexB := indexB + 1;
+                    else
+                        array6A(pos) := array3A(indexA);
+                        pos := pos + 1;
+                        array6A(pos) := array3B(indexB);
+                        indexA := indexA + 1;
+                        indexB := indexB + 1;
+                    end if;
+                else
+                    array6A(pos) := array3A(indexA);
+                    indexA := indexA + 1;
+                end if;
+            else
+                if indexB < array3B'Length+1 then
+                    array6A(pos) := array3B(indexB);
+                    indexB := indexB + 1;
+                end if;
+            end if;
+            pos := pos + 1;
+        end loop;
+    --Put_Line ("*>"&Integer'Image(array6A(1))&Integer'Image(array6A(2))&Integer'Image(array6A(3))&Integer'Image(array6A(4))&Integer'Image(array6A(5))&Integer'Image(array6A(6)));
+    end mergetwosortedlists;
+
 begin
 	Put_Line ("Starting main execution");
 	testPass := 0;
@@ -509,6 +567,74 @@ begin
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+    --------------------------------------------------------------------------------------------
+
+    testPass := 0;
+	testTotal := testTotal + 1;
+    array3A := (1, 2, 4);
+    array3B := (1, 3, 4);
+    array6A := (0,0,0,0,0,0);
+    mergetwosortedlists;
+	if array6A = (1,1,2,3,4,4) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+	testPass := 0;
+	testTotal := testTotal + 1;
+    array3A := (1, 4, 4);
+    array3B := (1, 3, 4);
+    mergetwosortedlists;
+	if array6A = (1,1,3,4,4,4) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+	testPass := 0;
+	testTotal := testTotal + 1;
+    array3A := (1, 4, 4);
+    array3B := (1, 3, 5);
+    mergetwosortedlists;
+	if array6A = (1,1,3,4,4,5) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+	testPass := 0;
+	testTotal := testTotal + 1;
+    array3A := (0, 0, 0);
+    array3B := (0, 0, 0);
+    mergetwosortedlists;
+	if array6A = (0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+	testPass := 0;
+	testTotal := testTotal + 1;
+    array3A := (1, 1, 1);
+    array3B := (2, 2, 2);
+    mergetwosortedlists;
+	if array6A = (1,1,1,2,2,2) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+	testPass := 0;
+	testTotal := testTotal + 1;
+    array3A := (1, 1, 1);
+    array3B := (1, 1, 1);
+    mergetwosortedlists;
+	if array6A = (1,1,1,1,1,1) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
     --------------------------------------------------------------------------------------------
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
