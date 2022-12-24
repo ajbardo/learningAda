@@ -14,6 +14,7 @@ procedure main is
 -- 1.0-1.0 longestcommonprefix
 -- 1.0-1.0 validparentheses
 -- 1.0-1.0 mergetwosortedlists
+-- 1.0-1.0 removeduplicatesfromsortedarray
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -73,6 +74,9 @@ procedure main is
 -- working with 2 arrays of length 3
 -- outputt: array of 6 integers
 -- 6 static test cases
+-- 1.0-1.0 removeduplicatesfromsortedarray
+-- Solved with complexity O(n), using two arrays of numbers (dataComplexity O(2n))
+-- 6 static test cases defined
 
 
 	-- Global use arrays
@@ -96,6 +100,7 @@ procedure main is
     integerInputC : Integer;
     stringInputA : String := "         ";
     bounStringInputB : Bounded_String;
+	array10AInput : arrayOf10;
 
     --type arrayOf3Index is range 1 .. 3; --removed until discover how to work with index out of fors
     type arrayOf3 is array(1 .. 3) of Integer;
@@ -107,6 +112,7 @@ procedure main is
 	integerResultA : Integer;
     bounStringResultA : Bounded_String;
     bounStringResultB : Bounded_String;
+	array10AOutput : arrayOf10;
 
     --type arrayOf6Index is range 1 .. 6;--removed until discover how to work with index out of fors
     type arrayOf6 is array(1 .. 6) of Integer;
@@ -368,8 +374,22 @@ procedure main is
             end if;
             pos := pos + 1;
         end loop;
-    --Put_Line ("*>"&Integer'Image(array6A(1))&Integer'Image(array6A(2))&Integer'Image(array6A(3))&Integer'Image(array6A(4))&Integer'Image(array6A(5))&Integer'Image(array6A(6)));
     end mergetwosortedlists;
+
+    procedure removeduplicatesfromsortedarray is
+        pos : Integer := array10AInput'First;
+        newValPos : Integer := array10AOutput'First;
+    begin
+        array10AOutput(newValPos) := array10AInput(pos);
+        while pos < array10AInput'Length loop
+            if array10AOutput(newValPos) /= array10AInput(pos) then
+                Put_Line("->"&Integer'Image(array10AOutput(newValPos)));
+                newValPos := newValPos + 1;
+                array10AOutput(newValPos) := array10AInput(pos);
+            end if;
+            pos := pos + 1;
+        end loop;
+   end removeduplicatesfromsortedarray;
 
 begin
 	Put_Line ("Starting main execution");
@@ -575,6 +595,7 @@ begin
     array3B := (1, 3, 4);
     array6A := (0,0,0,0,0,0);
     mergetwosortedlists;
+	testPass := 0;
 	if array6A = (1,1,2,3,4,4) then
 		testPass := 1;
 		testPassed := testPassed + 1;
@@ -586,6 +607,7 @@ begin
     array3A := (1, 4, 4);
     array3B := (1, 3, 4);
     mergetwosortedlists;
+	testPass := 0;
 	if array6A = (1,1,3,4,4,4) then
 		testPass := 1;
 		testPassed := testPassed + 1;
@@ -597,6 +619,7 @@ begin
     array3A := (1, 4, 4);
     array3B := (1, 3, 5);
     mergetwosortedlists;
+	testPass := 0;
 	if array6A = (1,1,3,4,4,5) then
 		testPass := 1;
 		testPassed := testPassed + 1;
@@ -608,6 +631,7 @@ begin
     array3A := (0, 0, 0);
     array3B := (0, 0, 0);
     mergetwosortedlists;
+	testPass := 0;
 	if array6A = (0,0,0,0,0,0) then
 		testPass := 1;
 		testPassed := testPassed + 1;
@@ -619,6 +643,7 @@ begin
     array3A := (1, 1, 1);
     array3B := (2, 2, 2);
     mergetwosortedlists;
+	testPass := 0;
 	if array6A = (1,1,1,2,2,2) then
 		testPass := 1;
 		testPassed := testPassed + 1;
@@ -630,12 +655,82 @@ begin
     array3A := (1, 1, 1);
     array3B := (1, 1, 1);
     mergetwosortedlists;
+	testPass := 0;
 	if array6A = (1,1,1,1,1,1) then
 		testPass := 1;
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
     --------------------------------------------------------------------------------------------
+
+    testTotal := testTotal + 1;
+	array10AInput := (1,1,1,2,2,3,4,8,8,8);
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+	removeduplicatesfromsortedarray;
+	testPass := 0;
+	if array10AOutput = (1,2,3,4,8,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,1,1,2,2,3,4,5,8,8);
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+	removeduplicatesfromsortedarray;
+	testPass := 0;
+	if array10AOutput = (1,2,3,4,5,8,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,2,3,3,3,3,3,3,8,0);
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+	removeduplicatesfromsortedarray;
+	testPass := 0;
+	if array10AOutput = (1,2,3,8,0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,1,1,1,1,1,1,1,1,1);
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+	removeduplicatesfromsortedarray;
+	testPass := 0;
+	if array10AOutput = (1,0,0,0,0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (0,0,0,0,0,0,0,0,0,0);
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+	removeduplicatesfromsortedarray;
+	testPass := 0;
+	if array10AOutput = (0,0,0,0,0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,0,0,0,0,0,0,0,0,0);
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+	removeduplicatesfromsortedarray;
+	testPass := 0;
+	if array10AOutput = (1,0,0,0,0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+    --------------------------------------------------------------------------------------------
+
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
 end main;
