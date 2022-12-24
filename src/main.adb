@@ -15,6 +15,7 @@ procedure main is
 -- 1.0-1.0 validparentheses
 -- 1.0-1.0 mergetwosortedlists
 -- 1.0-1.0 removeduplicatesfromsortedarray
+-- 1.0-1.0 removeelement
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -77,6 +78,9 @@ procedure main is
 -- 1.0-1.0 removeduplicatesfromsortedarray
 -- Solved with complexity O(n), using two arrays of numbers (dataComplexity O(2n))
 -- 6 static test cases defined
+-- 1.0-1.0 removeelement
+-- Solved Complexity O(n)
+-- 5 static test cases to verify behaviour
 
 
 	-- Global use arrays
@@ -383,13 +387,25 @@ procedure main is
         array10AOutput(newValPos) := array10AInput(pos);
         while pos < array10AInput'Length loop
             if array10AOutput(newValPos) /= array10AInput(pos) then
-                Put_Line("->"&Integer'Image(array10AOutput(newValPos)));
                 newValPos := newValPos + 1;
                 array10AOutput(newValPos) := array10AInput(pos);
             end if;
             pos := pos + 1;
         end loop;
    end removeduplicatesfromsortedarray;
+
+    procedure removeelement is
+        pos : Integer := array10AInput'First;
+        newValPos : Integer := array10AOutput'First;
+    begin
+        while pos < array10AInput'Length loop
+            if array10AInput(pos) /= integerInputA then
+                array10AOutput(newValPos) := array10AInput(pos);
+                newValPos := newValPos + 1;
+            end if;
+            pos := pos + 1;
+        end loop;
+    end removeelement;
 
 begin
 	Put_Line ("Starting main execution");
@@ -729,6 +745,79 @@ begin
 	end if;
 	Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
 
+    --------------------------------------------------------------------------------------------
+
+    testTotal := testTotal + 1;
+	array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+	integerInputA := 3; -- element to be removed
+	removeelement;
+	testPass := 0;
+	if array10AOutput = (4,2,5,4,6,2,1,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+    testTotal := testTotal + 1;
+	array10AInput := (1,1,1,1,1,1,1,1,1,1); -- array input
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+	integerInputA := 1; -- element to be removed
+	removeelement;
+	testPass := 0;
+	if array10AOutput = (0,0,0,0,0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,1,1,2,2,2,1,1,1,2); -- array input
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+	integerInputA := 1; -- element to be removed
+	removeelement;
+	testPass := 0;
+	if array10AOutput = (2,2,2,2,0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+	integerInputA := 7; -- element to be removed
+	removeelement;
+	testPass := 0;
+	if array10AOutput = (4,3,2,5,4,6,2,3,3,1) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (7,3,2,5,4,6,2,3,3,1); -- array input
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+	integerInputA := 7; -- element to be removed
+	removeelement;
+	testPass := 0;
+	if array10AOutput = (3,2,5,4,6,2,3,3,1,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
+	array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+	integerInputA := 1; -- element to be removed
+	removeelement;
+	testPass := 0;
+	if array10AOutput = (4,3,2,5,4,6,2,3,3,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
     --------------------------------------------------------------------------------------------
 
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
