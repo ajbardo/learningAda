@@ -81,7 +81,9 @@ procedure main is
 -- 1.0-1.0 removeelement
 -- Solved Complexity O(n)
 -- 5 static test cases to verify behaviour
-
+-- 1.0-1.0 searchinsertposition
+-- Solved expected complexity O(logN)
+-- 5 static test cases to verify behaviour
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -406,6 +408,44 @@ procedure main is
             pos := pos + 1;
         end loop;
     end removeelement;
+
+
+   -- array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+	--integerInputA := 7; -- element to be found
+	--integerResultA := 0;
+    procedure searchinsertposition is
+        lowPos : Integer := array10AInput'First;
+        highPos : Integer := array10AInput'Last;
+        newPos : Integer := 0;
+    begin
+        integerResultA := -1;
+        if integerInputA <= array10AInput(array10AInput'First) then
+            integerResultA := array10AInput'First;
+        elsif integerInputA > array10AInput(array10AInput'Last) then
+            integerResultA := array10AInput'Last+1;
+        elsif integerInputA = array10AInput(array10AInput'Last) then
+            integerResultA := array10AInput'Last;
+        else
+            while integerResultA = -1 loop
+                newPos := lowPos + Integer((highPos-lowPos)/2);
+                if array10AInput(newPos) < integerInputA then
+                    if newPos = lowPos then
+                        integerResultA := newPos;
+                    end if;
+                    lowPos := newPos;
+                elsif array10AInput(newPos) > integerInputA then
+                    highPos := newPos;
+                else
+                    integerResultA := newPos;
+                end if;
+            end loop;
+        end if;
+    end searchinsertposition;
+
+    procedure lengthoflastword is
+    begin
+    Put_Line ("");
+    end lengthoflastword;
 
 begin
 	Put_Line ("Starting main execution");
@@ -820,6 +860,91 @@ begin
 	Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
     --------------------------------------------------------------------------------------------
 
+
+    testTotal := testTotal + 1;
+	array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+	integerInputA := 9; -- element to be found
+	integerResultA := 0;
+	searchinsertposition;
+	testPass := 0;
+	if integerResultA = 3 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+	integerInputA := 1; -- element to be found
+	integerResultA := 0;
+	searchinsertposition;
+	testPass := 0;
+	if integerResultA = 0 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+	integerInputA := 100; -- element to be found
+	integerResultA := 0;
+	searchinsertposition;
+	testPass := 0;
+	if integerResultA = 9 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+	integerInputA := 101; -- element to be found
+	integerResultA := 0;
+	searchinsertposition;
+	testPass := 0;
+	if integerResultA = 10 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+	integerInputA := 40; -- element to be found
+	integerResultA := 0;
+	searchinsertposition;
+	testPass := 0;
+	if integerResultA = 5 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+
+    --------------------------------------------------------------------------------------------
+
+    testTotal := testTotal + 1;
+	array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+	integerInputA := 40; -- element to be found
+	integerResultA := 0;
+	searchinsertposition;
+	testPass := 0;
+	if integerResultA = 5 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+    --------------------------------------------------------------------------------------------
+
+    --------------------------------------------------------------------------------------------
+
+    --------------------------------------------------------------------------------------------
+
+    --------------------------------------------------------------------------------------------
+
+    --------------------------------------------------------------------------------------------
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
 	Put_Line ("Ending main execution");
 end main;
