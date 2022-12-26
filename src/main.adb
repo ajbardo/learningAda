@@ -22,6 +22,7 @@ procedure main is
 -- 1.0-1.0 removeduplicatesfromsortedarray
 -- 1.0-1.0 removeelement
 -- 1.0-1.0 lengthoflastword
+-- 1.0-1.0 plusOne
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -93,6 +94,9 @@ procedure main is
 -- 1.0-1.0 lengthoflastword
 -- solved using https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
 -- 3 static test to verify behaviour
+-- 1.0-1.0 plusOne
+-- Solved with complexity O(n)
+-- 6 static test cases to verify behaviour
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -479,6 +483,27 @@ procedure main is
         end loop;
         integerResultA := Integer(Lold-Fold)+1;
     end lengthoflastword;
+
+    procedure plusOne is
+        pos : Integer := array10'Last;
+        extra : Integer := 0;
+    begin
+        while pos > array10'First-1 loop
+            if pos = array10'Last then
+                array10(pos) := array10(pos) + 1;
+            else
+                array10(pos) := array10(pos)  + extra;
+            end if;
+
+            if array10(pos) > 9 then
+                array10(pos) := 0;
+                extra := 1;
+            else
+                extra := 0;
+            end if;
+            pos := pos - 1;
+        end loop;
+    end plusOne;
 
 begin
 	Put_Line ("Starting main execution");
@@ -966,7 +991,7 @@ begin
 		testPass := 1;
 		testPassed := testPassed + 1;
 	end if;
-	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+	Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
 
 	testTotal := testTotal + 1;
 	stringInputB := "aaa" & 17 * " ";
@@ -977,7 +1002,7 @@ begin
 		testPass := 1;
 		testPassed := testPassed + 1;
 	end if;
-	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+	Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
 
 	testTotal := testTotal + 1;
 	stringInputB := 17 * " " & "aaa";
@@ -988,10 +1013,72 @@ begin
 		testPass := 1;
 		testPassed := testPassed + 1;
 	end if;
-	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
-
+	Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
 
     --------------------------------------------------------------------------------------------
+
+    testTotal := testTotal + 1;
+    array10 := (0,0,0,0,0,0,0,0,0,0);
+	plusOne;
+	testPass := 0;
+	if array10 = (0,0,0,0,0,0,0,0,0,1) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    array10 := (0,0,0,0,0,0,0,0,0,9);
+	plusOne;
+	testPass := 0;
+	if array10 = (0,0,0,0,0,0,0,0,1,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+
+    testTotal := testTotal + 1;
+    array10 := (0,0,0,0,0,0,0,0,0,2);
+	plusOne;
+	testPass := 0;
+	if array10 = (0,0,0,0,0,0,0,0,0,3) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+
+    testTotal := testTotal + 1;
+    array10 := (0,0,0,0,0,0,0,0,9,0);
+	plusOne;
+	testPass := 0;
+	if array10 = (0,0,0,0,0,0,0,0,9,1) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	array10 := (9,0,0,0,0,0,0,0,2,0);
+	plusOne;
+	testPass := 0;
+	if array10 = (9,0,0,0,0,0,0,0,2,1) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    array10 := (9,9,9,9,9,9,9,9,9,9);
+	plusOne;
+	testPass := 0;
+	if array10 = (0,0,0,0,0,0,0,0,0,0) then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
 
     --------------------------------------------------------------------------------------------
 
