@@ -5,6 +5,11 @@ with Ada.Strings;         use Ada.Strings;
 with Ada.Strings.Bounded;
 with Ada.Text_IO;         use Ada.Text_IO;
 
+with Ada.Strings;       use Ada.Strings;
+with Ada.Strings.Fixed; use Ada.Strings.Fixed;
+with Ada.Strings.Maps;  use Ada.Strings.Maps;
+with Ada.Text_IO;       use Ada.Text_IO;
+
 
 procedure main is
 -- main
@@ -16,6 +21,7 @@ procedure main is
 -- 1.0-1.0 mergetwosortedlists
 -- 1.0-1.0 removeduplicatesfromsortedarray
 -- 1.0-1.0 removeelement
+-- 1.0-1.0 lengthoflastword
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -84,6 +90,9 @@ procedure main is
 -- 1.0-1.0 searchinsertposition
 -- Solved expected complexity O(logN)
 -- 5 static test cases to verify behaviour
+-- 1.0-1.0 lengthoflastword
+-- solved using https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
+-- 3 static test to verify behaviour
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -100,11 +109,14 @@ procedure main is
     type StringBounArray is array (0 .. 2) of B_Str.Bounded_String;
     StrBounString : StringBounArray;
 
+
+
 	-- input variables for the functions
     integerInputA : Integer;
     integerInputB : Integer;
     integerInputC : Integer;
     stringInputA : String := "         ";
+    stringInputB : String := 20*" ";
     bounStringInputB : Bounded_String;
 	array10AInput : arrayOf10;
 
@@ -443,8 +455,29 @@ procedure main is
     end searchinsertposition;
 
     procedure lengthoflastword is
+        -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
+        token : constant String := " ";
+        I   : Natural := 1;
+        F   : Positive;
+        L   : Natural;
+        Fold   : Positive;
+        Lold   : Natural;
+        Whitespace : constant Character_Set :=To_Set (' ');
     begin
-    Put_Line ("");
+        while I in stringInputB'Range loop
+            Find_Token(
+                Source => stringInputB,
+                Set => Whitespace,
+                From => I,
+                Test => Outside,
+                First => F,
+                Last => L);
+            exit when L = 0;
+            Fold := F;
+            Lold := L;
+            I := L + 1;
+        end loop;
+        integerResultA := Integer(Lold-Fold)+1;
     end lengthoflastword;
 
 begin
@@ -925,16 +958,38 @@ begin
     --------------------------------------------------------------------------------------------
 
     testTotal := testTotal + 1;
-	array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
-	integerInputA := 40; -- element to be found
+	stringInputB := "aaa aaa aaa " & 8 * " ";
 	integerResultA := 0;
-	searchinsertposition;
+	lengthoflastword;
 	testPass := 0;
-	if integerResultA = 5 then
+	if integerResultA = 3 then
 		testPass := 1;
 		testPassed := testPassed + 1;
 	end if;
 	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	stringInputB := "aaa" & 17 * " ";
+	integerResultA := 0;
+	lengthoflastword;
+	testPass := 0;
+	if integerResultA = 3 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+	stringInputB := 17 * " " & "aaa";
+	integerResultA := 0;
+	lengthoflastword;
+	testPass := 0;
+	if integerResultA = 3 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
 
     --------------------------------------------------------------------------------------------
 
