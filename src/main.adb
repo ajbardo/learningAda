@@ -23,6 +23,7 @@ procedure main is
 -- 1.0-1.0 removeelement
 -- 1.0-1.0 lengthoflastword
 -- 1.0-1.0 plusOne
+-- 1.0-1.0 addbinary
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -97,6 +98,9 @@ procedure main is
 -- 1.0-1.0 plusOne
 -- Solved with complexity O(n)
 -- 6 static test cases to verify behaviour
+-- 1.0-1.0 addbinary
+-- Solved with complexity O(n)
+-- 5 static test cases to verify behaviour
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -504,6 +508,27 @@ procedure main is
             pos := pos - 1;
         end loop;
     end plusOne;
+
+
+    procedure addbinary is
+        letterPos : Integer := To_String(bounStringInputB)'Last+1;
+        haulage : Integer := 1;
+        result : String := To_String(bounStringInputB)'Length*" ";
+    begin
+        letterPos := letterPos - 1;
+        result := To_String(bounStringInputB);
+        while haulage = 1 and then letterPos > To_String(bounStringInputB)'First-1 loop
+            if To_String(bounStringInputB)(letterPos) = '1' then
+                result(letterPos) := '0';
+                haulage := 1;
+            else
+                result(letterPos) := '1';
+                haulage := 0;
+            end if;
+            letterPos := letterPos - 1;
+        end loop;
+        bounStringResultA := To_Bounded_String(result);
+    end addbinary;
 
 begin
 	Put_Line ("Starting main execution");
@@ -1082,6 +1107,56 @@ begin
 
     --------------------------------------------------------------------------------------------
 
+
+    testTotal := testTotal + 1;
+    bounStringInputB := To_Bounded_String("0010100110");
+	addbinary;
+	testPass := 0;
+	if bounStringResultA = To_Bounded_String("0010100111") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    bounStringInputB := To_Bounded_String("0010100111");
+	addbinary;
+	testPass := 0;
+	if bounStringResultA = To_Bounded_String("0010101000") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    bounStringInputB := To_Bounded_String("1000000000");
+	addbinary;
+	testPass := 0;
+	if bounStringResultA = To_Bounded_String("1000000001") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    bounStringInputB := To_Bounded_String("0000000000");
+	addbinary;
+	testPass := 0;
+	if bounStringResultA = To_Bounded_String("0000000001") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    bounStringInputB := To_Bounded_String("1111111111");
+	addbinary;
+	testPass := 0;
+	if bounStringResultA = To_Bounded_String("0000000000") then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
     --------------------------------------------------------------------------------------------
 
     --------------------------------------------------------------------------------------------

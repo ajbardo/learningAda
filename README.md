@@ -333,9 +333,7 @@ Thus, the result should be [1,0].
 ###  2.67. Add Binary
 #### https://leetcode.com/problems/add-binary/
 Easy
-6.4K
-678
-Companies
+note -> we are gonna use a bounded string, if the binary number is bigger than the legnth of the string then the extra values will be lost.  
 Given two binary strings a and b, return their sum as a binary string.
 
  
