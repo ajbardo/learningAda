@@ -24,6 +24,7 @@ procedure main is
 -- 1.0-1.0 lengthoflastword
 -- 1.0-1.0 plusOne
 -- 1.0-1.0 addbinary
+-- 1.0-1.0 SqrtX
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -101,6 +102,9 @@ procedure main is
 -- 1.0-1.0 addbinary
 -- Solved with complexity O(n)
 -- 5 static test cases to verify behaviour
+-- 1.0-1.0 SqrtX
+-- Solved with complexity O(n) in the not ^2 space, O(lgn) expected for the ^2 space
+-- 3 static test cases to verify behaviour
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -529,6 +533,34 @@ procedure main is
         end loop;
         bounStringResultA := To_Bounded_String(result);
     end addbinary;
+
+    procedure SqrtX is
+        pos : Integer := 0;
+        aux : Integer := 0;
+        oldpos : Integer := 0;
+        oldaux : Integer := 0;
+        control : Integer := 1;
+    begin
+        integerResultA := 0;
+        while control = 1 and then integerResultA=0 loop
+            aux := pos * pos;
+            if aux > integerInputA then
+                if (aux-integerInputA) > (integerInputA-oldaux) then
+                    integerResultA := oldpos;
+                else
+                    integerResultA := pos;
+                end if;
+            end if;
+
+            if pos > integerInputA then
+                control := 0;
+            end if;
+
+            oldpos := pos;
+            oldaux := aux;
+            pos := pos + 1;
+        end loop;
+    end SqrtX;
 
 begin
 	Put_Line ("Starting main execution");
@@ -1158,6 +1190,38 @@ begin
 	end if;
 	Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
     --------------------------------------------------------------------------------------------
+
+    testTotal := testTotal + 1;
+    integerInputA := 411;
+	SqrtX;
+	testPass := 0;
+	if integerResultA = 20 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+
+
+	testTotal := testTotal + 1;
+    integerInputA := 155542;
+	SqrtX;
+	testPass := 0;
+	if integerResultA = 394 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+
+	testTotal := testTotal + 1;
+    integerInputA := 32;
+	SqrtX;
+	testPass := 0;
+	if integerResultA = 6 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+
 
     --------------------------------------------------------------------------------------------
 
