@@ -10,6 +10,10 @@ with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 with Ada.Strings.Maps;  use Ada.Strings.Maps;
 with Ada.Text_IO;       use Ada.Text_IO;
 
+with Ada.Numerics.Elementary_Functions;
+use  Ada.Numerics.Elementary_Functions;
+with Ada.Numerics; use Ada.Numerics;
+with Ada.Real_Time; use Ada.Real_Time;
 
 procedure main is
 -- main
@@ -25,6 +29,7 @@ procedure main is
 -- 1.0-1.0 plusOne
 -- 1.0-1.0 addbinary
 -- 1.0-1.0 SqrtX
+-- -- 2.0-1.0 climbingstairs
 -- ____ notes ____
 -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
 -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -105,6 +110,16 @@ procedure main is
 -- 1.0-1.0 SqrtX
 -- Solved with complexity O(n) in the not ^2 space, O(lgn) expected for the ^2 space
 -- 3 static test cases to verify behaviour
+-- 2.0-1.0 climbingstairs
+-- Solved with complexity O(n) - climbingstairsFibo
+-- Solved with complexity O(1) - climbingstairsFiboExtra
+-- 1 static test case with two checks to verify behaviour
+-- climbingstairsFibo is correct
+-- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
+
+    --timers from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_dates_times.html#benchmarking
+    Start_Time, Stop_Time : Time;
+    Elapsed_Time          : Time_Span;
 
 	-- Global use arrays
 	maxIndex10 : Integer := 10;
@@ -562,7 +577,37 @@ procedure main is
         end loop;
     end SqrtX;
 
+
+    procedure climbingstairsFibo is
+        actual : Integer := 1;
+        old : Integer := 0;
+        pos : integer := 0;
+
+    begin
+        integerResultA := 0;
+        if integerInputA > 2 then
+            while pos < integerInputA loop
+                integerResultA := actual + old;
+                old := actual;
+                actual := integerResultA;
+                pos := pos + 1;
+            end loop;
+        else
+            integerResultA := 1;
+        end if;
+    end climbingstairsFibo;
+
+    procedure climbingstairsFiboExtra is
+        GR : float := 1.618034;
+    begin
+        integerResultA := 0;
+        integerResultA := Integer((GR**integerInputA - (1.0-GR)**integerInputA)/Sqrt(5.0));
+    end climbingstairsFiboExtra;
+
+
 begin
+
+	Start_Time := Clock;
 	Put_Line ("Starting main execution");
 	testPass := 0;
 	testPassed := 0;
@@ -1224,8 +1269,34 @@ begin
 
 
     --------------------------------------------------------------------------------------------
+    testTotal := testTotal + 1;
+    integerInputA := 40;
+	testPass := 0;
+	climbingstairsFibo;
+	if integerResultA = 165580141 then
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for climbingstairsFibo with status: "&Integer'Image(testPass));
+
+    testTotal := testTotal + 1;
+	testPass := 0;
+    climbingstairsFiboExtra;
+    if integerResultA = 165580141 then -- expected to fail due to diference between ecuation results and the actual series
+		testPass := 1;
+		testPassed := testPassed + 1;
+	end if;
+	Put_Line ("Test for climbingstairsFiboExtra with status: "&Integer'Image(testPass));
+
 
     --------------------------------------------------------------------------------------------
 	Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
-	Put_Line ("Ending main execution");
+
+
+	Stop_Time    := Clock;
+    Elapsed_Time := Stop_Time - Start_Time;
+    Put_Line ("Ending main execution - Elapsed time for all executions: "
+             & Duration'Image (To_Duration (Elapsed_Time))
+             & " seconds");
+
 end main;
