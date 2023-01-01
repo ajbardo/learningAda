@@ -1,4 +1,4 @@
-package exercises1to100 is
+package exercises1to100 is--structure from https://learn.adacore.com/courses/GNAT_Toolchain_Intro/chapters/gprbuild.html#basic-commands
    type My_Class is tagged null record;
    --  Just like a regular record, but
    --  with tagged qualifier
@@ -11,11 +11,5 @@ package exercises1to100 is
    --  My_Class argument in the same package,
    --  it will be a method.
 
-   --  Here's how you derive a tagged type:
-
-   type Derived is new My_Class with record
-       A : Integer;
-       --  You can add fields in derived types.
-   end record;
 
 end exercises1to100;

@@ -1,8 +1,10 @@
-with Exercises1to100; use exercises1to100;
+with exercises1to100; use exercises1to100;
 
--- main
-    -- 1.0-0.0 call to E1to100
--- exercises1to100
+-- main.adb
+    -- + 1.0-0.0 call to E1to100
+-- main.ads
+    -- empty
+-- exercises1to100.adb
     -- 1.0-1.1 twoSum
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
@@ -16,7 +18,9 @@ with Exercises1to100; use exercises1to100;
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
-
+-- exercises1to100.ads
+    -- + generated as class
+    -- + estructure for procedure oneTo100(Self : in out My_Class);
 
 procedure main is
     E1to100 : My_Class;
