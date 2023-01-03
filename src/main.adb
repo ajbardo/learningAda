@@ -1,7 +1,7 @@
 with exercises1to100; use exercises1to100;
 
 -- main.adb
-    -- + 1.0-0.0 call to E1to100
+    -- + 1.1-0.0 call to E1to100
 -- main.ads
     -- empty
 -- exercises1to100.adb
@@ -18,6 +18,7 @@ with exercises1to100; use exercises1to100;
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
+    -- +0.1-1.0 binarytreeinordertraversal
 -- exercises1to100.ads
     -- + generated as class
     -- + estructure for procedure oneTo100(Self : in out My_Class);

@@ -15,6 +15,7 @@ use  Ada.Numerics.Elementary_Functions;
 with Ada.Numerics; use Ada.Numerics;
 with Ada.Real_Time; use Ada.Real_Time;
 
+with linkedstructure; use linkedstructure;
 
 package body exercises1to100 is
     procedure oneTo100(Self : in out My_Class) is
@@ -32,6 +33,7 @@ package body exercises1to100 is
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
+    -- 0.1-1.0 binarytreeinordertraversal
     -- ____ notes ____
     -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
     -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -118,6 +120,9 @@ package body exercises1to100 is
     -- 1 static test case with two checks to verify behaviour
     -- climbingstairsFibo is correct
     -- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
+    -- 0.1-1.0 binarytreeinordertraversal
+    -- work in progress
+
 
         --timers from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_dates_times.html#benchmarking
         Start_Time, Stop_Time : Time;
@@ -130,6 +135,9 @@ package body exercises1to100 is
 
         type arrayOf2 is array(0 .. 1) of Integer;
         array2 : arrayOf2;
+
+        -- linked arrays
+        inputTree : linkedArrayData;
 
         -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html#bounded-strings
         package B_Str is new
@@ -604,6 +612,13 @@ package body exercises1to100 is
             integerResultA := 0;
             integerResultA := Integer((GR**(integerInputA+1) - (1.0-GR)**(integerInputA+1))/Sqrt(5.0));
         end climbingstairsFiboExtra;
+
+        procedure binarytreeinordertraversal is--ex94
+        begin
+            Put_Line ("->"&Integer'Image(inputTree.getElementValue(0)));
+
+        end binarytreeinordertraversal;
+
     begin
 
         Start_Time := Clock;
@@ -1287,6 +1302,24 @@ package body exercises1to100 is
         end if;
         Put_Line ("Test for climbingstairsFiboExtra with status: "&Integer'Image(testPass));
 
+
+
+
+        testTotal := testTotal + 1;
+        testPass := 0;
+        integerInputA := inputTree.cleanData(0);
+        integerInputA := inputTree.updateelement(0,1,2,3);
+        integerInputA := inputTree.updateelement(1,2,4,5);
+        integerInputA := inputTree.updateelement(2,3,5,6);
+        integerInputA := inputTree.updateelement(3,4,7,8);
+        integerInputA := inputTree.updateelement(4,5,9,0);
+        integerInputA := inputTree.updateelement(5,6,0,0);
+        integerInputA := inputTree.updateelement(6,7,0,0);
+        integerInputA := inputTree.updateelement(8,9,0,0);
+        integerInputA := inputTree.updateelement(9,10,0,0);
+        binarytreeinordertraversal;
+        integerInputA := inputTree.cleanData(0);
+        Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
 
         --------------------------------------------------------------------------------------------
         Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
