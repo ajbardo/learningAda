@@ -5,12 +5,14 @@ package body linkedstructure is
     type arraywithLink is array(0 .. 2) of Integer;
     type arrayOfA100 is array (0 .. 99) of arraywithLink;
     ArrayWithLinks : arrayOfA100;
+    length : Integer := 0;
 
     function updateelement(Self : in out linkedArrayData; elementId , elementValue , linkId1, linkId2 : integer) return integer is
     begin
         ArrayWithLinks(elementId)(0) := elementValue;
         ArrayWithLinks(elementId)(1) := linkId1;
         ArrayWithLinks(elementId)(2) := linkId2;
+        length := length + 1;
         return 1;
     end updateelement;
 
@@ -36,7 +38,13 @@ package body linkedstructure is
                 ArrayWithLinks(pos1)(pos2) := newValue;
             end loop;
         end loop;
+        length := 0;
         return 1;
     end cleanData;
-    
+
+    function getlength(Self : in out linkedArrayData; newValue :integer) return integer is
+    begin
+        return length;
+    end getlength;
+
 end linkedstructure;

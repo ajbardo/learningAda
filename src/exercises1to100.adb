@@ -33,7 +33,7 @@ package body exercises1to100 is
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
-    -- 0.1-1.0 binarytreeinordertraversal
+    -- +0.2-1.0 binarytreeinordertraversal
     -- ____ notes ____
     -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
     -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -120,8 +120,9 @@ package body exercises1to100 is
     -- 1 static test case with two checks to verify behaviour
     -- climbingstairsFibo is correct
     -- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
-    -- 0.1-1.0 binarytreeinordertraversal
-    -- work in progress
+    -- 0.2-1.0 binarytreeinordertraversal
+    -- First squetch of the algorithm,
+    -- compiler doesnt find selector
 
 
         --timers from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_dates_times.html#benchmarking
@@ -135,6 +136,9 @@ package body exercises1to100 is
 
         type arrayOf2 is array(0 .. 1) of Integer;
         array2 : arrayOf2;
+
+        type arrayOf100 is array(0 .. 99) of Integer;
+        array100 : arrayOf100;
 
         -- linked arrays
         inputTree : linkedArrayData;
@@ -614,8 +618,28 @@ package body exercises1to100 is
         end climbingstairsFiboExtra;
 
         procedure binarytreeinordertraversal is--ex94
+            pos : integer := 0;--considering the root of the tree index = 0
+            arraypos : Integer := 0;
+            visited : integer := 0;
+            totalElements : Integer;
         begin
-            Put_Line ("->"&Integer'Image(inputTree.getElementValue(0)));
+            totalElements := inputTree.getlength(0);
+            while visited < totalElements loop
+                if inputTree.getFirstLink(pos) = 0 and inputTree.getSecondLink(pos) = 0 then
+                    array100(arraypos) := inputTree.getElementValue(pos);
+                    arraypos := arraypos + 1;
+                    visited := visited + 1;
+                    inputTree.updateelement(pos,0,0,0);
+                    pos := 0;
+                elsif inputTree.getFirstLink(pos) /= 0 then
+                    pos := inputTree.getFirstLink(pos);
+                elsif inputTree.getSecondLink(pos) /= 0 then
+                    pos := inputTree.getSecondLink(pos);
+                end if;
+            end loop;
+        for pos in array100'First .. array100'Last loop
+            Put_Line ("->"&Integer'Image(array100(pos)));
+        end loop;
 
         end binarytreeinordertraversal;
 

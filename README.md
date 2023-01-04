@@ -1,13 +1,20 @@
 # learningAda A0.1-E0.3
 * 1 - Abstract v0.1 - First approach  
 * 2 - Exercises v0.3 - Added 2.1 - Two Sum
-  * 2.1 - Two Sum  v1.1 - Added from https://leetcode.com/problems/two-sum/
-  * 2.9 - Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
-  * 2.13 - Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
-  * 2.14 - Longest Common Prefix v1.0 - Added from https://leetcode.com/problems/longest-common-prefix/
-  * 2.20 - Valid Parentheses  v1.0 - Added from https://leetcode.com/problems/valid-parentheses/
-  * 2.21 - Merge Two Sorted Lists vX.Y - Added from https://leetcode.com/problems/merge-two-sorted-lists/
-  * 2.27 - Remove Element - https://leetcode.com/problems/remove-element/
+  * 2.1. Two Sum  v1.1 - Added from https://leetcode.com/problems/two-sum/
+  * 2.9. Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
+  * 2.13. Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
+  * 2.14. Longest Common Prefix v1.0 - Added from https://leetcode.com/problems/longest-common-prefix/
+  * 2.20. Valid Parentheses  v1.0 - Added from https://leetcode.com/problems/valid-parentheses/
+  * 2.21. Merge Two Sorted Lists vX.Y - Added from https://leetcode.com/problems/merge-two-sorted-lists/
+  * 2.27. Remove Element - https://leetcode.com/problems/remove-element/
+  * 2.35. Search Insert Position https://leetcode.com/problems/search-insert-position/
+  * 2.58. Length of Last Word https://leetcode.com/problems/length-of-last-word/
+  * 2.66. Plus One https://leetcode.com/problems/plus-one/
+  * 2.67. Add Binary https://leetcode.com/problems/add-binary/
+  * 2.69. Sqrt(x) https://leetcode.com/problems/sqrtx/  
+  * 2.70. Climbing Stairs https://leetcode.com/problems/climbing-stairs/
+  * 2.94. Binary Tree Inorder Traversal https://leetcode.com/problems/binary-tree-inorder-traversal/
 ***
 ## 1 - Abstract
 Project to store the results of the learning path from https://leetcode.com but using ADA programming language.  
