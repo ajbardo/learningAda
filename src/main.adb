@@ -18,7 +18,7 @@ with exercises1to100; use exercises1to100;
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
-    -- +0.2-1.0 binarytreeinordertraversal
+    -- +0.3-1.0 binarytreeinordertraversal
 -- v0.1-0.0 linkedstructure
     -- v0.1-0.0 updateelement
     -- -> updates the value of the element and the links
