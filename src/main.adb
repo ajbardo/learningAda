@@ -1,7 +1,7 @@
 with exercises1to100; use exercises1to100;
 
 -- main.adb
-    -- + 1.1-0.0 call to E1to100
+    -- 1.1-0.0 call to E1to100
 -- main.ads
     -- empty
 -- exercises1to100
@@ -18,7 +18,7 @@ with exercises1to100; use exercises1to100;
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
-    -- +0.3-1.0 binarytreeinordertraversal
+    -- +1.0-1.0 binarytreeinordertraversal
 -- v0.1-0.0 linkedstructure
     -- v0.1-0.0 updateelement
     -- -> updates the value of the element and the links
@@ -31,7 +31,7 @@ with exercises1to100; use exercises1to100;
     -- v0.2-0.0 cleanData
     -- -> restores all the positions of all the arrays to the designated value
     -- -> restores length to 0
-    -- +v0.2-0.0 getlength
+    -- v0.2-0.0 getlength
     -- -> Returns the total length of the linked structure
     -- -> receives a value that is not significant
 

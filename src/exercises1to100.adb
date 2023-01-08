@@ -33,7 +33,7 @@ package body exercises1to100 is
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
-    -- +0.3-1.0 binarytreeinordertraversal
+    -- +1.0-1.0 binarytreeinordertraversal
     -- ____ notes ____
     -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
     -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -120,9 +120,10 @@ package body exercises1to100 is
     -- 1 static test case with two checks to verify behaviour
     -- climbingstairsFibo is correct
     -- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
-    -- 0.3-1.0 binarytreeinordertraversal
-    -- First squetch of the algorithm,
-    -- compiler doesnt find selector
+    -- 1.0-1.0 binarytreeinordertraversal
+    -- Getting the tree with help of auxiliary array
+    -- 3 static test cases to verify behaviour(1 failing when used a list instead of tree)
+
 
 
         --timers from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_dates_times.html#benchmarking
@@ -619,32 +620,70 @@ package body exercises1to100 is
 
         procedure binarytreeinordertraversal is--ex94
             pos : integer := 0;--considering the root of the tree index = 0
-            arraypos : Integer := 0;
-            visited : integer := 0;
+            arrayResultpos : Integer := array100A'First;
 
-            totalElements : Integer;
+            elemsCount : Integer := 0;
             type arrayOf100 is array(0 .. 99) of Integer;
             visitedElems : arrayOf100;
             arrayposvisitedElems : Integer := 0;
 
         begin
-            if inputTree.getFirstLink(pos) = 0 and inputTree.getSecondLink(pos) = 0 then
+            visitedElems(arrayposvisitedElems) := 0;
+            arrayposvisitedElems := arrayposvisitedElems + 1;
+            while elemsCount < inputTree.getlength(0) loop
+                --Put_Line ("/0>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+                if inputTree.getFirstLink(pos) = 0 and inputTree.getSecondLink(pos) = 0 then --leaf
 
-                elsif inputTree.getFirstLink(pos) /= 0 then
+                    array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value
+                    arrayResultpos := arrayResultpos + 1 ;
+
+                    --point to the leaf
                     visitedElems(arrayposvisitedElems) := pos;
-                    arrayposvisitedElems := arrayposvisitedElems + 1;
-                    pos := inputTree.getFirstLink(pos);
-                elsif inputTree.getSecondLink(pos) /= 0 then
-                    array100A(arraypos):= inputTree.getElementValue(pos);
-                    arraypos := arraypos + 1;
-                    pos := inputTree.getSecondLink(pos);
+                    -- pos of the branch
+                    pos := visitedElems(arrayposvisitedElems-1);
+
+                    elemsCount := elemsCount + 1;
+                    Put_Line ("/1>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos)&integer'image(visitedElems(arrayposvisitedElems)));
+
+                else --branch
+                    if inputTree.getSecondLink(pos) /= 0 and inputTree.getSecondLink(pos) = visitedElems(arrayposvisitedElems) then -- pop the branch
+                        arrayposvisitedElems := arrayposvisitedElems - 1;
+                        if arrayposvisitedElems > 0 then
+                            pos := visitedElems(arrayposvisitedElems-1);
+                        end if;
+                        elemsCount := elemsCount + 1;
+                        Put_Line ("/2-0>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+
+                    elsif inputTree.getFirstLink(pos) /= 0 and inputTree.getFirstLink(pos) /= visitedElems(arrayposvisitedElems) then
+                        visitedElems(arrayposvisitedElems) := pos;
+                        arrayposvisitedElems := arrayposvisitedElems + 1;
+                        pos := inputTree.getFirstLink(pos);
+                        Put_Line ("/2-1>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+
+                    elsif inputTree.getSecondLink(pos) /= 0 and inputTree.getSecondLink(pos) /= visitedElems(arrayposvisitedElems) then
+                        array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value of the branch
+                        arrayResultpos := arrayResultpos + 1 ;
+
+                        pos := inputTree.getSecondLink(pos);-- new branch
+                        Put_Line ("/2-2>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+                    elsif inputTree.getFirstLink(pos) = visitedElems(arrayposvisitedElems) then -- when there is no second link
+                        array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value of the branch
+                        arrayResultpos := arrayResultpos + 1 ;
+                        arrayposvisitedElems := arrayposvisitedElems - 1;
+                        if arrayposvisitedElems > 0 then
+                            pos := visitedElems(arrayposvisitedElems-1);
+                        end if;
+                        elemsCount := elemsCount + 1;
+                        Put_Line ("/2-3>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+                    end if;
+
                 end if;
+            end loop;
+            --for pos in 0 .. array100A'Length-1 loop
+            --    Put_Line ("->"&Integer'Image(array100A(pos) ));
+            --end loop;
 
-                for pos in array100'First .. array100'Last loop
-                    Put_Line ("->"&Integer'Image(array100(pos)));
-                end loop;
-
-            end binarytreeinordertraversal;
+        end binarytreeinordertraversal;
 
     begin
 
@@ -1332,19 +1371,70 @@ package body exercises1to100 is
 
 
 
+        --------------------------------------------------------------------------------------------
+
         testTotal := testTotal + 1;
         testPass := 0;
         integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,1,2,3);
-        integerInputA := inputTree.updateelement(1,2,4,5);
-        integerInputA := inputTree.updateelement(2,3,5,6);
-        integerInputA := inputTree.updateelement(3,4,7,8);
-        integerInputA := inputTree.updateelement(4,5,9,0);
-        integerInputA := inputTree.updateelement(5,6,0,0);
-        integerInputA := inputTree.updateelement(6,7,0,0);
-        integerInputA := inputTree.updateelement(8,9,0,0);
-        integerInputA := inputTree.updateelement(9,10,0,0);
+        integerInputA := inputTree.updateelement(0,0,1,2);
+        integerInputA := inputTree.updateelement(1,1,3,4);
+        integerInputA := inputTree.updateelement(2,2,5,6);
+        integerInputA := inputTree.updateelement(3,3,7,8);
+        integerInputA := inputTree.updateelement(4,4,9,0);
+        integerInputA := inputTree.updateelement(5,5,0,0);
+        integerInputA := inputTree.updateelement(6,6,0,0);
+        integerInputA := inputTree.updateelement(7,7,0,0);
+        integerInputA := inputTree.updateelement(8,8,0,0);
+        integerInputA := inputTree.updateelement(9,9,0,0);
         binarytreeinordertraversal;
+        if array100A(0..9) = (7,3,8,1,9,4,0,5,2,6) then -- expected to fail due to diference between ecuation results and the actual series
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        integerInputA := inputTree.cleanData(0);
+        Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+
+
+        testTotal := testTotal + 1;
+        testPass := 0;
+        integerInputA := inputTree.cleanData(0);
+        integerInputA := inputTree.updateelement(0,3,1,2);
+        integerInputA := inputTree.updateelement(1,4,3,0);
+        integerInputA := inputTree.updateelement(2,6,4,5);
+        integerInputA := inputTree.updateelement(3,5,0,0);
+        integerInputA := inputTree.updateelement(4,7,0,0);
+        integerInputA := inputTree.updateelement(5,8,6,0);
+        integerInputA := inputTree.updateelement(6,9,7,8);
+        integerInputA := inputTree.updateelement(7,10,0,0);
+        integerInputA := inputTree.updateelement(8,11,9,0);
+        integerInputA := inputTree.updateelement(9,12,0,0);
+        binarytreeinordertraversal;
+        if array100A(0..9) = (5,4,3,7,6,10,9,12,11,8) then -- expected to fail due to diference between ecuation results and the actual series
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        integerInputA := inputTree.cleanData(0);
+        Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+
+
+        testTotal := testTotal + 1;
+        testPass := 0;
+        integerInputA := inputTree.cleanData(0);
+        integerInputA := inputTree.updateelement(0,0,1,0);
+        integerInputA := inputTree.updateelement(1,1,2,0);
+        integerInputA := inputTree.updateelement(2,2,3,0);
+        integerInputA := inputTree.updateelement(3,3,4,0);
+        integerInputA := inputTree.updateelement(4,4,5,0);
+        integerInputA := inputTree.updateelement(5,5,6,0);
+        integerInputA := inputTree.updateelement(6,6,7,0);
+        integerInputA := inputTree.updateelement(7,7,8,0);
+        integerInputA := inputTree.updateelement(8,8,9,0);
+        integerInputA := inputTree.updateelement(9,9,0,0);
+        binarytreeinordertraversal;
+        if array100A(0..9) = (9,8,7,6,5,4,3,2,1,0) then -- expected to fail due to diference between ecuation results and the actual series
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
         integerInputA := inputTree.cleanData(0);
         Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
 
