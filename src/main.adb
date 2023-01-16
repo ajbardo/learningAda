@@ -4,8 +4,9 @@ with exercises1to100; use exercises1to100;
     -- 1.1-0.0 call to E1to100
 -- main.ads
     -- empty
--- exercises1to100
+- exercises1to100
     -- 1.0-1.1 twoSum
+    -- +0.1-1.0 procedure addtwonumbers()
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -18,7 +19,7 @@ with exercises1to100; use exercises1to100;
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
-    -- +2.0-1.0 binarytreeinordertraversal
+    -- 1.0-1.0 binarytreeinordertraversal
 -- v0.1-0.0 linkedstructure
     -- v0.1-0.0 updateelement
     -- -> updates the value of the element and the links

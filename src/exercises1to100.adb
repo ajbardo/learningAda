@@ -21,6 +21,7 @@ package body exercises1to100 is
     procedure oneTo100(Self : in out My_Class) is
     -- exercises1to100
     -- 1.0-1.1 twoSum
+    -- +0.1-1.0 procedure addtwonumbers()
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -33,7 +34,7 @@ package body exercises1to100 is
     -- 1.0-1.0 addbinary
     -- 1.0-1.0 SqrtX
     -- 2.0-1.0 climbingstairs
-    -- +1.0-1.0 binarytreeinordertraversal
+    -- 1.0-1.0 binarytreeinordertraversal
     -- ____ notes ____
     -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
     -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
@@ -75,6 +76,9 @@ package body exercises1to100 is
     -- * Calculate positions of two numbers in an array such that they add matches the target
     -- * Static test with 10 position array
     -- * New static test for the negative conditional
+    -- 0.1-1.0 procedure addtwonumbers()
+    -- empty
+    -- defined 1 static test case
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
     -- * Static test with input integer
@@ -143,6 +147,7 @@ package body exercises1to100 is
 
         -- linked arrays
         inputTree : linkedArrayData;
+        inputTree2 : linkedArrayData;
 
         -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html#bounded-strings
         package B_Str is new
@@ -208,6 +213,16 @@ package body exercises1to100 is
                 pos1 := pos1 + 1;
             end loop;
         end twoSum;
+
+        procedure addtwonumbers is --ex2
+            pos : integer := array10'last;
+        begin
+            while pos > array10'first loop
+                Put_Line ("->");
+                pos := pos - 1;
+            end loop;
+        end addtwonumbers;
+
 
         procedure palindrome(number : Integer) is
             tempNum : Integer;
@@ -716,8 +731,6 @@ package body exercises1to100 is
             --for pos in 0 .. array100A'Length-1 loop
               --  Put_Line ("->"&Integer'Image(array100A(pos) ));
             --end loop;
-
-
         end binarytreeinordertraversal;
 
     begin
@@ -749,7 +762,27 @@ package body exercises1to100 is
         end if;
         Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
         --------------------------------------------------------------------------------------------
+
         testTotal := testTotal + 1;
+        testPass := 0;
+        integerInputA := inputTree.cleanData(0);
+        integerInputA := inputTree.updateelement(0,0,1,0);
+        integerInputA := inputTree.updateelement(0,1,2,0);
+        integerInputA := inputTree.updateelement(1,2,3,0);
+
+
+        integerInputA := inputTree2.cleanData(0);
+        integerInputA := inputTree2.updateelement(0,0,1,0);
+        integerInputA := inputTree2.updateelement(0,1,2,0);
+        integerInputA := inputTree2.updateelement(1,2,3,0);
+        addtwonumbers;
+        if array10 = (0,0,2,0,0,0,0,0,0,0) then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+
+        --------------------------------------------------------------------------------------------        testTotal := testTotal + 1;
         testPass := 0;
         integerResultA := 0;
         integerInputA := 12344321;
