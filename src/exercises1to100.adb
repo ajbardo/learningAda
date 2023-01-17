@@ -15,13 +15,13 @@ use  Ada.Numerics.Elementary_Functions;
 with Ada.Numerics; use Ada.Numerics;
 with Ada.Real_Time; use Ada.Real_Time;
 
-with linkedstructure; use linkedstructure;
+with linkedstructure;
 
 package body exercises1to100 is
     procedure oneTo100(Self : in out My_Class) is
     -- exercises1to100
     -- 1.0-1.1 twoSum
-    -- +0.1-1.0 procedure addtwonumbers()
+    -- +0.2-1.0 procedure addtwonumbers()
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -146,8 +146,9 @@ package body exercises1to100 is
         array100A : arrayOf100;
 
         -- linked arrays
-        inputTree : linkedArrayData;
-        inputTree2 : linkedArrayData;
+        type aaaa is new linkedstructure.linkedArrayData;
+        inputTree : linkedstructure.linkedArrayData;
+        inputTree2 : linkedstructure.linkedArrayData;
 
         -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html#bounded-strings
         package B_Str is new
@@ -215,11 +216,34 @@ package body exercises1to100 is
         end twoSum;
 
         procedure addtwonumbers is --ex2
-            pos : integer := array10'last;
+            pos : integer := array10'first;
+            extra : integer := 0;
+            linkedpos1 : integer := 0;
+            linkedpos2 : integer := 0;
+            control : integer := 1;
         begin
-            while pos > array10'first loop
-                Put_Line ("->");
-                pos := pos - 1;
+            while pos < array10'last+1 loop
+                array10(pos) := 0;
+                if control = 1 then
+                    array10(pos) := inputTree.getElementValue(linkedpos1) + inputTree2.getElementValue(linkedpos2) + extra;
+                    extra := 0;
+                    Put_Line("->"&integer'image(array10(pos))&integer'image(pos)&integer'image(linkedpos1)&integer'image(linkedpos2));
+                    Put_Line("*>"&integer'image(array10(pos))&integer'image(pos)&integer'image(inputTree.getElementValue(linkedpos1))&integer'image(inputTree2.getElementValue(linkedpos2)));
+
+                    if array10(pos) > 9 then
+                        array10(pos) := array10(pos) - 10;
+                        extra := 1;
+                    end if;
+                end if;
+
+
+                Put_Line(integer'image(array10(pos))&integer'image(pos)&integer'image(linkedpos1)&integer'image(linkedpos2));
+                pos := pos + 1;
+                linkedpos1 := inputTree.getFirstLink(linkedpos1);
+                linkedpos2 := inputTree2.getFirstLink(linkedpos2);
+                if linkedpos1 = 0 or linkedpos2 = 0 then
+                    control := 0;
+                end if;
             end loop;
         end addtwonumbers;
 
@@ -767,16 +791,56 @@ package body exercises1to100 is
         testPass := 0;
         integerInputA := inputTree.cleanData(0);
         integerInputA := inputTree.updateelement(0,0,1,0);
-        integerInputA := inputTree.updateelement(0,1,2,0);
-        integerInputA := inputTree.updateelement(1,2,3,0);
+        integerInputA := inputTree.updateelement(1,0,2,0);
+        integerInputA := inputTree.updateelement(2,1,0,0);
 
 
         integerInputA := inputTree2.cleanData(0);
         integerInputA := inputTree2.updateelement(0,0,1,0);
-        integerInputA := inputTree2.updateelement(0,1,2,0);
-        integerInputA := inputTree2.updateelement(1,2,3,0);
+        integerInputA := inputTree2.updateelement(1,0,2,0);
+        integerInputA := inputTree2.updateelement(2,1,0,0);
         addtwonumbers;
         if array10 = (0,0,2,0,0,0,0,0,0,0) then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+
+        testTotal := testTotal + 1;
+        testPass := 0;
+        integerInputA := inputTree.cleanData(0);
+        integerInputA := inputTree.updateelement(0,0,1,0);
+        integerInputA := inputTree.updateelement(1,9,2,0);
+        integerInputA := inputTree.updateelement(2,0,0,0);
+
+
+        integerInputA := inputTree2.cleanData(0);
+        integerInputA := inputTree2.updateelement(0,0,1,0);
+        integerInputA := inputTree2.updateelement(1,9,2,0);
+        integerInputA := inputTree2.updateelement(2,0,0,0);
+        addtwonumbers;
+        if array10 = (0,8,1,0,0,0,0,0,0,0) then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+
+         testTotal := testTotal + 1;
+        testPass := 0;
+        integerInputA := inputTree.cleanData(0);
+        integerInputA := inputTree.updateelement(0,9,1,0);
+        integerInputA := inputTree.updateelement(1,9,2,0);
+        integerInputA := inputTree.updateelement(2,3,3,0);
+        integerInputA := inputTree.updateelement(3,0,0,0);
+
+
+        integerInputA := inputTree2.cleanData(0);
+        integerInputA := inputTree2.updateelement(0,9,1,0);
+        integerInputA := inputTree2.updateelement(1,0,2,0);
+        integerInputA := inputTree2.updateelement(2,5,3,0);
+        integerInputA := inputTree2.updateelement(3,0,0,0);
+        addtwonumbers;
+        if array10 = (8,0,9,0,0,0,0,0,0,0) then
             testPass := 1;
             testPassed := testPassed + 1;
         end if;
