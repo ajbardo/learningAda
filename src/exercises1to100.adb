@@ -15,13 +15,13 @@ use  Ada.Numerics.Elementary_Functions;
 with Ada.Numerics; use Ada.Numerics;
 with Ada.Real_Time; use Ada.Real_Time;
 
-with linkedstructure;
+with linkedstructure; use linkedstructure;
 
 package body exercises1to100 is
     procedure oneTo100(Self : in out My_Class) is
     -- exercises1to100
     -- 1.0-1.1 twoSum
-    -- +0.2-1.0 procedure addtwonumbers()
+    -- +1.0-1.0 procedure addtwonumbers()
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -76,8 +76,8 @@ package body exercises1to100 is
     -- * Calculate positions of two numbers in an array such that they add matches the target
     -- * Static test with 10 position array
     -- * New static test for the negative conditional
-    -- 0.1-1.0 procedure addtwonumbers()
-    -- empty
+    -- 1.0-1.0 procedure addtwonumbers()
+    -- Adittion of two numbers represented by linked lists
     -- defined 1 static test case
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
@@ -146,9 +146,8 @@ package body exercises1to100 is
         array100A : arrayOf100;
 
         -- linked arrays
-        type aaaa is new linkedstructure.linkedArrayData;
-        inputTree : linkedstructure.linkedArrayData;
-        inputTree2 : linkedstructure.linkedArrayData;
+        inputTree : linkedArrayData_Class;
+        inputTree2 : linkedArrayData_Class;
 
         -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html#bounded-strings
         package B_Str is new
@@ -227,17 +226,12 @@ package body exercises1to100 is
                 if control = 1 then
                     array10(pos) := inputTree.getElementValue(linkedpos1) + inputTree2.getElementValue(linkedpos2) + extra;
                     extra := 0;
-                    Put_Line("->"&integer'image(array10(pos))&integer'image(pos)&integer'image(linkedpos1)&integer'image(linkedpos2));
-                    Put_Line("*>"&integer'image(array10(pos))&integer'image(pos)&integer'image(inputTree.getElementValue(linkedpos1))&integer'image(inputTree2.getElementValue(linkedpos2)));
 
                     if array10(pos) > 9 then
                         array10(pos) := array10(pos) - 10;
                         extra := 1;
                     end if;
                 end if;
-
-
-                Put_Line(integer'image(array10(pos))&integer'image(pos)&integer'image(linkedpos1)&integer'image(linkedpos2));
                 pos := pos + 1;
                 linkedpos1 := inputTree.getFirstLink(linkedpos1);
                 linkedpos2 := inputTree2.getFirstLink(linkedpos2);
@@ -760,10 +754,12 @@ package body exercises1to100 is
     begin
 
         Start_Time := Clock;
-        Put_Line ("Starting main execution");
+      Put_Line ("Starting main execution");
         testPass := 0;
         testPassed := 0;
-        testTotal := 0;
+      testTotal := 0;
+      inputTree := new linkedArrayData;
+      inputTree2 := new linkedArrayData;
         --------------------------------------------------------------------------------------------
         testTotal := testTotal + 1;
         integerInputA := 7;
@@ -784,9 +780,9 @@ package body exercises1to100 is
             testPass := 1;
             testPassed := testPassed + 1;
         end if;
-        Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
-        --------------------------------------------------------------------------------------------
+      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
 
+        --------------------------------------------------------------------------------------------
         testTotal := testTotal + 1;
         testPass := 0;
         integerInputA := inputTree.cleanData(0);
@@ -846,7 +842,8 @@ package body exercises1to100 is
         end if;
         Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
 
-        --------------------------------------------------------------------------------------------        testTotal := testTotal + 1;
+        --------------------------------------------------------------------------------------------
+        testTotal := testTotal + 1;
         testPass := 0;
         integerResultA := 0;
         integerInputA := 12344321;
@@ -887,6 +884,7 @@ package body exercises1to100 is
             testPassed := testPassed + 1;
         end if;
         Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+
         --------------------------------------------------------------------------------------------
         StrBounString(0) := To_Bounded_String("asdfghjklo");
         StrBounString(1) := To_Bounded_String("asdfghtree");
@@ -935,6 +933,7 @@ package body exercises1to100 is
             testPassed := testPassed + 1;
         end if;
         Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
         --------------------------------------------------------------------------------------------
         bounStringInputB := To_Bounded_String("()()()()()");--Output: true
         validparentheses;
@@ -1015,6 +1014,7 @@ package body exercises1to100 is
             testPassed := testPassed + 1;
         end if;
         Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
         --------------------------------------------------------------------------------------------
 
         testPass := 0;
@@ -1023,7 +1023,6 @@ package body exercises1to100 is
         array3B := (1, 3, 4);
         array6A := (0,0,0,0,0,0);
         mergetwosortedlists;
-        testPass := 0;
         if array6A = (1,1,2,3,4,4) then
             testPass := 1;
             testPassed := testPassed + 1;
@@ -1035,7 +1034,6 @@ package body exercises1to100 is
         array3A := (1, 4, 4);
         array3B := (1, 3, 4);
         mergetwosortedlists;
-        testPass := 0;
         if array6A = (1,1,3,4,4,4) then
             testPass := 1;
             testPassed := testPassed + 1;
@@ -1047,7 +1045,6 @@ package body exercises1to100 is
         array3A := (1, 4, 4);
         array3B := (1, 3, 5);
         mergetwosortedlists;
-        testPass := 0;
         if array6A = (1,1,3,4,4,5) then
             testPass := 1;
             testPassed := testPassed + 1;
@@ -1059,7 +1056,6 @@ package body exercises1to100 is
         array3A := (0, 0, 0);
         array3B := (0, 0, 0);
         mergetwosortedlists;
-        testPass := 0;
         if array6A = (0,0,0,0,0,0) then
             testPass := 1;
             testPassed := testPassed + 1;
@@ -1071,7 +1067,6 @@ package body exercises1to100 is
         array3A := (1, 1, 1);
         array3B := (2, 2, 2);
         mergetwosortedlists;
-        testPass := 0;
         if array6A = (1,1,1,2,2,2) then
             testPass := 1;
             testPassed := testPassed + 1;
@@ -1499,7 +1494,6 @@ package body exercises1to100 is
             testPassed := testPassed + 1;
         end if;
         Put_Line ("Test for climbingstairsFiboExtra with status: "&Integer'Image(testPass));
-
 
 
 
