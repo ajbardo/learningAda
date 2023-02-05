@@ -1,10 +1,18 @@
 package body linkedstructure is
+   -- package body linkedstructure
+   -- 1.0-1.0 function updateelement(Self : in out linkedArrayData; elementId , elementValue , linkId1, linkId2 : integer)
+   --- Load data of on the array pos representing the linked element
+   -- 1.0-1.0 function getElementValue(Self : in out linkedArrayData; elementId : Integer)
+   --- returns the id value of the position selected
+   -- 1.0-1.0 getFirstLink(Self : in out linkedArrayData; elementId : Integer)
+   --- returns the next link for first or left position of elementId
+   -- 1.0-1.0 getSecondLink(Self : in out linkedArrayData; elementId : Integer)
+   --- returns the next link for second or rigth position of elementId
+   -- 1.0-1.0 cleanData(Self : in out linkedArrayData; newValue :integer)
+   --- prefix all the elements to the selected value
+   -- 1.0-1.0 getlength(Self : in out linkedArrayData; newValue :integer)
+   --- returns the number of active elements
 
-     -- linked arrays (custom made)
-     -- 0 for no link
-    --type arraywithLink is array(0 .. 2) of Integer;
-    --type arrayOfA100 is array (0 .. 99) of arraywithLink;
-    --ArrayWithLinks : arrayOfA100;
     length : Integer := 0;
 
     function updateelement(Self : in out linkedArrayData; elementId , elementValue , linkId1, linkId2 : integer) return integer is

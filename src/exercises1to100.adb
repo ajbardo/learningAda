@@ -77,8 +77,8 @@ package body exercises1to100 is
     -- * Static test with 10 position array
     -- * New static test for the negative conditional
     -- 1.0-1.0 procedure addtwonumbers()
-    -- Adittion of two numbers represented by linked lists
-    -- defined 1 static test case
+    -- * Adittion of two numbers represented by linked lists
+    -- * Defined 3 static test cases
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
     -- * Static test with input integer
@@ -241,6 +241,35 @@ package body exercises1to100 is
             end loop;
         end addtwonumbers;
 
+		 procedure LongestSubstringWithoutRepeatingCharacters is--ex 3
+				pertenenceCheck : Integer;
+			   maxScore : Integer;
+			   lastPost : Integer;
+			begin
+			integerResultA := 0;
+			maxScore := 0;
+			lastPost := 1;
+			for pos1 in 1 .. 9 loop
+				pertenenceCheck := 0;
+				for pos2 in lastPost .. 9 loop
+					if To_String(StrBounString(0))(pos1) = To_String(StrBounString(0))(pos2) then
+						pertenenceCheck := 1; --The chart is already present here
+						lastPost := pos2; -- no need to check all the previous elements in nex iterations
+						end if;
+
+				end loop;
+				if pertenenceCheck = 1 then
+						maxScore := 1;
+				else
+						maxScore := maxScore + 1;
+				end if;
+				if maxScore > integerResultA then
+					integerResultA := maxScore;
+				end if;
+
+			end loop;
+
+        end LongestSubstringWithoutRepeatingCharacters;
 
         procedure palindrome(number : Integer) is
             tempNum : Integer;
@@ -765,6 +794,7 @@ package body exercises1to100 is
         integerInputA := 7;
         array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
         twoSum(integerInputA);
+		  testPass := 0;
         if array2(0) = 1 and array2(1) = 4 then
             testPass := 1;
             testPassed := testPassed + 1;
@@ -780,7 +810,8 @@ package body exercises1to100 is
             testPass := 1;
             testPassed := testPassed + 1;
         end if;
-      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
+        Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
+
 
         --------------------------------------------------------------------------------------------
         testTotal := testTotal + 1;
@@ -841,6 +872,38 @@ package body exercises1to100 is
             testPassed := testPassed + 1;
         end if;
         Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+		 --------------------------------------------------------------------------------------------
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		StrBounString(0) := To_Bounded_String("abcabcbbbb");
+		LongestSubstringWithoutRepeatingCharacters;
+		if integerResultA = 3 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		StrBounString(0) := To_Bounded_String("bbbbbbbbbb");
+		LongestSubstringWithoutRepeatingCharacters;
+		if integerResultA = 1 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		StrBounString(0) := To_Bounded_String("pwwkewpwwk");
+		LongestSubstringWithoutRepeatingCharacters;
+		if integerResultA = 3 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+
 
         --------------------------------------------------------------------------------------------
         testTotal := testTotal + 1;
