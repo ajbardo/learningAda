@@ -21,7 +21,9 @@ package body exercises1to100 is
     procedure oneTo100(Self : in out My_Class) is
     -- exercises1to100
     -- 1.0-1.1 twoSum
-    -- +1.0-1.0 procedure addtwonumbers()
+    -- 1.0-1.0 procedure addtwonumbers()
+    -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
+    -- +0.0-1.0 MedianofTwoSortedArrays
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -79,6 +81,9 @@ package body exercises1to100 is
     -- 1.0-1.0 procedure addtwonumbers()
     -- * Adittion of two numbers represented by linked lists
     -- * Defined 3 static test cases
+	--	1.0-1.0 LongestSubstringWithoutRepeatingCharacters
+	 -- * Calculate find the length of the longest substring without repeating characters.
+	 -- * Defined 3 static test cases to verify behaviour
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
     -- * Static test with input integer
@@ -166,6 +171,7 @@ package body exercises1to100 is
         stringInputB : String := 20*" ";
         bounStringInputB : Bounded_String;
         array10AInput : arrayOf10;
+        array10BInput    : arrayOf10;
 
         --type arrayOf3Index is range 1 .. 3; --removed until discover how to work with index out of fors
         type arrayOf3 is array(1 .. 3) of Integer;
@@ -175,6 +181,7 @@ package body exercises1to100 is
 
         -- output variables for the functions
         integerResultA : Integer;
+		floatResultA : Float;
         bounStringResultA : Bounded_String;
         bounStringResultB : Bounded_String;
         array10AOutput : arrayOf10;
@@ -256,7 +263,6 @@ package body exercises1to100 is
 						pertenenceCheck := 1; --The chart is already present here
 						lastPost := pos2; -- no need to check all the previous elements in nex iterations
 						end if;
-
 				end loop;
 				if pertenenceCheck = 1 then
 						maxScore := 1;
@@ -266,10 +272,42 @@ package body exercises1to100 is
 				if maxScore > integerResultA then
 					integerResultA := maxScore;
 				end if;
-
 			end loop;
-
         end LongestSubstringWithoutRepeatingCharacters;
+
+        procedure MedianofTwoSortedArrays is
+   			pos1 : Integer;
+			pos2 : Integer;
+			pairNumberOfElements : Integer;
+			tempPos1 : Integer;
+			tempPos2 : Integer;
+        begin
+			pos1 := array10AInput'Last;
+			pos2 := array10BInput'First;
+			floatResultA := 0.0;
+
+			if (array10AInput'Length + array10BInput'Length) mod 2 = 0 then
+				pairNumberOfElements := 1;
+			else
+				pairNumberOfElements := 0;
+			end if;
+
+			while (pos1+pos2) > (array10AInput'Length+ array10BInput'Length ) loop
+				if array10AInput(pos1) < array10BInput(pos2) then
+					pos1 := array10AInput'Length+ array10BInput'Length+1;-- break statement
+					-- here we know
+				else
+					tempPos1 := pos1;
+					tempPos2 := pos2;
+					pos2 := pos2 + 1;
+					pos1 := pos1 + 1;
+				end if;
+
+				end loop;
+
+
+        end MedianofTwoSortedArrays;
+
 
         procedure palindrome(number : Integer) is
             tempNum : Integer;
@@ -906,6 +944,32 @@ package body exercises1to100 is
 
 
         --------------------------------------------------------------------------------------------
+
+        array10AOutput := (1,3,5,7,9,0,0,0,0,0);
+        array10BOutput := (2,4,6,8,0,0,0,0,0,0);
+	    testTotal := testTotal + 1;
+        testPass := 0;
+	    floatResultA := 0.0;
+        MedianofTwoSortedArrays;
+        if floatResultA = 5.0 then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+        array10AOutput := (1,3,5,7,0,0,0,0,0,0);
+        array10BOutput := (2,4,6,8,0,0,0,0,0,0);
+        testTotal := testTotal + 1;
+        testPass := 0;
+	   floatResultA := 0.0;
+        MedianofTwoSortedArrays;
+        if floatResultA = 4.0 then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+        --------------------------------------------------------------------------------------------
+
         testTotal := testTotal + 1;
         testPass := 0;
         integerResultA := 0;
