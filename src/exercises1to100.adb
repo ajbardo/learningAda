@@ -23,7 +23,7 @@ package body exercises1to100 is
     -- 1.0-1.1 twoSum
     -- 1.0-1.0 procedure addtwonumbers()
     -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-    -- +0.0-1.0 MedianofTwoSortedArrays
+    -- +0.2-1.0 MedianofTwoSortedArrays
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -82,8 +82,11 @@ package body exercises1to100 is
     -- * Adittion of two numbers represented by linked lists
     -- * Defined 3 static test cases
 	--	1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-	 -- * Calculate find the length of the longest substring without repeating characters.
-	 -- * Defined 3 static test cases to verify behaviour
+	-- * Calculate find the length of the longest substring without repeating characters.
+	-- * Defined 3 static test cases to verify behaviour
+    -- +0.2-1.0 MedianofTwoSortedArrays
+    -- * Work in progress
+    -- * 3 Static test cases
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
     -- * Static test with input integer
@@ -281,26 +284,55 @@ package body exercises1to100 is
 			pairNumberOfElements : Integer;
 			tempPos1 : Integer;
 			tempPos2 : Integer;
+
+			-- represents the amount of elements on each side of the selected pair
+			elementsLeft : Integer;
+			elementsRigth : Integer;
+			searchedpos : Integer;
         begin
 			pos1 := array10AInput'Last;
 			pos2 := array10BInput'First;
 			floatResultA := 0.0;
+			searchedpos := ( array10AInput'Length + array10BInput'Length ) / 2 ;
+			pairNumberOfElements := (array10AInput'Length + array10BInput'Length) mod 2;
 
-			if (array10AInput'Length + array10BInput'Length) mod 2 = 0 then
-				pairNumberOfElements := 1;
-			else
-				pairNumberOfElements := 0;
-			end if;
+			while ( pos1 + pos2 ) > ( array10AInput'Length + array10BInput'Length ) loop
+				if array10AInput(pos1) = 0 then
+					pos1 := pos1 - 1; -- ignore the 0
+				elsif  array10BInput(pos2) = 0 then
+					pos2 := pos2 + 1; -- ignore the 0
+				elsif array10AInput(pos1) < array10BInput(pos2) then
+					-- break statement(Theorically we have a solution)
+					pos1 := array10AInput'Length + array10BInput'Length + 1;
 
-			while (pos1+pos2) > (array10AInput'Length+ array10BInput'Length ) loop
-				if array10AInput(pos1) < array10BInput(pos2) then
-					pos1 := array10AInput'Length+ array10BInput'Length+1;-- break statement
-					-- here we know
+					-- get the number of elements in each side
+					elementsLeft := array10AInput'Length - pos1;
+					elementsRigth := array10BInput'Length - pos2;
+
+					if array10AInput(pos1) > array10BInput(tempPos2) then
+						-- Here is determined if pos1 or pos2 is the median
+						elementsLeft := elementsLeft + 1;
+					end if;
+
+					if array10BInput(pos2) < array10AInput(tempPos1) then
+						elementsRigth := elementsRigth + 1;
+					end if;
+
+					if pairNumberOfElements = 1 then
+						floatResultA := ( array10AInput(pos1) + array10BInput(pos2) ) / (float)2;
+					elsif ( elementsLeft + 1 ) = searchedpos then
+								-- is the left element
+						floatResultA := Float( array10AInput(pos1) );
+					elsif ( elementsRigth + 1 ) = searchedpos then
+								-- is the rigth element
+						floatResultA := Float( array10BInput(pos2) );
+					end if;
 				else
+					-- pending to redefine in order to reach log(n) complexity
 					tempPos1 := pos1;
 					tempPos2 := pos2;
 					pos2 := pos2 + 1;
-					pos1 := pos1 + 1;
+					pos1 := pos1 - 1;
 				end if;
 
 				end loop;
