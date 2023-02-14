@@ -23,7 +23,7 @@ package body exercises1to100 is
     -- 1.0-1.1 twoSum
     -- 1.0-1.0 procedure addtwonumbers()
     -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-    -- +0.3-1.0 MedianofTwoSortedArrays
+    -- +1.0-1.0 MedianofTwoSortedArrays
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -81,12 +81,12 @@ package body exercises1to100 is
     -- 1.0-1.0 procedure addtwonumbers()
     -- * Adittion of two numbers represented by linked lists
     -- * Defined 3 static test cases
-	--	1.0-1.0 LongestSubstringWithoutRepeatingCharacters
+	-- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
 	-- * Calculate find the length of the longest substring without repeating characters.
 	-- * Defined 3 static test cases to verify behaviour
-    -- +0.3-1.0 MedianofTwoSortedArrays
-    -- * Work in progress
-    -- * 2 Static test cases - 1 passed
+    -- 1.0-1.0 MedianofTwoSortedArrays
+    -- * Calculus for the median of the arrays with wost case O(n)
+    -- * 3 Static test cases
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
     -- * Static test with input integer
@@ -322,60 +322,62 @@ package body exercises1to100 is
 			tempPos1 := 0;
 			tempPos2 := 0;
 
-			searchedpos := ( trueLengthA + trueLengthB ) / 2 ;
+			searchedpos := ( trueLengthA + trueLengthB +2) / 2 ;
 			pairNumberOfElements := (trueLengthA + trueLengthB) mod 2;
-			Put_Line ("-+->"&Integer'Image( trueLengthA )&Integer'Image( trueLengthB ));
+			--Put_Line ("-+->"&Integer'Image( searchedpos )&Integer'Image( trueLengthA )&Integer'Image( trueLengthB ));
 
 			while ( pos1 + pos2 ) < ( trueLengthA + trueLengthB ) loop
-				Put_Line ("00->"&Integer'Image(tempPos1)&"-"&Integer'Image(tempPos2)&"-"&Integer'Image(pos1)&"-"&Integer'Image(pos2)&"-");
+				--Put_Line ("00->"&Integer'Image(tempPos1)&"-"&Integer'Image(tempPos2)&"-"&Integer'Image(pos1)&"-"&Integer'Image(pos2)&"-");
 				if array10AInput(pos1) = 0 then
 					pos1 := pos1 - 1; -- ignore the 0
-					Put_Line ("A>"&Integer'Image(pos1));
+					--Put_Line ("A>"&Integer'Image(pos1));
 				elsif  array10BInput(pos2) = 0 then
 					pos2 := pos2 + 1; -- ignore the 0
-					Put_Line ("B>"&Integer'Image(pos2));
+					--Put_Line ("B>"&Integer'Image(pos2));
 				elsif array10AInput(pos1) < array10BInput(pos2) then
-					Put_Line ("C1>");
+					--Put_Line ("C1>");
 					-- break statement(Theorically we have a solution)
 
 					-- get the number of elements in each side
 					elementsLeft := (tempPos2 + pos1);
 					elementsRigth := ( trueLengthA + trueLengthB ) - ( pos2 + tempPos1);
-					Put_Line ("C2>"&Integer'Image(elementsLeft)&Integer'Image(elementsRigth));
+					--Put_Line ("C2>"&Integer'Image(elementsLeft)&Integer'Image(elementsRigth));
 					if array10AInput(pos1) > array10BInput(tempPos2) then
 						-- Here is determined if pos1 or pos2 is the median
 						elementsLeft := elementsLeft + 1;
 					end if;
-					Put_Line ("C3Left>"&Integer'Image(elementsLeft));
+					--Put_Line ("C3Left>"&Integer'Image(elementsLeft));
 					if array10BInput(pos2) < array10AInput(tempPos1) then
 						elementsRigth := elementsRigth + 1;
 					end if;
-					Put_Line ("C4Rigth>"&Integer'Image(elementsRigth));
+					--Put_Line ("C4Rigth>"&Integer'Image(elementsRigth));
 					if pairNumberOfElements = 0 then
 						floatResultA := Float((array10AInput(pos1)+array10BInput(pos2)))/2.0;
-						Put_Line ("C51>"&Integer'Image(array10AInput(pos1)+array10BInput(pos2)));
-					elsif ( elementsLeft + 1 ) = searchedpos then
+						--Put_Line ("C51>"&Integer'Image(array10AInput(pos1)+array10BInput(pos2)));
+					elsif ( elementsLeft ) = searchedpos then
 								-- is the left element
+						--Put_Line ("C52>");
 						floatResultA := Float( array10AInput(pos1) );
-					elsif ( elementsRigth + 1 ) = searchedpos then
-								-- is the rigth element
+					elsif (( trueLengthA + trueLengthB + 2 )-( elementsRigth + 1 )) = searchedpos then
+								-- is the rigth element, total long minus elements at rigth
+						--Put_Line ("C53>");
 						floatResultA := Float( array10BInput(pos2) );
 					end if;
-					Put_Line ("C5>"&Float'Image(floatResultA));
+					--Put_Line ("C5>"&Float'Image(floatResultA));
 					pos1 := array10AInput'Length + array10BInput'Length + 1;
 				else
-					Put_Line ("D1>");
+					--Put_Line ("D1>");
 					-- pending to redefine in order to reach log(n) complexity
 					tempPos1 := pos1;
 					tempPos2 := pos2;
 					pos2 := pos2 + 1;
 					pos1 := pos1 - 1;
-					Put_Line ("D2>"&Integer'Image(tempPos1)&Integer'Image(tempPos2)&Integer'Image(pos1)&Integer'Image(pos2));
+					--Put_Line ("D2>"&Integer'Image(tempPos1)&Integer'Image(tempPos2)&Integer'Image(pos1)&Integer'Image(pos2));
 				end if;
 
 				end loop;
 
-	   Put_Line ("-->"&Float'Image(floatResultA));
+	   --Put_Line ("-->"&Float'Image(floatResultA));
         end MedianofTwoSortedArrays;
 
 
@@ -1038,6 +1040,19 @@ package body exercises1to100 is
             testPassed := testPassed + 1;
         end if;
         Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+
+	    	array10AInput := (1, 3, 5, 7, 0, 0, 0, 0, 0, 0);
+		array10BInput := (2, 4, 6, 8, 9, 10, 11, 0, 0, 0);
+        	testTotal := testTotal + 1;
+        	testPass := 0;
+	   	floatResultA := 0.0;
+       	MedianofTwoSortedArrays;
+        	if floatResultA = 6.0 then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        	end if;
+        	Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
         --------------------------------------------------------------------------------------------
 
         testTotal := testTotal + 1;
