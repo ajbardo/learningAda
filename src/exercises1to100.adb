@@ -285,99 +285,106 @@ package body exercises1to100 is
 			tempPos1 : Integer;
 			tempPos2 : Integer;
 
-			-- represents the amount of elements on each side of the selected pair
-			elementsLeft : Integer;
-			elementsRigth : Integer;
+			trueLengthA : Integer;
+			trueLengthB : Integer;
 			searchedpos : Integer;
 
-			trueLengthA : Integer; -- arrayA trueLengthA
-			trueLengthB : Integer; -- arrayB trueLengthB
+			auxElems1 : Integer;
+			auxElems2 : Integer;
 			breakPoint : Integer;
         begin
-
-			trueLengthA := array10AInput'Length-1;
-			breakPoint := 0;
-			while breakPoint = 0 loop
-				if array10AInput(trueLengthA) > 0 then
-					breakPoint := 1;
-				else
-				trueLengthA := trueLengthA - 1;
-					end if;
-				end loop;
-
-			trueLengthB := array10BInput'Length-1;
-			breakPoint := 0;
-			while breakPoint = 0 loop
-				if array10BInput(trueLengthB) > 0 then
-					breakPoint := 1;
-				else
-					trueLengthB := trueLengthB - 1;
-					end if;
-
-				end loop;
-
-			pos1 := trueLengthA;
+			trueLengthA := integerInputA;
+			trueLengthB := integerInputB;
+			pos1 := 0;
 			pos2 := 0;
 			floatResultA := 0.0;
-			tempPos1 := 0;
-			tempPos2 := 0;
-
-			searchedpos := ( trueLengthA + trueLengthB +2) / 2 ;
+			tempPos1 := trueLengthA;
+			tempPos2 := trueLengthB;
+			searchedpos := ( trueLengthA + trueLengthB + 2) / 2 ;
 			pairNumberOfElements := (trueLengthA + trueLengthB) mod 2;
-			--Put_Line ("-+->"&Integer'Image( searchedpos )&Integer'Image( trueLengthA )&Integer'Image( trueLengthB ));
+			if pairNumberOfElements = 0 then
+				searchedpos := searchedpos + 1;
+			end if;
 
-			while ( pos1 + pos2 ) < ( trueLengthA + trueLengthB ) loop
-				--Put_Line ("00->"&Integer'Image(tempPos1)&"-"&Integer'Image(tempPos2)&"-"&Integer'Image(pos1)&"-"&Integer'Image(pos2)&"-");
-				if array10AInput(pos1) = 0 then
-					pos1 := pos1 - 1; -- ignore the 0
-					--Put_Line ("A>"&Integer'Image(pos1));
-				elsif  array10BInput(pos2) = 0 then
-					pos2 := pos2 + 1; -- ignore the 0
-					--Put_Line ("B>"&Integer'Image(pos2));
-				elsif array10AInput(pos1) < array10BInput(pos2) then
-					--Put_Line ("C1>");
-					-- break statement(Theorically we have a solution)
+			auxElems1 := 0;
+			auxElems2 := 0;
+			Put_Line ("Start>"&Integer'Image( searchedpos )&Integer'Image( trueLengthA )&Integer'Image( trueLengthB ));
 
-					-- get the number of elements in each side
-					elementsLeft := (tempPos2 + pos1);
-					elementsRigth := ( trueLengthA + trueLengthB ) - ( pos2 + tempPos1);
-					--Put_Line ("C2>"&Integer'Image(elementsLeft)&Integer'Image(elementsRigth));
-					if array10AInput(pos1) > array10BInput(tempPos2) then
-						-- Here is determined if pos1 or pos2 is the median
-						elementsLeft := elementsLeft + 1;
-					end if;
-					--Put_Line ("C3Left>"&Integer'Image(elementsLeft));
-					if array10BInput(pos2) < array10AInput(tempPos1) then
-						elementsRigth := elementsRigth + 1;
-					end if;
-					--Put_Line ("C4Rigth>"&Integer'Image(elementsRigth));
-					if pairNumberOfElements = 0 then
-						floatResultA := Float((array10AInput(pos1)+array10BInput(pos2)))/2.0;
-						--Put_Line ("C51>"&Integer'Image(array10AInput(pos1)+array10BInput(pos2)));
-					elsif ( elementsLeft ) = searchedpos then
-								-- is the left element
-						--Put_Line ("C52>");
-						floatResultA := Float( array10AInput(pos1) );
-					elsif (( trueLengthA + trueLengthB + 2 )-( elementsRigth + 1 )) = searchedpos then
-								-- is the rigth element, total long minus elements at rigth
-						--Put_Line ("C53>");
-						floatResultA := Float( array10BInput(pos2) );
-					end if;
-					--Put_Line ("C5>"&Float'Image(floatResultA));
-					pos1 := array10AInput'Length + array10BInput'Length + 1;
+			if array10AInput(tempPos1) < array10BInput(pos2) then
+					pos1 := tempPos1;
+					breakPoint := 1;
+					Put_Line ("B1>"&Integer'Image( breakPoint ));
+			elsif array10AInput(pos1) > array10BInput(tempPos2) then
+					breakPoint := 2;
+					Put_Line ("B2>"&Integer'Image( breakPoint ));
+			end if;
+
+			while breakPoint = 0 loop
+
+				tempPos1 := tempPos1 / 2 ;
+				tempPos2 := tempPos2 / 2 ;
+				Put_Line ("x1>"&Integer'Image( tempPos1 )&  Integer'Image( tempPos2 ));
+
+				if array10AInput(tempPos1) < array10BInput(tempPos2) then
+					auxElems1 := (tempPos1-pos1)+(tempPos2-pos2);
+					Put_Line ("c1>" & Integer'Image ( auxElems1 ));
+
+					breakPoint := 3;
+
 				else
-					--Put_Line ("D1>");
-					-- pending to redefine in order to reach log(n) complexity
-					tempPos1 := pos1;
-					tempPos2 := pos2;
-					pos2 := pos2 + 1;
-					pos1 := pos1 - 1;
-					--Put_Line ("D2>"&Integer'Image(tempPos1)&Integer'Image(tempPos2)&Integer'Image(pos1)&Integer'Image(pos2));
+					auxElems1 := (tempPos1-pos1)+(tempPos2-pos2);
+					Put_Line ("c2>" & Integer'Image ( auxElems1 ));
+					breakPoint := 4;
+
 				end if;
 
-				end loop;
+				Put_Line ("x2>"&Float'Image( floatResultA ));
 
-	   --Put_Line ("-->"&Float'Image(floatResultA));
+			end loop;
+
+			Put_Line ("Z0>"&Float'Image( floatResultA ));
+			if breakPoint = 1 then
+				Put_Line ("D1>" & Float'Image ( floatResultA ));
+				-- Whole arrayA is at left of the first element of arrayB
+				if searchedpos < trueLengthA then
+					Put_Line ("E1>" & Float'Image ( floatResultA ));
+					if pairNumberOfElements = 0 then
+						floatResultA := Float(array10AInput(searchedpos)+array10AInput(searchedpos+1))/2.0;
+					else
+						floatResultA := Float(array10AInput(searchedpos));
+					end if;
+				else
+					searchedpos := searchedpos-(trueLengthA)-1;
+					Put_Line ("E2>" & Integer'Image ( searchedpos ));
+					if pairNumberOfElements = 0 then
+						floatResultA := Float(array10BInput(searchedpos)+array10BInput(searchedpos+1))/2.0;
+					else
+						floatResultA := Float(array10BInput(searchedpos));
+					end if;
+				end if;
+			elsif breakPoint = 2 then
+				Put_Line ("D2>" & Integer'Image ( searchedpos ));
+				-- Whole arrayA is at left of the first element of arrayB
+				if searchedpos < trueLengthB then
+					Put_Line ("E1>" & Float'Image ( floatResultA ));
+					if pairNumberOfElements = 0 then
+						floatResultA := Float(array10BInput(searchedpos)+array10BInput(searchedpos+1))/2.0;
+					else
+						floatResultA := Float(array10BInput(searchedpos));
+					end if;
+				else
+					searchedpos := searchedpos-(trueLengthB)-1;
+					Put_Line ("E2>" & Integer'Image ( searchedpos ));
+					if pairNumberOfElements = 0 then
+						floatResultA := Float(array10AInput(searchedpos)+array10AInput(searchedpos+1))/2.0;
+					else
+						floatResultA := Float(array10AInput(searchedpos));
+					end if;
+				end if;
+			else
+				Put_Line ("F1>" & Integer'Image ( searchedpos ));
+			end if;
+			Put_Line ("Z1>"&Float'Image( floatResultA ));
         end MedianofTwoSortedArrays;
 
 
@@ -1018,7 +1025,9 @@ package body exercises1to100 is
         --------------------------------------------------------------------------------------------
 
         array10AInput := (1,3,5,7,9,0,0,0,0,0);
+		integerInputA := 4;
         array10BInput := (2,4,6,8,0,0,0,0,0,0);
+		integerInputB := 3;
 	    testTotal := testTotal + 1;
         testPass := 0;
 	    floatResultA := 0.0;
@@ -1030,7 +1039,9 @@ package body exercises1to100 is
         Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
 
         array10AInput := (1,3,5,7,0,0,0,0,0,0);
+		integerInputA := 3;
         array10BInput := (2,4,6,8,0,0,0,0,0,0);
+		integerInputB := 3;
         testTotal := testTotal + 1;
         testPass := 0;
 	   floatResultA := 0.0;
@@ -1043,7 +1054,37 @@ package body exercises1to100 is
 
 
 	    	array10AInput := (1, 3, 5, 7, 0, 0, 0, 0, 0, 0);
+		integerInputA := 3;
 		array10BInput := (2, 4, 6, 8, 9, 10, 11, 0, 0, 0);
+		integerInputB := 6;
+        	testTotal := testTotal + 1;
+        	testPass := 0;
+	   	floatResultA := 0.0;
+       	MedianofTwoSortedArrays;
+        	if floatResultA = 6.0 then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        	end if;
+        	Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+		array10AInput := (1, 2, 3, 4, 0, 0, 0, 0, 0, 0);
+		integerInputA := 3;
+		array10BInput := (5, 6, 7, 8, 9, 10, 11, 0, 0, 0);
+		integerInputB := 6;
+        	testTotal := testTotal + 1;
+        	testPass := 0;
+	   	floatResultA := 0.0;
+       	MedianofTwoSortedArrays;
+        	if floatResultA = 6.0 then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        	end if;
+        	Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+		array10AInput := (5, 6, 7, 8, 9, 10, 11, 0, 0, 0);
+		integerInputA := 6;
+		array10BInput := (1, 2, 3, 4, 0, 0, 0, 0, 0, 0);
+		integerInputB := 3;
         	testTotal := testTotal + 1;
         	testPass := 0;
 	   	floatResultA := 0.0;
