@@ -334,7 +334,7 @@ package body exercises1to100 is
 
 
 
-				auxElems1 := (tempPos1 - pos1)+(tempPos2 - pos2) + 2;
+				auxElems1 := (tempPos1 - pos1)+(tempPos2 - pos2)+2;
 				auxElems2 := (trueLengthA - tempPos1) + (trueLengthB - tempPos2) ;
 
 				Put_Line ("x1>"&Integer'Image( trueLengthA + trueLengthB + 2) &
@@ -342,19 +342,37 @@ package body exercises1to100 is
 			  		&  Integer'Image ( auxElems1 ) &  Integer'Image ( auxElems2 ));
 
 				if auxElems1 = searchedpos then
-					Put_Line ("K1>");
-					if array10AInput(tempPos1) < array10BInput(tempPos2) then
-						Put_Line ("K11>" & Integer'Image ( breakPoint ));
-						breakPoint := 11;
-						floatResultA := Float (array10AInput (tempPos1));
-					else
-						Put_Line ("K12>" & Integer'Image ( breakPoint ));
-						breakPoint := 12;
-						floatResultA := Float (array10BInput (tempPos2));
-					end if;
+               Put_Line ("K1>");
+               if pairNumberOfElements = 0 then
+                  Put_Line ("K01>" & Integer'Image ( breakPoint ));
+                  breakPoint := 10;
+                  --to-do pending to refine for all the cases, is a first aproximation
+                  if array10AInput(tempPos1+1) > array10BInput(tempPos2+1) and
+                    array10BInput(tempPos2+1) > array10AInput(tempPos1) then
+                     -- we have to use arrayB tempos2+1
+                     floatResultA := Float (array10AInput (tempPos1)+array10BInput(tempPos2+1))/2.0;
+                     Put_Line ("L11>" & Integer'Image ( breakPoint ));
+                  else
+                     -- we have to use arrayA tempos1+1
+                     floatResultA := Float (array10AInput (tempPos1+1)+array10BInput(tempPos2))/2.0;
+                     Put_Line ("L12>" & Integer'Image ( breakPoint ));
+                  end if;
+
+               elsif array10AInput(tempPos1) > array10BInput(tempPos2) then
+                  Put_Line ("K11>" & Integer'Image ( breakPoint ));
+                  breakPoint := 11;
+                  floatResultA := Float (array10AInput (tempPos1));
+
+               else
+                  Put_Line ("K12>" & Integer'Image ( breakPoint ));
+                  breakPoint := 12;
+                  floatResultA := Float (array10BInput (tempPos2));
+
+               end if;
+
 				elsif auxElems2 = searchedpos then
 					Put_Line ("K2>");
-					if array10AInput(tempPos1) > array10BInput(tempPos2) then
+					if array10AInput(tempPos1) < array10BInput(tempPos2) then
 						Put_Line ("K21>" & Integer'Image ( breakPoint ));
 						breakPoint := 21;
 						floatResultA := Float (array10AInput (tempPos1));
@@ -389,7 +407,7 @@ package body exercises1to100 is
 						floatResultA := Float(array10AInput(searchedpos));
 					end if;
 				else
-					searchedpos := searchedpos-(trueLengthA)-1;
+					searchedpos := searchedpos-(trueLengthA)-2;
 					Put_Line ("E2>" & Integer'Image ( searchedpos ));
 					if pairNumberOfElements = 0 then
 						floatResultA := Float(array10BInput(searchedpos)+array10BInput(searchedpos+1))/2.0;
@@ -408,7 +426,7 @@ package body exercises1to100 is
 						floatResultA := Float(array10BInput(searchedpos));
 					end if;
 				else
-					searchedpos := searchedpos-(trueLengthB)-1;
+					searchedpos := searchedpos-(trueLengthB)-2;
 					Put_Line ("E2>" & Integer'Image ( searchedpos ));
 					if pairNumberOfElements = 0 then
 						floatResultA := Float(array10AInput(searchedpos)+array10AInput(searchedpos+1))/2.0;
