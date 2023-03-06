@@ -1,8 +1,12 @@
+<!-- Readme -->
 # learningAda A0.1-E0.3
 * 1 - Abstract v0.1 - First approach  
 * 2 - Exercises v0.3 - Added 2.1 - Two Sum
   * 2.1. Two Sum  v1.1 - Added from https://leetcode.com/problems/add-two-numbers/  
   * 2.2. Add Two Numbers - Added from https://leetcode.com/problems/two-sum/
+  * 2.3. Longest Substring Without Repeating Characters - Added from https://leetcode.com/problems/longest-substring-without-repeating-characters/
+  * 2.4. Median-of-two-sorted-arrays - Added from https://leetcode.com/problems/median-of-two-sorted-arrays/ 
+  * 2.5. Longest Palindromic Substring - Added from https://leetcode.com/problems/longest-palindromic-substring/
   * 2.9. Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
   * 2.13. Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
   * 2.14. Longest Common Prefix v1.0 - Added from https://leetcode.com/problems/longest-common-prefix/
@@ -125,6 +129,44 @@ Constraints:
 0 <= s.length <= 5 * 104  
 s consists of English letters, digits, symbols and spaces.  
   
+  
+### 2.4. Median-of-two-sorted-arrays
+#### https://leetcode.com/problems/median-of-two-sorted-arrays/  
+Hard  
+Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.  
+
+The overall run time complexity should be O(log (m+n)).  
+
+ 
+
+Example 1:  
+
+Input: nums1 = [1,3], nums2 = [2]  
+Output: 2.00000  
+Explanation: merged array = [1,2,3] and median is 2.  
+
+Example 2:  
+
+Input: nums1 = [1,2], nums2 = [3,4]  
+Output: 2.50000  
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.  
+ 
+
+### 2.5. Longest Palindromic Substring
+#### https://leetcode.com/problems/longest-palindromic-substring/
+Medium  
+Given a string s, return the longest palindromic substring in s.  
+
+Example 1:  
+
+Input: s = "babad"  
+Output: "bab"  
+Explanation: "aba" is also a valid answer.  
+
+Example 2:  
+Input: s = "cbbd"  
+Output: "bb"  
+
 ### 2.9 Palindrome Number
 #### https://leetcode.com/problems/palindrome-number/
 Given an integer x, return true if x is a palindrome, and false otherwise.  
