@@ -23,7 +23,8 @@ package body exercises1to100 is
     -- 1.0-1.1 twoSum
     -- 1.0-1.0 procedure addtwonumbers()
     -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-    -- +2.0-2.0 MedianofTwoSortedArrays
+    -- 2.0-2.0 MedianofTwoSortedArrays
+    -- +0.1-1.0 longestpalindromicsubstring
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -84,9 +85,12 @@ package body exercises1to100 is
 	-- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
 	-- * Calculate find the length of the longest substring without repeating characters.
 	-- * Defined 3 static test cases to verify behaviour
-    -- +2.0-2.0 MedianofTwoSortedArrays
+    -- 2.0-2.0 MedianofTwoSortedArrays
     -- * Expected worst case solution in O(log(n)) best case in O(1)
     -- * 5 Static test cases
+    -- +0.1-1.0 longestpalindromicsubstring
+    -- * To-Do all
+    -- 2 Static test cases defined
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
     -- * Static test with input integer
@@ -278,7 +282,7 @@ package body exercises1to100 is
 			end loop;
         end LongestSubstringWithoutRepeatingCharacters;
 
-        procedure MedianofTwoSortedArrays is
+        procedure MedianofTwoSortedArrays is --ex4
    			pos1 : Integer;
 			pos2 : Integer;
 			pairNumberOfElements : Integer;
@@ -444,7 +448,13 @@ package body exercises1to100 is
         end MedianofTwoSortedArrays;
 
 
-        procedure palindrome(number : Integer) is
+      procedure longestpalindromicsubstring is
+      begin
+         Put_Line ("Z10>");
+      end longestpalindromicsubstring;
+
+
+        procedure palindrome(number : Integer) is --ex 9
             tempNum : Integer;
             auxNum : Integer;
             rest : Integer;
@@ -1152,6 +1162,30 @@ package body exercises1to100 is
         	Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
         --------------------------------------------------------------------------------------------
 
+
+        testTotal := testTotal + 1;
+        testPass := 0;
+        integerResultA := 0;
+     		StrBounString(0) := To_Bounded_String("babad     ");
+        longestpalindromicsubstring;
+        if StrBounString(1) = To_Bounded_String("bab       ") then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
+       testTotal := testTotal + 1;
+        testPass := 0;
+        integerResultA := 0;
+     		StrBounString(0) := To_Bounded_String("cbbd      ");
+        longestpalindromicsubstring;
+        if StrBounString(1) = To_Bounded_String("bb        ") then
+            testPass := 1;
+            testPassed := testPassed + 1;
+        end if;
+        Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
+      -------------------------------------------------------------------------------
         testTotal := testTotal + 1;
         testPass := 0;
         integerResultA := 0;
