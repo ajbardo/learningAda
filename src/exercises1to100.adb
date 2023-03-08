@@ -24,7 +24,7 @@ package body exercises1to100 is
     -- 1.0-1.0 procedure addtwonumbers()
     -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
     -- 2.0-2.0 MedianofTwoSortedArrays
-    -- +0.1-1.0 longestpalindromicsubstring
+    -- +1.0-1.0 longestpalindromicsubstring
     -- 1.0-1.0 palindrome
     -- 1.1-1.1 romantointeger
     -- 1.0-1.0 longestcommonprefix
@@ -88,8 +88,9 @@ package body exercises1to100 is
     -- 2.0-2.0 MedianofTwoSortedArrays
     -- * Expected worst case solution in O(log(n)) best case in O(1)
     -- * 5 Static test cases
-    -- +0.1-1.0 longestpalindromicsubstring
-    -- * To-Do all
+    -- +1.0-1.0 longestpalindromicsubstring
+    -- * obtains the result worst case O(2n)
+    -- * 6 static test cases with array of length 10
     -- 2 Static test cases defined
     -- 1.0-1.0 procedure palindrome(number : Integer)
     -- * Check if number is palindrome
@@ -447,10 +448,68 @@ package body exercises1to100 is
 			--Put_Line ("Z1>"&Float'Image( floatResultA ));
         end MedianofTwoSortedArrays;
 
-
       procedure longestpalindromicsubstring is
+         botpos : Integer;
+         toppos : Integer;
+         deepCheck : Integer;
+         solpos1, solpos2 : Integer;
       begin
-         Put_Line ("Z10>");
+         botpos := 1;
+         toppos := botpos + 1;--Length(StrBounString(0));
+         deepCheck := 0;
+         solpos1 := 0;
+         solpos2 := 0;
+
+         while (toppos > botpos) and toppos < Length(StrBounString(0))+1 loop
+
+            --Put_Line ("A0>"&Integer'Image(toppos)&Integer'Image(botpos)&Integer'Image(Length(StrBounString(0))-1));
+            if To_String(StrBounString(0))(botpos) = To_String(StrBounString(0))(toppos) then
+
+               if (solpos2-solpos1) < (toppos-botpos) then-- the new solution is better
+                  solpos1 := botpos;
+                  solpos2 := toppos;
+                  --Put_Line ("K0>"&Integer'Image(solpos1)&Integer'Image(solpos2));
+               end if;
+
+               if botpos > 1 then
+                  --Put_Line ("B0>"&Integer'Image(toppos)&Integer'Image(botpos));
+                  botpos := botpos - 1;
+                  toppos := toppos + 1;
+                  deepCheck := 2;
+               else
+                  --Put_Line ("B1>"&Integer'Image(toppos)&Integer'Image(botpos));
+                  botpos := toppos;
+                  toppos := toppos + 1;
+               end if;
+            else
+
+               if deepCheck = 0 then-- checking consecutive +1 pos
+                  toppos := toppos + 1;
+                  deepCheck := 1;
+                  --Put_Line ("C0>"&Integer'Image(toppos)&Integer'Image(botpos));
+               elsif deepCheck = 1 then -- checking consecutive +2 pos
+                  botpos := botpos + 1;
+                  deepCheck := 0;
+                  --Put_Line ("C1>"&Integer'Image(toppos)&Integer'Image(botpos));
+               elsif deepCheck = 2 then
+                  botpos := toppos;
+                  toppos := toppos + 1;
+                  deepCheck := 0;
+                  --Put_Line ("C2>"&Integer'Image(toppos)&Integer'Image(botpos));
+               end if;
+
+            end if;
+
+         end loop;
+
+         --Put_Line ("K1>"&Integer'Image(solpos1)&Integer'Image(solpos2));
+         if solpos1 > 0  then
+            StrBounString(1) := To_Bounded_String(To_String(StrBounString(0))(solpos1..solpos2));
+         else
+            StrBounString(1) := To_Bounded_String("");
+         end if;
+         --Put_Line ("Z10>"&To_String(StrBounString(1)));
+
       end longestpalindromicsubstring;
 
 
@@ -965,978 +1024,1024 @@ package body exercises1to100 is
 
     begin
 
-        Start_Time := Clock;
+      Start_Time := Clock;
       Put_Line ("Starting main execution");
-        testPass := 0;
-        testPassed := 0;
+      testPass := 0;
+      testPassed := 0;
       testTotal := 0;
       inputTree := new linkedArrayData;
       inputTree2 := new linkedArrayData;
-        --------------------------------------------------------------------------------------------
-        testTotal := testTotal + 1;
-        integerInputA := 7;
-        array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
-        twoSum(integerInputA);
-		  testPass := 0;
-        if array2(0) = 1 and array2(1) = 4 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
+      testTotal := testTotal + 1;
+      integerInputA := 7;
+      array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
+      twoSum(integerInputA);
+      testPass := 0;
+      if array2(0) = 1 and array2(1) = 4 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
 
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := 12;
-        array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
-        twoSum(integerInputA);
-        if array2(0) = 0 and array2(1) = 5 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
-
-
-        --------------------------------------------------------------------------------------------
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,0,1,0);
-        integerInputA := inputTree.updateelement(1,0,2,0);
-        integerInputA := inputTree.updateelement(2,1,0,0);
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := 12;
+      array10 := (9, 5, 5, 6, 2, 3, 4, 7, 6, 9);
+      twoSum(integerInputA);
+      if array2(0) = 0 and array2(1) = 5 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
 
 
-        integerInputA := inputTree2.cleanData(0);
-        integerInputA := inputTree2.updateelement(0,0,1,0);
-        integerInputA := inputTree2.updateelement(1,0,2,0);
-        integerInputA := inputTree2.updateelement(2,1,0,0);
-        addtwonumbers;
-        if array10 = (0,0,2,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,0,1,0);
-        integerInputA := inputTree.updateelement(1,9,2,0);
-        integerInputA := inputTree.updateelement(2,0,0,0);
+      --------------------------------------------------------------------------------------------
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := inputTree.cleanData(0);
+      integerInputA := inputTree.updateelement(0,0,1,0);
+      integerInputA := inputTree.updateelement(1,0,2,0);
+      integerInputA := inputTree.updateelement(2,1,0,0);
 
 
-        integerInputA := inputTree2.cleanData(0);
-        integerInputA := inputTree2.updateelement(0,0,1,0);
-        integerInputA := inputTree2.updateelement(1,9,2,0);
-        integerInputA := inputTree2.updateelement(2,0,0,0);
-        addtwonumbers;
-        if array10 = (0,8,1,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+      integerInputA := inputTree2.cleanData(0);
+      integerInputA := inputTree2.updateelement(0,0,1,0);
+      integerInputA := inputTree2.updateelement(1,0,2,0);
+      integerInputA := inputTree2.updateelement(2,1,0,0);
+      addtwonumbers;
+      if array10 = (0,0,2,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
 
-         testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,9,1,0);
-        integerInputA := inputTree.updateelement(1,9,2,0);
-        integerInputA := inputTree.updateelement(2,3,3,0);
-        integerInputA := inputTree.updateelement(3,0,0,0);
-
-
-        integerInputA := inputTree2.cleanData(0);
-        integerInputA := inputTree2.updateelement(0,9,1,0);
-        integerInputA := inputTree2.updateelement(1,0,2,0);
-        integerInputA := inputTree2.updateelement(2,5,3,0);
-        integerInputA := inputTree2.updateelement(3,0,0,0);
-        addtwonumbers;
-        if array10 = (8,0,9,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
-		 --------------------------------------------------------------------------------------------
-
-		testTotal := testTotal + 1;
-		testPass := 0;
-		StrBounString(0) := To_Bounded_String("abcabcbbbb");
-		LongestSubstringWithoutRepeatingCharacters;
-		if integerResultA = 3 then
-			testPass := 1;
-			testPassed := testPassed + 1;
-		end if;
-		Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
-
-		testTotal := testTotal + 1;
-		testPass := 0;
-		StrBounString(0) := To_Bounded_String("bbbbbbbbbb");
-		LongestSubstringWithoutRepeatingCharacters;
-		if integerResultA = 1 then
-			testPass := 1;
-			testPassed := testPassed + 1;
-		end if;
-		Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
-
-		testTotal := testTotal + 1;
-		testPass := 0;
-		StrBounString(0) := To_Bounded_String("pwwkewpwwk");
-		LongestSubstringWithoutRepeatingCharacters;
-		if integerResultA = 3 then
-			testPass := 1;
-			testPassed := testPassed + 1;
-		end if;
-		Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := inputTree.cleanData(0);
+      integerInputA := inputTree.updateelement(0,0,1,0);
+      integerInputA := inputTree.updateelement(1,9,2,0);
+      integerInputA := inputTree.updateelement(2,0,0,0);
 
 
-        --------------------------------------------------------------------------------------------
+      integerInputA := inputTree2.cleanData(0);
+      integerInputA := inputTree2.updateelement(0,0,1,0);
+      integerInputA := inputTree2.updateelement(1,9,2,0);
+      integerInputA := inputTree2.updateelement(2,0,0,0);
+      addtwonumbers;
+      if array10 = (0,8,1,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
 
-        array10AInput := (1,3,5,7,9,0,0,0,0,0);
-		integerInputA := 4;
-        array10BInput := (2,4,6,8,0,0,0,0,0,0);
-		integerInputB := 3;
-	    testTotal := testTotal + 1;
-        testPass := 0;
-	    floatResultA := 0.0;
-        MedianofTwoSortedArrays;
-        if floatResultA = 5.0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
-
-        array10AInput := (1,3,5,7,0,0,0,0,0,0);
-		integerInputA := 3;
-        array10BInput := (2,4,6,8,0,0,0,0,0,0);
-		integerInputB := 3;
-        testTotal := testTotal + 1;
-        testPass := 0;
-	   floatResultA := 0.0;
-        MedianofTwoSortedArrays;
-        if floatResultA = 4.5 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := inputTree.cleanData(0);
+      integerInputA := inputTree.updateelement(0,9,1,0);
+      integerInputA := inputTree.updateelement(1,9,2,0);
+      integerInputA := inputTree.updateelement(2,3,3,0);
+      integerInputA := inputTree.updateelement(3,0,0,0);
 
 
-	    	array10AInput := (1, 3, 5, 7, 0, 0, 0, 0, 0, 0);
-		integerInputA := 3;
-		array10BInput := (2, 4, 6, 8, 9, 10, 11, 0, 0, 0);
-		integerInputB := 6;
-        	testTotal := testTotal + 1;
-        	testPass := 0;
-	   	floatResultA := 0.0;
-       	MedianofTwoSortedArrays;
-        	if floatResultA = 6.0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        	end if;
-        	Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      integerInputA := inputTree2.cleanData(0);
+      integerInputA := inputTree2.updateelement(0,9,1,0);
+      integerInputA := inputTree2.updateelement(1,0,2,0);
+      integerInputA := inputTree2.updateelement(2,5,3,0);
+      integerInputA := inputTree2.updateelement(3,0,0,0);
+      addtwonumbers;
+      if array10 = (8,0,9,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
 
-		array10AInput := (1, 2, 3, 4, 0, 0, 0, 0, 0, 0);
-		integerInputA := 3;
-		array10BInput := (5, 6, 7, 8, 9, 10, 11, 0, 0, 0);
-		integerInputB := 6;
-        	testTotal := testTotal + 1;
-        	testPass := 0;
-	   	floatResultA := 0.0;
-       	MedianofTwoSortedArrays;
-        	if floatResultA = 6.0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        	end if;
-        	Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      testTotal := testTotal + 1;
+      testPass := 0;
+      StrBounString(0) := To_Bounded_String("abcabcbbbb");
+      LongestSubstringWithoutRepeatingCharacters;
+      if integerResultA = 3 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
 
-		array10AInput := (5, 6, 7, 8, 9, 10, 11, 0, 0, 0);
-		integerInputA := 6;
-		array10BInput := (1, 2, 3, 4, 0, 0, 0, 0, 0, 0);
-		integerInputB := 3;
-        	testTotal := testTotal + 1;
-        	testPass := 0;
-	   	floatResultA := 0.0;
-       	MedianofTwoSortedArrays;
-        	if floatResultA = 6.0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        	end if;
-        	Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
-        --------------------------------------------------------------------------------------------
+      testTotal := testTotal + 1;
+      testPass := 0;
+      StrBounString(0) := To_Bounded_String("bbbbbbbbbb");
+      LongestSubstringWithoutRepeatingCharacters;
+      if integerResultA = 1 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      StrBounString(0) := To_Bounded_String("pwwkewpwwk");
+      LongestSubstringWithoutRepeatingCharacters;
+      if integerResultA = 3 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
 
 
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerResultA := 0;
-     		StrBounString(0) := To_Bounded_String("babad     ");
-        longestpalindromicsubstring;
-        if StrBounString(1) = To_Bounded_String("bab       ") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
 
-       testTotal := testTotal + 1;
-        testPass := 0;
-        integerResultA := 0;
-     		StrBounString(0) := To_Bounded_String("cbbd      ");
-        longestpalindromicsubstring;
-        if StrBounString(1) = To_Bounded_String("bb        ") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      array10AInput := (1,3,5,7,9,0,0,0,0,0);
+      integerInputA := 4;
+      array10BInput := (2,4,6,8,0,0,0,0,0,0);
+      integerInputB := 3;
+      testTotal := testTotal + 1;
+      testPass := 0;
+      floatResultA := 0.0;
+      MedianofTwoSortedArrays;
+      if floatResultA = 5.0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+      array10AInput := (1,3,5,7,0,0,0,0,0,0);
+      integerInputA := 3;
+      array10BInput := (2,4,6,8,0,0,0,0,0,0);
+      integerInputB := 3;
+      testTotal := testTotal + 1;
+      testPass := 0;
+      floatResultA := 0.0;
+      MedianofTwoSortedArrays;
+      if floatResultA = 4.5 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+
+      array10AInput := (1, 3, 5, 7, 0, 0, 0, 0, 0, 0);
+      integerInputA := 3;
+      array10BInput := (2, 4, 6, 8, 9, 10, 11, 0, 0, 0);
+      integerInputB := 6;
+      testTotal := testTotal + 1;
+      testPass := 0;
+      floatResultA := 0.0;
+      MedianofTwoSortedArrays;
+      if floatResultA = 6.0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+      array10AInput := (1, 2, 3, 4, 0, 0, 0, 0, 0, 0);
+      integerInputA := 3;
+      array10BInput := (5, 6, 7, 8, 9, 10, 11, 0, 0, 0);
+      integerInputB := 6;
+      testTotal := testTotal + 1;
+      testPass := 0;
+      floatResultA := 0.0;
+      MedianofTwoSortedArrays;
+      if floatResultA = 6.0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+
+      array10AInput := (5, 6, 7, 8, 9, 10, 11, 0, 0, 0);
+      integerInputA := 6;
+      array10BInput := (1, 2, 3, 4, 0, 0, 0, 0, 0, 0);
+      integerInputB := 3;
+      testTotal := testTotal + 1;
+      testPass := 0;
+      floatResultA := 0.0;
+      MedianofTwoSortedArrays;
+      if floatResultA = 6.0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
+
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      StrBounString(0) := To_Bounded_String("babad");
+      longestpalindromicsubstring;
+      if StrBounString(1) = To_Bounded_String("bab") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      StrBounString(0) := To_Bounded_String("cbbd");
+      longestpalindromicsubstring;
+      if StrBounString(1) = To_Bounded_String("bb") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      StrBounString(0) := To_Bounded_String("cbbdeffed");
+      longestpalindromicsubstring;
+      if StrBounString(1) = To_Bounded_String("deffed") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      StrBounString(0) := To_Bounded_String("abcdeff");
+      longestpalindromicsubstring;
+      if StrBounString(1) = To_Bounded_String("ff") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      StrBounString(0) := To_Bounded_String("aabcdef");
+      longestpalindromicsubstring;
+      if StrBounString(1) = To_Bounded_String("aa") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      StrBounString(0) := To_Bounded_String("abcdef");
+      longestpalindromicsubstring;
+      if StrBounString(1) = To_Bounded_String("") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+
 
       -------------------------------------------------------------------------------
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerResultA := 0;
-        integerInputA := 12344321;
-        palindrome(integerInputA);
-        if integerResultA = 1 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerResultA := 1;
-        integerInputA := 12345321;
-        palindrome(integerInputA);
-        if integerResultA = 0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
-        --------------------------------------------------------------------------------------------
-        stringInputA := "   XLVIII";
-        romantointeger(stringInputA);
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 48 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
-
-        stringInputA := "     VIII";
-        romantointeger(stringInputA);
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 8 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
-
-        --------------------------------------------------------------------------------------------
-        StrBounString(0) := To_Bounded_String("asdfghjklo");
-        StrBounString(1) := To_Bounded_String("asdfghtree");
-        StrBounString(2) := To_Bounded_String("asdfgmnbvc");
-        longestcommonprefix;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if bounStringResultA = To_Bounded_String("asdfg") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
-
-        StrBounString(0) := To_Bounded_String("eraseunave");
-        StrBounString(1) := To_Bounded_String("eraseunave");
-        StrBounString(2) := To_Bounded_String("eraseunave");
-        longestcommonprefix;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if bounStringResultA = To_Bounded_String("eraseunave") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
-
-        StrBounString(0) := To_Bounded_String("eraseunave");
-        StrBounString(1) := To_Bounded_String("eraseunave");
-        StrBounString(2) := To_Bounded_String("erasenaves");
-        longestcommonprefix;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if bounStringResultA = To_Bounded_String("erase") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
-
-        StrBounString(0) := To_Bounded_String("asdfsafasd");
-        StrBounString(1) := To_Bounded_String("eraseunave");
-        StrBounString(2) := To_Bounded_String("zxczxcccxz");
-        longestcommonprefix;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if bounStringResultA = To_Bounded_String("") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
-
-        --------------------------------------------------------------------------------------------
-        bounStringInputB := To_Bounded_String("()()()()()");--Output: true
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 1 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        bounStringInputB := To_Bounded_String("[][][][][]");--Output: true
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 1 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        bounStringInputB := To_Bounded_String("{}{}{}{}{}");--Output: true
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 1 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        bounStringInputB := To_Bounded_String("([{}]([]))");--Output: true
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 1 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        bounStringInputB := To_Bounded_String("([{}](]]))");--Output: false
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        bounStringInputB := To_Bounded_String("([{{{([]))");--Output: false
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        bounStringInputB := To_Bounded_String("([{}]([]])");--Output: false
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        bounStringInputB := To_Bounded_String("([{}]([])]");--Output: false
-        validparentheses;
-        testPass := 0;
-        testTotal := testTotal + 1;
-        if integerResultA = 0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
-
-        --------------------------------------------------------------------------------------------
-
-        testPass := 0;
-        testTotal := testTotal + 1;
-        array3A := (1, 2, 4);
-        array3B := (1, 3, 4);
-        array6A := (0,0,0,0,0,0);
-        mergetwosortedlists;
-        if array6A = (1,1,2,3,4,4) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
-
-        testPass := 0;
-        testTotal := testTotal + 1;
-        array3A := (1, 4, 4);
-        array3B := (1, 3, 4);
-        mergetwosortedlists;
-        if array6A = (1,1,3,4,4,4) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
-
-        testPass := 0;
-        testTotal := testTotal + 1;
-        array3A := (1, 4, 4);
-        array3B := (1, 3, 5);
-        mergetwosortedlists;
-        if array6A = (1,1,3,4,4,5) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
-
-        testPass := 0;
-        testTotal := testTotal + 1;
-        array3A := (0, 0, 0);
-        array3B := (0, 0, 0);
-        mergetwosortedlists;
-        if array6A = (0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
-
-        testPass := 0;
-        testTotal := testTotal + 1;
-        array3A := (1, 1, 1);
-        array3B := (2, 2, 2);
-        mergetwosortedlists;
-        if array6A = (1,1,1,2,2,2) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
-
-        testPass := 0;
-        testTotal := testTotal + 1;
-        array3A := (1, 1, 1);
-        array3B := (1, 1, 1);
-        mergetwosortedlists;
-        testPass := 0;
-        if array6A = (1,1,1,1,1,1) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
-        --------------------------------------------------------------------------------------------
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,1,1,2,2,3,4,8,8,8);
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0);
-        removeduplicatesfromsortedarray;
-        testPass := 0;
-        if array10AOutput = (1,2,3,4,8,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,1,1,2,2,3,4,5,8,8);
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0);
-        removeduplicatesfromsortedarray;
-        testPass := 0;
-        if array10AOutput = (1,2,3,4,5,8,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,2,3,3,3,3,3,3,8,0);
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0);
-        removeduplicatesfromsortedarray;
-        testPass := 0;
-        if array10AOutput = (1,2,3,8,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,1,1,1,1,1,1,1,1,1);
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0);
-        removeduplicatesfromsortedarray;
-        testPass := 0;
-        if array10AOutput = (1,0,0,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (0,0,0,0,0,0,0,0,0,0);
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0);
-        removeduplicatesfromsortedarray;
-        testPass := 0;
-        if array10AOutput = (0,0,0,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,0,0,0,0,0,0,0,0,0);
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0);
-        removeduplicatesfromsortedarray;
-        testPass := 0;
-        if array10AOutput = (1,0,0,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
-
-        --------------------------------------------------------------------------------------------
-
-        testTotal := testTotal + 1;
-        array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
-        integerInputA := 3; -- element to be removed
-        removeelement;
-        testPass := 0;
-        if array10AOutput = (4,2,5,4,6,2,1,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,1,1,1,1,1,1,1,1,1); -- array input
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
-        integerInputA := 1; -- element to be removed
-        removeelement;
-        testPass := 0;
-        if array10AOutput = (0,0,0,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,1,1,2,2,2,1,1,1,2); -- array input
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
-        integerInputA := 1; -- element to be removed
-        removeelement;
-        testPass := 0;
-        if array10AOutput = (2,2,2,2,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
-        integerInputA := 7; -- element to be removed
-        removeelement;
-        testPass := 0;
-        if array10AOutput = (4,3,2,5,4,6,2,3,3,1) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (7,3,2,5,4,6,2,3,3,1); -- array input
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
-        integerInputA := 7; -- element to be removed
-        removeelement;
-        testPass := 0;
-        if array10AOutput = (3,2,5,4,6,2,3,3,1,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
-        array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
-        integerInputA := 1; -- element to be removed
-        removeelement;
-        testPass := 0;
-        if array10AOutput = (4,3,2,5,4,6,2,3,3,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
-        --------------------------------------------------------------------------------------------
-
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
-        integerInputA := 9; -- element to be found
-        integerResultA := 0;
-        searchinsertposition;
-        testPass := 0;
-        if integerResultA = 3 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
-        integerInputA := 1; -- element to be found
-        integerResultA := 0;
-        searchinsertposition;
-        testPass := 0;
-        if integerResultA = 0 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
-        integerInputA := 100; -- element to be found
-        integerResultA := 0;
-        searchinsertposition;
-        testPass := 0;
-        if integerResultA = 9 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
-        integerInputA := 101; -- element to be found
-        integerResultA := 0;
-        searchinsertposition;
-        testPass := 0;
-        if integerResultA = 10 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
-        integerInputA := 40; -- element to be found
-        integerResultA := 0;
-        searchinsertposition;
-        testPass := 0;
-        if integerResultA = 5 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
-
-
-        --------------------------------------------------------------------------------------------
-
-        testTotal := testTotal + 1;
-        stringInputB := "aaa aaa aaa " & 8 * " ";
-        integerResultA := 0;
-        lengthoflastword;
-        testPass := 0;
-        if integerResultA = 3 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        stringInputB := "aaa" & 17 * " ";
-        integerResultA := 0;
-        lengthoflastword;
-        testPass := 0;
-        if integerResultA = 3 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        stringInputB := 17 * " " & "aaa";
-        integerResultA := 0;
-        lengthoflastword;
-        testPass := 0;
-        if integerResultA = 3 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
-
-        --------------------------------------------------------------------------------------------
-
-        testTotal := testTotal + 1;
-        array10 := (0,0,0,0,0,0,0,0,0,0);
-        plusOne;
-        testPass := 0;
-        if array10 = (0,0,0,0,0,0,0,0,0,1) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10 := (0,0,0,0,0,0,0,0,0,9);
-        plusOne;
-        testPass := 0;
-        if array10 = (0,0,0,0,0,0,0,0,1,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
-
-
-        testTotal := testTotal + 1;
-        array10 := (0,0,0,0,0,0,0,0,0,2);
-        plusOne;
-        testPass := 0;
-        if array10 = (0,0,0,0,0,0,0,0,0,3) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
-
-
-        testTotal := testTotal + 1;
-        array10 := (0,0,0,0,0,0,0,0,9,0);
-        plusOne;
-        testPass := 0;
-        if array10 = (0,0,0,0,0,0,0,0,9,1) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10 := (9,0,0,0,0,0,0,0,2,0);
-        plusOne;
-        testPass := 0;
-        if array10 = (9,0,0,0,0,0,0,0,2,1) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        array10 := (9,9,9,9,9,9,9,9,9,9);
-        plusOne;
-        testPass := 0;
-        if array10 = (0,0,0,0,0,0,0,0,0,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
-
-
-        --------------------------------------------------------------------------------------------
-
-
-        testTotal := testTotal + 1;
-        bounStringInputB := To_Bounded_String("0010100110");
-        addbinary;
-        testPass := 0;
-        if bounStringResultA = To_Bounded_String("0010100111") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        bounStringInputB := To_Bounded_String("0010100111");
-        addbinary;
-        testPass := 0;
-        if bounStringResultA = To_Bounded_String("0010101000") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        bounStringInputB := To_Bounded_String("1000000000");
-        addbinary;
-        testPass := 0;
-        if bounStringResultA = To_Bounded_String("1000000001") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        bounStringInputB := To_Bounded_String("0000000000");
-        addbinary;
-        testPass := 0;
-        if bounStringResultA = To_Bounded_String("0000000001") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        bounStringInputB := To_Bounded_String("1111111111");
-        addbinary;
-        testPass := 0;
-        if bounStringResultA = To_Bounded_String("0000000000") then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
-        --------------------------------------------------------------------------------------------
-
-        testTotal := testTotal + 1;
-        integerInputA := 411;
-        SqrtX;
-        testPass := 0;
-        if integerResultA = 20 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
-
-
-        testTotal := testTotal + 1;
-        integerInputA := 155542;
-        SqrtX;
-        testPass := 0;
-        if integerResultA = 394 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        integerInputA := 32;
-        SqrtX;
-        testPass := 0;
-        if integerResultA = 6 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
-
-
-        --------------------------------------------------------------------------------------------
-        testTotal := testTotal + 1;
-        integerInputA := 40;
-        testPass := 0;
-        climbingstairsFibo;
-        if integerResultA = 165580141 then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for climbingstairsFibo with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        testPass := 0;
-        climbingstairsFiboExtra;
-        if integerResultA = 165580141 then -- expected to fail due to diference between ecuation results and the actual series
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        Put_Line ("Test for climbingstairsFiboExtra with status: "&Integer'Image(testPass));
-
-
-
-        --------------------------------------------------------------------------------------------
-
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,0,1,2);
-        integerInputA := inputTree.updateelement(1,1,3,4);
-        integerInputA := inputTree.updateelement(2,2,5,6);
-        integerInputA := inputTree.updateelement(3,3,7,8);
-        integerInputA := inputTree.updateelement(4,4,9,0);
-        integerInputA := inputTree.updateelement(5,5,0,0);
-        integerInputA := inputTree.updateelement(6,6,0,0);
-        integerInputA := inputTree.updateelement(7,7,0,0);
-        integerInputA := inputTree.updateelement(8,8,0,0);
-        integerInputA := inputTree.updateelement(9,9,0,0);
-        binarytreeinordertraversal;
-        if array100A(0..9) = (7,3,8,1,9,4,0,5,2,6) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        integerInputA := inputTree.cleanData(0);
-        Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
-
-
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,3,1,2);
-        integerInputA := inputTree.updateelement(1,4,3,0);
-        integerInputA := inputTree.updateelement(2,6,4,5);
-        integerInputA := inputTree.updateelement(3,5,0,0);
-        integerInputA := inputTree.updateelement(4,7,0,0);
-        integerInputA := inputTree.updateelement(5,8,6,0);
-        integerInputA := inputTree.updateelement(6,9,7,8);
-        integerInputA := inputTree.updateelement(7,10,0,0);
-        integerInputA := inputTree.updateelement(8,11,9,0);
-        integerInputA := inputTree.updateelement(9,12,0,0);
-        binarytreeinordertraversal;
-        if array100A(0..9) = (5,4,3,7,6,10,9,12,11,8) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        integerInputA := inputTree.cleanData(0);
-        Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
-
-
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,0,1,0);
-        integerInputA := inputTree.updateelement(1,1,2,0);
-        integerInputA := inputTree.updateelement(2,2,3,0);
-        integerInputA := inputTree.updateelement(3,3,4,0);
-        integerInputA := inputTree.updateelement(4,4,5,0);
-        integerInputA := inputTree.updateelement(5,5,6,0);
-        integerInputA := inputTree.updateelement(6,6,7,0);
-        integerInputA := inputTree.updateelement(7,7,8,0);
-        integerInputA := inputTree.updateelement(8,8,9,0);
-        integerInputA := inputTree.updateelement(9,9,0,0);
-        binarytreeinordertraversal;
-        if array100A(0..9) = (9,8,7,6,5,4,3,2,1,0) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        integerInputA := inputTree.cleanData(0);
-        Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
-
-        testTotal := testTotal + 1;
-        testPass := 0;
-        integerInputA := inputTree.cleanData(0);
-        integerInputA := inputTree.updateelement(0,0,0,1);
-        integerInputA := inputTree.updateelement(1,1,0,2);
-        integerInputA := inputTree.updateelement(2,2,0,3);
-        integerInputA := inputTree.updateelement(3,3,0,4);
-        integerInputA := inputTree.updateelement(4,4,0,5);
-        integerInputA := inputTree.updateelement(5,5,0,6);
-        integerInputA := inputTree.updateelement(6,6,0,7);
-        integerInputA := inputTree.updateelement(7,7,0,8);
-        integerInputA := inputTree.updateelement(8,8,0,9);
-        integerInputA := inputTree.updateelement(9,9,0,0);
-        binarytreeinordertraversal;
-        if array100A(0..9) = (0,1,2,3,4,5,6,7,8,9) then
-            testPass := 1;
-            testPassed := testPassed + 1;
-        end if;
-        integerInputA := inputTree.cleanData(0);
-        Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
-
-        --------------------------------------------------------------------------------------------
-        Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
-
-
-        Stop_Time    := Clock;
-        Elapsed_Time := Stop_Time - Start_Time;
-        Put_Line ("Ending exercises1to100 execution - Elapsed time for all executions: "
-                 & Duration'Image (To_Duration (Elapsed_Time))
-                 & " seconds");
-
-    end oneTo100;
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      integerInputA := 12344321;
+      palindrome(integerInputA);
+      if integerResultA = 1 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 1;
+      integerInputA := 12345321;
+      palindrome(integerInputA);
+      if integerResultA = 0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
+      stringInputA := "   XLVIII";
+      romantointeger(stringInputA);
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 48 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+
+      stringInputA := "     VIII";
+      romantointeger(stringInputA);
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 8 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+
+      --------------------------------------------------------------------------------------------
+      StrBounString(0) := To_Bounded_String("asdfghjklo");
+      StrBounString(1) := To_Bounded_String("asdfghtree");
+      StrBounString(2) := To_Bounded_String("asdfgmnbvc");
+      longestcommonprefix;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if bounStringResultA = To_Bounded_String("asdfg") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
+      StrBounString(0) := To_Bounded_String("eraseunave");
+      StrBounString(1) := To_Bounded_String("eraseunave");
+      StrBounString(2) := To_Bounded_String("eraseunave");
+      longestcommonprefix;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if bounStringResultA = To_Bounded_String("eraseunave") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
+      StrBounString(0) := To_Bounded_String("eraseunave");
+      StrBounString(1) := To_Bounded_String("eraseunave");
+      StrBounString(2) := To_Bounded_String("erasenaves");
+      longestcommonprefix;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if bounStringResultA = To_Bounded_String("erase") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
+      StrBounString(0) := To_Bounded_String("asdfsafasd");
+      StrBounString(1) := To_Bounded_String("eraseunave");
+      StrBounString(2) := To_Bounded_String("zxczxcccxz");
+      longestcommonprefix;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if bounStringResultA = To_Bounded_String("") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+
+      --------------------------------------------------------------------------------------------
+      bounStringInputB := To_Bounded_String("()()()()()");--Output: true
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 1 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      bounStringInputB := To_Bounded_String("[][][][][]");--Output: true
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 1 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      bounStringInputB := To_Bounded_String("{}{}{}{}{}");--Output: true
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 1 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      bounStringInputB := To_Bounded_String("([{}]([]))");--Output: true
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 1 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      bounStringInputB := To_Bounded_String("([{}](]]))");--Output: false
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      bounStringInputB := To_Bounded_String("([{{{([]))");--Output: false
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      bounStringInputB := To_Bounded_String("([{}]([]])");--Output: false
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      bounStringInputB := To_Bounded_String("([{}]([])]");--Output: false
+      validparentheses;
+      testPass := 0;
+      testTotal := testTotal + 1;
+      if integerResultA = 0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+
+      --------------------------------------------------------------------------------------------
+
+      testPass := 0;
+      testTotal := testTotal + 1;
+      array3A := (1, 2, 4);
+      array3B := (1, 3, 4);
+      array6A := (0,0,0,0,0,0);
+      mergetwosortedlists;
+      if array6A = (1,1,2,3,4,4) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+      testPass := 0;
+      testTotal := testTotal + 1;
+      array3A := (1, 4, 4);
+      array3B := (1, 3, 4);
+      mergetwosortedlists;
+      if array6A = (1,1,3,4,4,4) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+      testPass := 0;
+      testTotal := testTotal + 1;
+      array3A := (1, 4, 4);
+      array3B := (1, 3, 5);
+      mergetwosortedlists;
+      if array6A = (1,1,3,4,4,5) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+      testPass := 0;
+      testTotal := testTotal + 1;
+      array3A := (0, 0, 0);
+      array3B := (0, 0, 0);
+      mergetwosortedlists;
+      if array6A = (0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+      testPass := 0;
+      testTotal := testTotal + 1;
+      array3A := (1, 1, 1);
+      array3B := (2, 2, 2);
+      mergetwosortedlists;
+      if array6A = (1,1,1,2,2,2) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+
+      testPass := 0;
+      testTotal := testTotal + 1;
+      array3A := (1, 1, 1);
+      array3B := (1, 1, 1);
+      mergetwosortedlists;
+      testPass := 0;
+      if array6A = (1,1,1,1,1,1) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,1,1,2,2,3,4,8,8,8);
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+      removeduplicatesfromsortedarray;
+      testPass := 0;
+      if array10AOutput = (1,2,3,4,8,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,1,1,2,2,3,4,5,8,8);
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+      removeduplicatesfromsortedarray;
+      testPass := 0;
+      if array10AOutput = (1,2,3,4,5,8,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,2,3,3,3,3,3,3,8,0);
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+      removeduplicatesfromsortedarray;
+      testPass := 0;
+      if array10AOutput = (1,2,3,8,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,1,1,1,1,1,1,1,1,1);
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+      removeduplicatesfromsortedarray;
+      testPass := 0;
+      if array10AOutput = (1,0,0,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (0,0,0,0,0,0,0,0,0,0);
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+      removeduplicatesfromsortedarray;
+      testPass := 0;
+      if array10AOutput = (0,0,0,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,0,0,0,0,0,0,0,0,0);
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0);
+      removeduplicatesfromsortedarray;
+      testPass := 0;
+      if array10AOutput = (1,0,0,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+
+      --------------------------------------------------------------------------------------------
+
+      testTotal := testTotal + 1;
+      array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+      integerInputA := 3; -- element to be removed
+      removeelement;
+      testPass := 0;
+      if array10AOutput = (4,2,5,4,6,2,1,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,1,1,1,1,1,1,1,1,1); -- array input
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+      integerInputA := 1; -- element to be removed
+      removeelement;
+      testPass := 0;
+      if array10AOutput = (0,0,0,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,1,1,2,2,2,1,1,1,2); -- array input
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+      integerInputA := 1; -- element to be removed
+      removeelement;
+      testPass := 0;
+      if array10AOutput = (2,2,2,2,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+      integerInputA := 7; -- element to be removed
+      removeelement;
+      testPass := 0;
+      if array10AOutput = (4,3,2,5,4,6,2,3,3,1) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (7,3,2,5,4,6,2,3,3,1); -- array input
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+      integerInputA := 7; -- element to be removed
+      removeelement;
+      testPass := 0;
+      if array10AOutput = (3,2,5,4,6,2,3,3,1,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
+      array10AOutput := (0,0,0,0,0,0,0,0,0,0); -- array output
+      integerInputA := 1; -- element to be removed
+      removeelement;
+      testPass := 0;
+      if array10AOutput = (4,3,2,5,4,6,2,3,3,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
+
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+      integerInputA := 9; -- element to be found
+      integerResultA := 0;
+      searchinsertposition;
+      testPass := 0;
+      if integerResultA = 3 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+      integerInputA := 1; -- element to be found
+      integerResultA := 0;
+      searchinsertposition;
+      testPass := 0;
+      if integerResultA = 0 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+      integerInputA := 100; -- element to be found
+      integerResultA := 0;
+      searchinsertposition;
+      testPass := 0;
+      if integerResultA = 9 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+      integerInputA := 101; -- element to be found
+      integerResultA := 0;
+      searchinsertposition;
+      testPass := 0;
+      if integerResultA = 10 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+      integerInputA := 40; -- element to be found
+      integerResultA := 0;
+      searchinsertposition;
+      testPass := 0;
+      if integerResultA = 5 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+
+
+      --------------------------------------------------------------------------------------------
+
+      testTotal := testTotal + 1;
+      stringInputB := "aaa aaa aaa " & 8 * " ";
+      integerResultA := 0;
+      lengthoflastword;
+      testPass := 0;
+      if integerResultA = 3 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      stringInputB := "aaa" & 17 * " ";
+      integerResultA := 0;
+      lengthoflastword;
+      testPass := 0;
+      if integerResultA = 3 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      stringInputB := 17 * " " & "aaa";
+      integerResultA := 0;
+      lengthoflastword;
+      testPass := 0;
+      if integerResultA = 3 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
+
+      --------------------------------------------------------------------------------------------
+
+      testTotal := testTotal + 1;
+      array10 := (0,0,0,0,0,0,0,0,0,0);
+      plusOne;
+      testPass := 0;
+      if array10 = (0,0,0,0,0,0,0,0,0,1) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10 := (0,0,0,0,0,0,0,0,0,9);
+      plusOne;
+      testPass := 0;
+      if array10 = (0,0,0,0,0,0,0,0,1,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+
+      testTotal := testTotal + 1;
+      array10 := (0,0,0,0,0,0,0,0,0,2);
+      plusOne;
+      testPass := 0;
+      if array10 = (0,0,0,0,0,0,0,0,0,3) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+
+      testTotal := testTotal + 1;
+      array10 := (0,0,0,0,0,0,0,0,9,0);
+      plusOne;
+      testPass := 0;
+      if array10 = (0,0,0,0,0,0,0,0,9,1) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10 := (9,0,0,0,0,0,0,0,2,0);
+      plusOne;
+      testPass := 0;
+      if array10 = (9,0,0,0,0,0,0,0,2,1) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      array10 := (9,9,9,9,9,9,9,9,9,9);
+      plusOne;
+      testPass := 0;
+      if array10 = (0,0,0,0,0,0,0,0,0,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+
+
+      --------------------------------------------------------------------------------------------
+
+
+      testTotal := testTotal + 1;
+      bounStringInputB := To_Bounded_String("0010100110");
+      addbinary;
+      testPass := 0;
+      if bounStringResultA = To_Bounded_String("0010100111") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      bounStringInputB := To_Bounded_String("0010100111");
+      addbinary;
+      testPass := 0;
+      if bounStringResultA = To_Bounded_String("0010101000") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      bounStringInputB := To_Bounded_String("1000000000");
+      addbinary;
+      testPass := 0;
+      if bounStringResultA = To_Bounded_String("1000000001") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      bounStringInputB := To_Bounded_String("0000000000");
+      addbinary;
+      testPass := 0;
+      if bounStringResultA = To_Bounded_String("0000000001") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      bounStringInputB := To_Bounded_String("1111111111");
+      addbinary;
+      testPass := 0;
+      if bounStringResultA = To_Bounded_String("0000000000") then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+      --------------------------------------------------------------------------------------------
+
+      testTotal := testTotal + 1;
+      integerInputA := 411;
+      SqrtX;
+      testPass := 0;
+      if integerResultA = 20 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+
+
+      testTotal := testTotal + 1;
+      integerInputA := 155542;
+      SqrtX;
+      testPass := 0;
+      if integerResultA = 394 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      integerInputA := 32;
+      SqrtX;
+      testPass := 0;
+      if integerResultA = 6 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+
+
+      --------------------------------------------------------------------------------------------
+      testTotal := testTotal + 1;
+      integerInputA := 40;
+      testPass := 0;
+      climbingstairsFibo;
+      if integerResultA = 165580141 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for climbingstairsFibo with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      climbingstairsFiboExtra;
+      if integerResultA = 165580141 then -- expected to fail due to diference between ecuation results and the actual series
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      Put_Line ("Test for climbingstairsFiboExtra with status: "&Integer'Image(testPass));
+
+
+
+      --------------------------------------------------------------------------------------------
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := inputTree.cleanData(0);
+      integerInputA := inputTree.updateelement(0,0,1,2);
+      integerInputA := inputTree.updateelement(1,1,3,4);
+      integerInputA := inputTree.updateelement(2,2,5,6);
+      integerInputA := inputTree.updateelement(3,3,7,8);
+      integerInputA := inputTree.updateelement(4,4,9,0);
+      integerInputA := inputTree.updateelement(5,5,0,0);
+      integerInputA := inputTree.updateelement(6,6,0,0);
+      integerInputA := inputTree.updateelement(7,7,0,0);
+      integerInputA := inputTree.updateelement(8,8,0,0);
+      integerInputA := inputTree.updateelement(9,9,0,0);
+      binarytreeinordertraversal;
+      if array100A(0..9) = (7,3,8,1,9,4,0,5,2,6) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      integerInputA := inputTree.cleanData(0);
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := inputTree.cleanData(0);
+      integerInputA := inputTree.updateelement(0,3,1,2);
+      integerInputA := inputTree.updateelement(1,4,3,0);
+      integerInputA := inputTree.updateelement(2,6,4,5);
+      integerInputA := inputTree.updateelement(3,5,0,0);
+      integerInputA := inputTree.updateelement(4,7,0,0);
+      integerInputA := inputTree.updateelement(5,8,6,0);
+      integerInputA := inputTree.updateelement(6,9,7,8);
+      integerInputA := inputTree.updateelement(7,10,0,0);
+      integerInputA := inputTree.updateelement(8,11,9,0);
+      integerInputA := inputTree.updateelement(9,12,0,0);
+      binarytreeinordertraversal;
+      if array100A(0..9) = (5,4,3,7,6,10,9,12,11,8) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      integerInputA := inputTree.cleanData(0);
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := inputTree.cleanData(0);
+      integerInputA := inputTree.updateelement(0,0,1,0);
+      integerInputA := inputTree.updateelement(1,1,2,0);
+      integerInputA := inputTree.updateelement(2,2,3,0);
+      integerInputA := inputTree.updateelement(3,3,4,0);
+      integerInputA := inputTree.updateelement(4,4,5,0);
+      integerInputA := inputTree.updateelement(5,5,6,0);
+      integerInputA := inputTree.updateelement(6,6,7,0);
+      integerInputA := inputTree.updateelement(7,7,8,0);
+      integerInputA := inputTree.updateelement(8,8,9,0);
+      integerInputA := inputTree.updateelement(9,9,0,0);
+      binarytreeinordertraversal;
+      if array100A(0..9) = (9,8,7,6,5,4,3,2,1,0) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      integerInputA := inputTree.cleanData(0);
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerInputA := inputTree.cleanData(0);
+      integerInputA := inputTree.updateelement(0,0,0,1);
+      integerInputA := inputTree.updateelement(1,1,0,2);
+      integerInputA := inputTree.updateelement(2,2,0,3);
+      integerInputA := inputTree.updateelement(3,3,0,4);
+      integerInputA := inputTree.updateelement(4,4,0,5);
+      integerInputA := inputTree.updateelement(5,5,0,6);
+      integerInputA := inputTree.updateelement(6,6,0,7);
+      integerInputA := inputTree.updateelement(7,7,0,8);
+      integerInputA := inputTree.updateelement(8,8,0,9);
+      integerInputA := inputTree.updateelement(9,9,0,0);
+      binarytreeinordertraversal;
+      if array100A(0..9) = (0,1,2,3,4,5,6,7,8,9) then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+      integerInputA := inputTree.cleanData(0);
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+
+      --------------------------------------------------------------------------------------------
+      Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
+
+
+      Stop_Time    := Clock;
+      Elapsed_Time := Stop_Time - Start_Time;
+      Put_Line ("Ending exercises1to100 execution - Elapsed time for all executions: "
+                & Duration'Image (To_Duration (Elapsed_Time))
+                & " seconds");
+
+   end oneTo100;
 end exercises1to100;
