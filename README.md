@@ -2,24 +2,25 @@
 # learningAda A0.1-E0.3
 * 1 - Abstract v0.1 - First approach  
 * 2 - Exercises v0.3 - Added 2.1 - Two Sum
-  * 2.1. Two Sum  v1.1 - Added from https://leetcode.com/problems/add-two-numbers/  
-  * 2.2. Add Two Numbers - Added from https://leetcode.com/problems/two-sum/
-  * 2.3. Longest Substring Without Repeating Characters - Added from https://leetcode.com/problems/longest-substring-without-repeating-characters/
-  * 2.4. Median-of-two-sorted-arrays - Added from https://leetcode.com/problems/median-of-two-sorted-arrays/ 
-  * 2.5. Longest Palindromic Substring - Added from https://leetcode.com/problems/longest-palindromic-substring/
-  * 2.9. Palindrome Number v1.0 - Added from https://leetcode.com/problems/palindrome-number/   
-  * 2.13. Roman to Integer  v1.1 -  Added from https://leetcode.com/problems/roman-to-integer/
-  * 2.14. Longest Common Prefix v1.0 - Added from https://leetcode.com/problems/longest-common-prefix/
-  * 2.20. Valid Parentheses  v1.0 - Added from https://leetcode.com/problems/valid-parentheses/
-  * 2.21. Merge Two Sorted Lists vX.Y - Added from https://leetcode.com/problems/merge-two-sorted-lists/
+  * 2.1. Two Sum  v1.1 - https://leetcode.com/problems/add-two-numbers/  
+  * 2.2. Add Two Numbers - https://leetcode.com/problems/two-sum/
+  * 2.3. Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/
+  * 2.4. Median-of-two-sorted-arrays - https://leetcode.com/problems/median-of-two-sorted-arrays/ 
+  * 2.5. Longest Palindromic Substring - https://leetcode.com/problems/longest-palindromic-substring/
+  * 2.6. Zigzag Conversion - https://leetcode.com/problems/zigzag-conversion/description/
+  * 2.9. Palindrome Number - https://leetcode.com/problems/palindrome-number/   
+  * 2.13. Roman to Integer  - https://leetcode.com/problems/roman-to-integer/
+  * 2.14. Longest Common Prefix - https://leetcode.com/problems/longest-common-prefix/
+  * 2.20. Valid Parentheses  - https://leetcode.com/problems/valid-parentheses/
+  * 2.21. Merge Two Sorted Lists - https://leetcode.com/problems/merge-two-sorted-lists/
   * 2.27. Remove Element - https://leetcode.com/problems/remove-element/
-  * 2.35. Search Insert Position https://leetcode.com/problems/search-insert-position/
-  * 2.58. Length of Last Word https://leetcode.com/problems/length-of-last-word/
-  * 2.66. Plus One https://leetcode.com/problems/plus-one/
-  * 2.67. Add Binary https://leetcode.com/problems/add-binary/
-  * 2.69. Sqrt(x) https://leetcode.com/problems/sqrtx/  
-  * 2.70. Climbing Stairs https://leetcode.com/problems/climbing-stairs/
-  * 2.94. Binary Tree Inorder Traversal https://leetcode.com/problems/binary-tree-inorder-traversal/
+  * 2.35. Search Insert Position - https://leetcode.com/problems/search-insert-position/
+  * 2.58. Length of Last Word - https://leetcode.com/problems/length-of-last-word/
+  * 2.66. Plus One - https://leetcode.com/problems/plus-one/
+  * 2.67. Add Binary - https://leetcode.com/problems/add-binary/
+  * 2.69. Sqrt(x) - https://leetcode.com/problems/sqrtx/  
+  * 2.70. Climbing Stairs - https://leetcode.com/problems/climbing-stairs/
+  * 2.94. Binary Tree Inorder Traversal - https://leetcode.com/problems/binary-tree-inorder-traversal/
 ***
 ## 1 - Abstract
 Project to store the results of the learning path from https://leetcode.com but using ADA programming language.  
@@ -166,6 +167,36 @@ Explanation: "aba" is also a valid answer.
 Example 2:  
 Input: s = "cbbd"  
 Output: "bb"  
+
+### 2.6. Zigzag Conversion
+#### https://leetcode.com/problems/zigzag-conversion/
+Medium
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)  
+
+P   A   H   N  
+A P L S I I G  
+Y   I   R  
+And then read line by line: "PAHNAPLSIIGYIR"  
+
+Write the code that will take a string and make this conversion given a number of rows:  
+
+Example 1:  
+
+Input: s = "PAYPALISHIRING", numRows = 3  
+Output: "PAHNAPLSIIGYIR"  
+Example 2:  
+
+Input: s = "PAYPALISHIRING", numRows = 4  
+Output: "PINALSIGYAHRPI"  
+Explanation:  
+P     I    N  
+A   L S  I G  
+Y A   H R  
+P     I  
+Example 3:  
+
+Input: s = "A", numRows = 1  
+Output: "A"  
 
 ### 2.9 Palindrome Number
 #### https://leetcode.com/problems/palindrome-number/
