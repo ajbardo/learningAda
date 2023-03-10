@@ -18,339 +18,342 @@ with Ada.Real_Time; use Ada.Real_Time;
 with linkedstructure; use linkedstructure;
 
 package body exercises1to100 is
-    procedure oneTo100(Self : in out My_Class) is
-    -- exercises1to100
-    -- 1.0-1.1 twoSum
-    -- 1.0-1.0 procedure addtwonumbers()
-    -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-    -- 2.0-2.0 MedianofTwoSortedArrays
-    -- +1.0-1.0 longestpalindromicsubstring
-    -- 1.0-1.0 palindrome
-    -- 1.1-1.1 romantointeger
-    -- 1.0-1.0 longestcommonprefix
-    -- 1.0-1.0 validparentheses
-    -- 1.0-1.0 mergetwosortedlists
-    -- 1.0-1.0 removeduplicatesfromsortedarray
-    -- 1.0-1.0 removeelement
-    -- 1.0-1.0 lengthoflastword
-    -- 1.0-1.0 plusOne
-    -- 1.0-1.0 addbinary
-    -- 1.0-1.0 SqrtX
-    -- 2.0-1.0 climbingstairs
-    -- 1.0-1.0 binarytreeinordertraversal
-    -- ____ notes ____
-    -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
-    -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
-    -- * Second digit for functionalities under development (0.1,0.11,0.23,1.35,2.56)
-    -- * Possible third digit to track minor changes that do not affect functionality (0.0.3,0.1.7)
-    -- * Comments with the resume of the content with * character
-    -- _______________
-    -- 0.2-0.0 Global variables
-    -- Global use arrays
-    -- maxIndex10 : Integer
-    -- type arrayOf10 is array(0 .. 9) of Integer
-    -- array10 : arrayOf10
-    --
-    -- type arrayOf2 is array(0 .. 1) of Integer
-    -- array2 : arrayOf2;
-    --
-    -- package B_Str
-    -- type StringBounArray
-    -- StrBounString
-    --
-    -- input variables for the functions
-    -- integerInputA : Integer;
-    -- integerInputB : Integer;
-    -- integerInputC : Integer;
-    -- stringInputA : String := "         ";
-    -- bounStringInputB : Bounded_String;
-    --
-    -- output variables for the functions
-    -- integerResultA : Integer;
-    -- bounStringResultA : Bounded_String;
-    -- bounStringResultB : Bounded_String;
-    --
-    -- variables for the test stadistics
-    -- testPass : Integer;
-    -- testPassed : Integer;
-    -- testTotal : Integer;
-    -- _______________
-    -- 1.0-1.1 procedure twoSum(target : Integer:=0)
-    -- * Calculate positions of two numbers in an array such that they add matches the target
-    -- * Static test with 10 position array
-    -- * New static test for the negative conditional
-    -- 1.0-1.0 procedure addtwonumbers()
-    -- * Adittion of two numbers represented by linked lists
-    -- * Defined 3 static test cases
-	-- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-	-- * Calculate find the length of the longest substring without repeating characters.
-	-- * Defined 3 static test cases to verify behaviour
-    -- 2.0-2.0 MedianofTwoSortedArrays
-    -- * Expected worst case solution in O(log(n)) best case in O(1)
-    -- * 5 Static test cases
-    -- +1.0-1.0 longestpalindromicsubstring
-    -- * obtains the result worst case O(2n)
-    -- * 6 static test cases with array of length 10
-    -- 2 Static test cases defined
-    -- 1.0-1.0 procedure palindrome(number : Integer)
-    -- * Check if number is palindrome
-    -- * Static test with input integer
-    -- * Static test with input integer for the negative conditional
-    -- 1.1-1.1 procedure romantointeger(romanNum : String)
-    -- 1.0 procedure auxromantointeger(romanNum : String)
-    -- * Transform from roman number to integer
-    -- * Static positive test for the method
-    -- 1.0-1.0 longestcommonprefix
-    -- Procedure working with array of 3 Bounded string of length = 10
-    -- 4 static tests, 2 with partial positive cases, 1 with total positive case and 1 with negative case
-    -- 1.0-1.0 validparentheses
-    -- Procedure working with Bounded string of length = 10
-    -- 8 static test cases, 4 positives and 4 negatives
-    -- 1.0-1.0 mergetwosortedlists
-    -- working with 2 arrays of length 3
-    -- outputt: array of 6 integers
-    -- 6 static test cases
-    -- 1.0-1.0 removeduplicatesfromsortedarray
-    -- Solved with complexity O(n), using two arrays of numbers (dataComplexity O(2n))
-    -- 6 static test cases defined
-    -- 1.0-1.0 removeelement
-    -- Solved Complexity O(n)
-    -- 5 static test cases to verify behaviour
-    -- 1.0-1.0 searchinsertposition
-    -- Solved expected complexity O(logN)
-    -- 5 static test cases to verify behaviour
-    -- 1.0-1.0 lengthoflastword
-    -- solved using https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
-    -- 3 static test to verify behaviour
-    -- 1.0-1.0 plusOne
-    -- Solved with complexity O(n)
-    -- 6 static test cases to verify behaviour
-    -- 1.0-1.0 addbinary
-    -- Solved with complexity O(n)
-    -- 5 static test cases to verify behaviour
-    -- 1.0-1.0 SqrtX
-    -- Solved with complexity O(n) in the not ^2 space, O(lgn) expected for the ^2 space
-    -- 3 static test cases to verify behaviour
-    -- 2.0-1.0 climbingstairs
-    -- Solved with complexity O(n) - climbingstairsFibo
-    -- Solved with complexity O(1) - climbingstairsFiboExtra
-    -- 1 static test case with two checks to verify behaviour
-    -- climbingstairsFibo is correct
-    -- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
-    -- 2.0-1.0 binarytreeinordertraversal
-    -- Getting the tree with help of auxiliary array
-    -- 4 static test cases to verify behaviour
+   procedure oneTo100(Self : in out My_Class) is
+      -- exercises1to100
+      -- 1.0-1.1 twoSum
+      -- 1.0-1.0 procedure addtwonumbers()
+      -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
+      -- 2.0-2.0 MedianofTwoSortedArrays
+      -- 1.0-1.0 longestpalindromicsubstring
+      -- +0.1-1.0 zigzagconversion
+      -- 1.0-1.0 palindrome
+      -- 1.1-1.1 romantointeger
+      -- 1.0-1.0 longestcommonprefix
+      -- 1.0-1.0 validparentheses
+      -- 1.0-1.0 mergetwosortedlists
+      -- 1.0-1.0 removeduplicatesfromsortedarray
+      -- 1.0-1.0 removeelement
+      -- 1.0-1.0 lengthoflastword
+      -- 1.0-1.0 plusOne
+      -- 1.0-1.0 addbinary
+      -- 1.0-1.0 SqrtX
+      -- 2.0-1.0 climbingstairs
+      -- 1.0-1.0 binarytreeinordertraversal
+      -- ____ notes ____
+      -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
+      -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
+      -- * Second digit for functionalities under development (0.1,0.11,0.23,1.35,2.56)
+      -- * Possible third digit to track minor changes that do not affect functionality (0.0.3,0.1.7)
+      -- * Comments with the resume of the content with * character
+      -- _______________
+      -- 0.2-0.0 Global variables
+      -- Global use arrays
+      -- maxIndex10 : Integer
+      -- type arrayOf10 is array(0 .. 9) of Integer
+      -- array10 : arrayOf10
+      --
+      -- type arrayOf2 is array(0 .. 1) of Integer
+      -- array2 : arrayOf2;
+      --
+      -- package B_Str
+      -- type StringBounArray
+      -- StrBounString
+      --
+      -- input variables for the functions
+      -- integerInputA : Integer;
+      -- integerInputB : Integer;
+      -- integerInputC : Integer;
+      -- stringInputA : String := "         ";
+      -- bounStringInputB : Bounded_String;
+      --
+      -- output variables for the functions
+      -- integerResultA : Integer;
+      -- bounStringResultA : Bounded_String;
+      -- bounStringResultB : Bounded_String;
+      --
+      -- variables for the test stadistics
+      -- testPass : Integer;
+      -- testPassed : Integer;
+      -- testTotal : Integer;
+      -- _______________
+      -- 1.0-1.1 procedure twoSum(target : Integer:=0)
+      -- * Calculate positions of two numbers in an array such that they add matches the target
+      -- * Static test with 10 position array
+      -- * New static test for the negative conditional
+      -- 1.0-1.0 procedure addtwonumbers()
+      -- * Adittion of two numbers represented by linked lists
+      -- * Defined 3 static test cases
+      -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
+      -- * Calculate find the length of the longest substring without repeating characters.
+      -- * Defined 3 static test cases to verify behaviour
+      -- 2.0-2.0 MedianofTwoSortedArrays
+      -- * Expected worst case solution in O(log(n)) best case in O(1)
+      -- * 5 Static test cases
+      -- 1.0-1.0 longestpalindromicsubstring
+      -- * obtains the result worst case O(2n)
+      -- * 6 static test cases with array of length 10
+      -- 2 Static test cases defined
+      -- +0.1-1.0 zigzagconversion
+      --
+      -- 1.0-1.0 procedure palindrome(number : Integer)
+      -- * Check if number is palindrome
+      -- * Static test with input integer
+      -- * Static test with input integer for the negative conditional
+      -- 1.1-1.1 procedure romantointeger(romanNum : String)
+      -- 1.0 procedure auxromantointeger(romanNum : String)
+      -- * Transform from roman number to integer
+      -- * Static positive test for the method
+      -- 1.0-1.0 longestcommonprefix
+      -- Procedure working with array of 3 Bounded string of length = 10
+      -- 4 static tests, 2 with partial positive cases, 1 with total positive case and 1 with negative case
+      -- 1.0-1.0 validparentheses
+      -- Procedure working with Bounded string of length = 10
+      -- 8 static test cases, 4 positives and 4 negatives
+      -- 1.0-1.0 mergetwosortedlists
+      -- working with 2 arrays of length 3
+      -- outputt: array of 6 integers
+      -- 6 static test cases
+      -- 1.0-1.0 removeduplicatesfromsortedarray
+      -- Solved with complexity O(n), using two arrays of numbers (dataComplexity O(2n))
+      -- 6 static test cases defined
+      -- 1.0-1.0 removeelement
+      -- Solved Complexity O(n)
+      -- 5 static test cases to verify behaviour
+      -- 1.0-1.0 searchinsertposition
+      -- Solved expected complexity O(logN)
+      -- 5 static test cases to verify behaviour
+      -- 1.0-1.0 lengthoflastword
+      -- solved using https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
+      -- 3 static test to verify behaviour
+      -- 1.0-1.0 plusOne
+      -- Solved with complexity O(n)
+      -- 6 static test cases to verify behaviour
+      -- 1.0-1.0 addbinary
+      -- Solved with complexity O(n)
+      -- 5 static test cases to verify behaviour
+      -- 1.0-1.0 SqrtX
+      -- Solved with complexity O(n) in the not ^2 space, O(lgn) expected for the ^2 space
+      -- 3 static test cases to verify behaviour
+      -- 2.0-1.0 climbingstairs
+      -- Solved with complexity O(n) - climbingstairsFibo
+      -- Solved with complexity O(1) - climbingstairsFiboExtra
+      -- 1 static test case with two checks to verify behaviour
+      -- climbingstairsFibo is correct
+      -- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
+      -- 2.0-1.0 binarytreeinordertraversal
+      -- Getting the tree with help of auxiliary array
+      -- 4 static test cases to verify behaviour
 
 
 
-        --timers from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_dates_times.html#benchmarking
-        Start_Time, Stop_Time : Time;
-        Elapsed_Time          : Time_Span;
+      --timers from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_dates_times.html#benchmarking
+      Start_Time, Stop_Time : Time;
+      Elapsed_Time          : Time_Span;
 
-        -- Global use arrays
-        maxIndex10 : Integer := 10;
-        type arrayOf10 is array(0 .. 9) of Integer;
-        array10 : arrayOf10;
+      -- Global use arrays
+      maxIndex10 : Integer := 10;
+      type arrayOf10 is array(0 .. 9) of Integer;
+      array10 : arrayOf10;
 
-        type arrayOf2 is array(0 .. 1) of Integer;
-        array2 : arrayOf2;
+      type arrayOf2 is array(0 .. 1) of Integer;
+      array2 : arrayOf2;
 
-        type arrayOf100 is array(0 .. 99) of Integer;
-        array100A : arrayOf100;
+      type arrayOf100 is array(0 .. 99) of Integer;
+      array100A : arrayOf100;
 
-        -- linked arrays
-        inputTree : linkedArrayData_Class;
-        inputTree2 : linkedArrayData_Class;
+      -- linked arrays
+      inputTree : linkedArrayData_Class;
+      inputTree2 : linkedArrayData_Class;
 
-        -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html#bounded-strings
-        package B_Str is new
-            Ada.Strings.Bounded.Generic_Bounded_Length (Max => 10);
-        use B_Str;
-        type StringBounArray is array (0 .. 2) of B_Str.Bounded_String;
-        StrBounString : StringBounArray;
-
-
-
-        -- input variables for the functions
-        integerInputA : Integer;
-        integerInputB : Integer;
-        integerInputC : Integer;
-        stringInputA : String := "         ";
-        stringInputB : String := 20*" ";
-        bounStringInputB : Bounded_String;
-        array10AInput : arrayOf10;
-        array10BInput    : arrayOf10;
-
-        --type arrayOf3Index is range 1 .. 3; --removed until discover how to work with index out of fors
-        type arrayOf3 is array(1 .. 3) of Integer;
-        array3A : arrayOf3;
-        array3B : arrayOf3;
+      -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html#bounded-strings
+      package B_Str is new
+        Ada.Strings.Bounded.Generic_Bounded_Length (Max => 10);
+      use B_Str;
+      type StringBounArray is array (0 .. 2) of B_Str.Bounded_String;
+      StrBounString : StringBounArray;
 
 
-        -- output variables for the functions
-        integerResultA : Integer;
-		floatResultA : Float;
-        bounStringResultA : Bounded_String;
-        bounStringResultB : Bounded_String;
-        array10AOutput : arrayOf10;
 
-        --type arrayOf6Index is range 1 .. 6;--removed until discover how to work with index out of fors
-        type arrayOf6 is array(1 .. 6) of Integer;
-        array6A : arrayOf6;
+      -- input variables for the functions
+      integerInputA : Integer;
+      integerInputB : Integer;
+      integerInputC : Integer;
+      stringInputA : String := "         ";
+      stringInputB : String := 20*" ";
+      bounStringInputB : Bounded_String;
+      array10AInput : arrayOf10;
+      array10BInput    : arrayOf10;
 
-        --variables for the test stadistics
-        testPass : Integer;
-        testPassed : Integer;
-        testTotal : Integer;
+      --type arrayOf3Index is range 1 .. 3; --removed until discover how to work with index out of fors
+      type arrayOf3 is array(1 .. 3) of Integer;
+      array3A : arrayOf3;
+      array3B : arrayOf3;
 
-        procedure twoSum(target : Integer:=0) is
-            rest : integer := 0;
-            pos1 : integer := 0;
-            pos2 : integer := 0;
-        begin
-            array2 := (100, 100);
-            while pos1 < maxIndex10 loop
-                rest := target - array10(pos1);
-                pos2 := pos1 + 1;
-                while pos2 < maxIndex10 loop
-                    if array2(0) < 100 then
-                        -- Skiping the rest of the cycle
-                        pos1 := maxIndex10 + 1;
-                        pos2 := maxIndex10 + 1;
-                    else
-                        -- saving result position
-                        if array10(pos2) = rest then
-                            array2 := (pos1,pos2);
-                        end if;
-                    end if;
-                    pos2 := pos2 + 1;
-                end loop;
-                pos1 := pos1 + 1;
+
+      -- output variables for the functions
+      integerResultA : Integer;
+      floatResultA : Float;
+      bounStringResultA : Bounded_String;
+      bounStringResultB : Bounded_String;
+      array10AOutput : arrayOf10;
+
+      --type arrayOf6Index is range 1 .. 6;--removed until discover how to work with index out of fors
+      type arrayOf6 is array(1 .. 6) of Integer;
+      array6A : arrayOf6;
+
+      --variables for the test stadistics
+      testPass : Integer;
+      testPassed : Integer;
+      testTotal : Integer;
+
+      procedure twoSum(target : Integer:=0) is
+         rest : integer := 0;
+         pos1 : integer := 0;
+         pos2 : integer := 0;
+      begin
+         array2 := (100, 100);
+         while pos1 < maxIndex10 loop
+            rest := target - array10(pos1);
+            pos2 := pos1 + 1;
+            while pos2 < maxIndex10 loop
+               if array2(0) < 100 then
+                  -- Skiping the rest of the cycle
+                  pos1 := maxIndex10 + 1;
+                  pos2 := maxIndex10 + 1;
+               else
+                  -- saving result position
+                  if array10(pos2) = rest then
+                     array2 := (pos1,pos2);
+                  end if;
+               end if;
+               pos2 := pos2 + 1;
             end loop;
-        end twoSum;
+            pos1 := pos1 + 1;
+         end loop;
+      end twoSum;
 
-        procedure addtwonumbers is --ex2
-            pos : integer := array10'first;
-            extra : integer := 0;
-            linkedpos1 : integer := 0;
-            linkedpos2 : integer := 0;
-            control : integer := 1;
-        begin
-            while pos < array10'last+1 loop
-                array10(pos) := 0;
-                if control = 1 then
-                    array10(pos) := inputTree.getElementValue(linkedpos1) + inputTree2.getElementValue(linkedpos2) + extra;
-                    extra := 0;
+      procedure addtwonumbers is --ex2
+         pos : integer := array10'first;
+         extra : integer := 0;
+         linkedpos1 : integer := 0;
+         linkedpos2 : integer := 0;
+         control : integer := 1;
+      begin
+         while pos < array10'last+1 loop
+            array10(pos) := 0;
+            if control = 1 then
+               array10(pos) := inputTree.getElementValue(linkedpos1) + inputTree2.getElementValue(linkedpos2) + extra;
+               extra := 0;
 
-                    if array10(pos) > 9 then
-                        array10(pos) := array10(pos) - 10;
-                        extra := 1;
-                    end if;
-                end if;
-                pos := pos + 1;
-                linkedpos1 := inputTree.getFirstLink(linkedpos1);
-                linkedpos2 := inputTree2.getFirstLink(linkedpos2);
-                if linkedpos1 = 0 or linkedpos2 = 0 then
-                    control := 0;
-                end if;
+               if array10(pos) > 9 then
+                  array10(pos) := array10(pos) - 10;
+                  extra := 1;
+               end if;
+            end if;
+            pos := pos + 1;
+            linkedpos1 := inputTree.getFirstLink(linkedpos1);
+            linkedpos2 := inputTree2.getFirstLink(linkedpos2);
+            if linkedpos1 = 0 or linkedpos2 = 0 then
+               control := 0;
+            end if;
+         end loop;
+      end addtwonumbers;
+
+      procedure LongestSubstringWithoutRepeatingCharacters is--ex 3
+         pertenenceCheck : Integer;
+         maxScore : Integer;
+         lastPost : Integer;
+      begin
+         integerResultA := 0;
+         maxScore := 0;
+         lastPost := 1;
+         for pos1 in 1 .. 9 loop
+            pertenenceCheck := 0;
+            for pos2 in lastPost .. 9 loop
+               if To_String(StrBounString(0))(pos1) = To_String(StrBounString(0))(pos2) then
+                  pertenenceCheck := 1; --The chart is already present here
+                  lastPost := pos2; -- no need to check all the previous elements in nex iterations
+               end if;
             end loop;
-        end addtwonumbers;
+            if pertenenceCheck = 1 then
+               maxScore := 1;
+            else
+               maxScore := maxScore + 1;
+            end if;
+            if maxScore > integerResultA then
+               integerResultA := maxScore;
+            end if;
+         end loop;
+      end LongestSubstringWithoutRepeatingCharacters;
 
-		 procedure LongestSubstringWithoutRepeatingCharacters is--ex 3
-				pertenenceCheck : Integer;
-			   maxScore : Integer;
-			   lastPost : Integer;
-			begin
-			integerResultA := 0;
-			maxScore := 0;
-			lastPost := 1;
-			for pos1 in 1 .. 9 loop
-				pertenenceCheck := 0;
-				for pos2 in lastPost .. 9 loop
-					if To_String(StrBounString(0))(pos1) = To_String(StrBounString(0))(pos2) then
-						pertenenceCheck := 1; --The chart is already present here
-						lastPost := pos2; -- no need to check all the previous elements in nex iterations
-						end if;
-				end loop;
-				if pertenenceCheck = 1 then
-						maxScore := 1;
-				else
-						maxScore := maxScore + 1;
-				end if;
-				if maxScore > integerResultA then
-					integerResultA := maxScore;
-				end if;
-			end loop;
-        end LongestSubstringWithoutRepeatingCharacters;
+      procedure MedianofTwoSortedArrays is --ex4
+         pos1 : Integer;
+         pos2 : Integer;
+         pairNumberOfElements : Integer;
+         tempPos1 : Integer;
+         tempPos2 : Integer;
 
-        procedure MedianofTwoSortedArrays is --ex4
-   			pos1 : Integer;
-			pos2 : Integer;
-			pairNumberOfElements : Integer;
-			tempPos1 : Integer;
-			tempPos2 : Integer;
+         trueLengthA : Integer;
+         trueLengthB : Integer;
+         searchedpos : Integer;
 
-			trueLengthA : Integer;
-			trueLengthB : Integer;
-			searchedpos : Integer;
-
-			auxElems1 : Integer;
+         auxElems1 : Integer;
          auxElems2 : Integer;
 
          topElem : Integer;
          botElem : Integer;
 
-			aux : Integer;
-			breakPoint : Integer;
-        begin
-			trueLengthA := integerInputA;
-			trueLengthB := integerInputB;
-			breakPoint := 0;
-			pos1 := 0;
-			pos2 := 0;
-			floatResultA := 0.0;
-			tempPos1 := trueLengthA;
-			tempPos2 := trueLengthB;
-			searchedpos := ( trueLengthA + trueLengthB + 2) / 2 ;
-			pairNumberOfElements := (trueLengthA + trueLengthB) mod 2;
-			if pairNumberOfElements = 1 then
-				searchedpos := searchedpos + 1;
-			end if;
+         aux : Integer;
+         breakPoint : Integer;
+      begin
+         trueLengthA := integerInputA;
+         trueLengthB := integerInputB;
+         breakPoint := 0;
+         pos1 := 0;
+         pos2 := 0;
+         floatResultA := 0.0;
+         tempPos1 := trueLengthA;
+         tempPos2 := trueLengthB;
+         searchedpos := ( trueLengthA + trueLengthB + 2) / 2 ;
+         pairNumberOfElements := (trueLengthA + trueLengthB) mod 2;
+         if pairNumberOfElements = 1 then
+            searchedpos := searchedpos + 1;
+         end if;
 
          topElem := trueLengthA;
          botElem := trueLengthB;
-           aux := 0;
-			--Put_Line ("searched pos>"&Integer'Image( searchedpos )&Integer'Image( trueLengthA +1)&Integer'Image( trueLengthB +1)&Integer'Image( pairNumberOfElements ));
+         aux := 0;
+         --Put_Line ("searched pos>"&Integer'Image( searchedpos )&Integer'Image( trueLengthA +1)&Integer'Image( trueLengthB +1)&Integer'Image( pairNumberOfElements ));
 
-			if array10AInput(tempPos1) < array10BInput(pos2) then
-					pos1 := tempPos1;
-					breakPoint := 1;
-					--Put_Line ("B1>"&Integer'Image( breakPoint ));
-			elsif array10AInput(pos1) > array10BInput(tempPos2) then
-					breakPoint := 2;
-					--Put_Line ("B2>"&Integer'Image( breakPoint ));
-			end if;
+         if array10AInput(tempPos1) < array10BInput(pos2) then
+            pos1 := tempPos1;
+            breakPoint := 1;
+            --Put_Line ("B1>"&Integer'Image( breakPoint ));
+         elsif array10AInput(pos1) > array10BInput(tempPos2) then
+            breakPoint := 2;
+            --Put_Line ("B2>"&Integer'Image( breakPoint ));
+         end if;
 
-			tempPos1 := tempPos1 / 2 ;
-			tempPos2 := tempPos2 / 2 ;
+         tempPos1 := tempPos1 / 2 ;
+         tempPos2 := tempPos2 / 2 ;
 
-			while breakPoint = 0 loop
-				aux := aux + 1;
-				if aux > 10 then
-					breakPoint := 4;
-				end if;
+         while breakPoint = 0 loop
+            aux := aux + 1;
+            if aux > 10 then
+               breakPoint := 4;
+            end if;
 
 
 
-				auxElems1 := (tempPos1 - pos1)+(tempPos2 - pos2)+2;
-				auxElems2 := (trueLengthA - tempPos1) + (trueLengthB - tempPos2) ;
+            auxElems1 := (tempPos1 - pos1)+(tempPos2 - pos2)+2;
+            auxElems2 := (trueLengthA - tempPos1) + (trueLengthB - tempPos2) ;
 
-				--Put_Line ("x1>"&Integer'Image( trueLengthA + trueLengthB + 2) &
-				--	Integer'Image ( tempPos1 ) &  Integer'Image ( tempPos2 )
-              --&  Integer'Image ( auxElems1 ) &  Integer'Image ( auxElems2 )
-              --&  Integer'Image (  array10AInput(tempPos1) ) &  Integer'Image ( array10BInput(tempPos2) ));
+            --Put_Line ("x1>"&Integer'Image( trueLengthA + trueLengthB + 2) &
+            --	Integer'Image ( tempPos1 ) &  Integer'Image ( tempPos2 )
+            --&  Integer'Image ( auxElems1 ) &  Integer'Image ( auxElems2 )
+            --&  Integer'Image (  array10AInput(tempPos1) ) &  Integer'Image ( array10BInput(tempPos2) ));
 
-				if auxElems1 = searchedpos then
+            if auxElems1 = searchedpos then
                --Put_Line ("K1>");
                if pairNumberOfElements = 0 then
                   --Put_Line ("K01>" & Integer'Image ( breakPoint ));
@@ -385,68 +388,68 @@ package body exercises1to100 is
 
                end if;
 
-				elsif searchedpos < auxElems1 then
+            elsif searchedpos < auxElems1 then
                --Put_Line ("K3>"&Float'Image( floatResultA ));
                topElem := tempPos1;
                botElem := tempPos2;
                tempPos1 := tempPos1 / 2;
                tempPos2 := tempPos2 / 2 ;
-				elsif searchedpos > auxElems1 then
-				--Put_Line ("K4>"&Integer'Image( tempPos1 )&Integer'Image( topElem )&Integer'Image( tempPos2 )&Integer'Image( botElem ));
+            elsif searchedpos > auxElems1 then
+               --Put_Line ("K4>"&Integer'Image( tempPos1 )&Integer'Image( topElem )&Integer'Image( tempPos2 )&Integer'Image( botElem ));
                tempPos1 := (tempPos1+topElem+1) / 2 ;
                topElem := tempPos1;
                tempPos2 := (tempPos2+botElem+1) / 2 ;
                botElem := tempPos2;
-				end if;
+            end if;
 
 
 
-				--Put_Line ("x2>"&Float'Image( floatResultA ));
+            --Put_Line ("x2>"&Float'Image( floatResultA ));
 
-			end loop;
+         end loop;
 
-			--Put_Line ("Z0>"&Integer'Image( breakPoint ));
-			if breakPoint = 1 then
-				--Put_Line ("D1>" & Float'Image ( floatResultA ));
-				-- Whole arrayA is at left of the first element of arrayB
-				if searchedpos < trueLengthA then
-					--Put_Line ("E1>" & Float'Image ( floatResultA ));
-					if pairNumberOfElements = 0 then
-						floatResultA := Float(array10AInput(searchedpos)+array10AInput(searchedpos+1))/2.0;
-					else
-						floatResultA := Float(array10AInput(searchedpos));
-					end if;
-				else
-					searchedpos := searchedpos-(trueLengthA)-2;
-					--Put_Line ("E2>" & Integer'Image ( searchedpos ));
-					if pairNumberOfElements = 0 then
-						floatResultA := Float(array10BInput(searchedpos)+array10BInput(searchedpos+1))/2.0;
-					else
-						floatResultA := Float(array10BInput(searchedpos));
-					end if;
-				end if;
-			elsif breakPoint = 2 then
-				--Put_Line ("D2>" & Integer'Image ( searchedpos ));
-				-- Whole arrayA is at left of the first element of arrayB
-				if searchedpos < trueLengthB then
-					--Put_Line ("E1>" & Float'Image ( floatResultA ));
-					if pairNumberOfElements = 0 then
-						floatResultA := Float(array10BInput(searchedpos)+array10BInput(searchedpos+1))/2.0;
-					else
-						floatResultA := Float(array10BInput(searchedpos));
-					end if;
-				else
-					searchedpos := searchedpos-(trueLengthB)-2;
-					--Put_Line ("E2>" & Integer'Image ( searchedpos ));
-					if pairNumberOfElements = 0 then
-						floatResultA := Float(array10AInput(searchedpos)+array10AInput(searchedpos+1))/2.0;
-					else
-						floatResultA := Float(array10AInput(searchedpos));
-					end if;
-				end if;
-			end if;
-			--Put_Line ("Z1>"&Float'Image( floatResultA ));
-        end MedianofTwoSortedArrays;
+         --Put_Line ("Z0>"&Integer'Image( breakPoint ));
+         if breakPoint = 1 then
+            --Put_Line ("D1>" & Float'Image ( floatResultA ));
+            -- Whole arrayA is at left of the first element of arrayB
+            if searchedpos < trueLengthA then
+               --Put_Line ("E1>" & Float'Image ( floatResultA ));
+               if pairNumberOfElements = 0 then
+                  floatResultA := Float(array10AInput(searchedpos)+array10AInput(searchedpos+1))/2.0;
+               else
+                  floatResultA := Float(array10AInput(searchedpos));
+               end if;
+            else
+               searchedpos := searchedpos-(trueLengthA)-2;
+               --Put_Line ("E2>" & Integer'Image ( searchedpos ));
+               if pairNumberOfElements = 0 then
+                  floatResultA := Float(array10BInput(searchedpos)+array10BInput(searchedpos+1))/2.0;
+               else
+                  floatResultA := Float(array10BInput(searchedpos));
+               end if;
+            end if;
+         elsif breakPoint = 2 then
+            --Put_Line ("D2>" & Integer'Image ( searchedpos ));
+            -- Whole arrayA is at left of the first element of arrayB
+            if searchedpos < trueLengthB then
+               --Put_Line ("E1>" & Float'Image ( floatResultA ));
+               if pairNumberOfElements = 0 then
+                  floatResultA := Float(array10BInput(searchedpos)+array10BInput(searchedpos+1))/2.0;
+               else
+                  floatResultA := Float(array10BInput(searchedpos));
+               end if;
+            else
+               searchedpos := searchedpos-(trueLengthB)-2;
+               --Put_Line ("E2>" & Integer'Image ( searchedpos ));
+               if pairNumberOfElements = 0 then
+                  floatResultA := Float(array10AInput(searchedpos)+array10AInput(searchedpos+1))/2.0;
+               else
+                  floatResultA := Float(array10AInput(searchedpos));
+               end if;
+            end if;
+         end if;
+         --Put_Line ("Z1>"&Float'Image( floatResultA ));
+      end MedianofTwoSortedArrays;
 
       procedure longestpalindromicsubstring is
          botpos : Integer;
@@ -512,517 +515,523 @@ package body exercises1to100 is
 
       end longestpalindromicsubstring;
 
+      procedure zigzagconversion(modulus : Integer)is
 
-        procedure palindrome(number : Integer) is --ex 9
-            tempNum : Integer;
-            auxNum : Integer;
-            rest : Integer;
-            inverseNum : Integer := 0;
-        begin
-            tempNum := number;
-            while tempNum > 0 loop
-                auxNum := Integer(Float(tempNum) / 10.0);
-                rest := Integer(tempNum - auxNum * 10);
-                inverseNum := inverseNum * 10 + rest;
-                tempNum := auxNum;
-            end loop;
-            integerResultA := 0;
-            if inverseNum = number then
-                integerResultA := 1;
-            end if;
-        end Palindrome;
+      begin
 
-        procedure auxromantointeger(romanNum : String) is
-            romanone                : String := "I";
-            romanfive               : String := "V";
-            romanten                : String := "X";
-            romanfifty              : String := "L";
-            romanonehundred         : String := "C";
-            romanfivehundred        : String := "D";
-            romanthousand           : String := "M";
-            count                   : Integer      ;
-        begin
-            integerResultA:=0;
-            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanone);
-            integerResultA := Integer(count*1);
-            if count = 0 then
-                count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfive);
-                integerResultA := Integer(count*5);
-            end if;
-            if count = 0 then
-                count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanten);
-                integerResultA := Integer(count*10);
-            end if;
-            if count = 0 then
-                count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfifty);
-                integerResultA := Integer(count*50);
-            end if;
-            if count = 0 then
-                count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanonehundred);
-                integerResultA := Integer(count*100);
-            end if;
-            if count = 0 then
-                count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfivehundred);
-                integerResultA := Integer(count*500);
-            end if;
-            if count = 0 then
-                count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanthousand);
-                integerResultA := Integer(count*1000);
-            end if;
-        end auxromantointeger;
+         Put_Line ("Z10>");
+      end zigzagconversion;
 
-        procedure romantointeger(romanNum : String) is
-            auxString : String := "   ";
-        begin
-            integerInputC := 0;
-            for pos in 1 .. romanNum'Length-1 loop
-                -- getting a string with the char stringExample = "'I'"
-                auxString := romanNum(pos)'Image;
-                auxromantointeger(auxString);
-                -- Saving the old result
-                integerInputB := integerResultA;
-                auxString := romanNum(pos+1)'Image;
-                auxromantointeger(auxString);
-                -- roman calculus of the number
-                if integerInputB < integerResultA then
-                    integerInputC := integerInputC - integerInputB;
-                else
-                    integerInputC := integerInputC + integerInputB;
-                end if;
-            end loop;
-
-            -- adding the last number always
-            auxString := romanNum(romanNum'Last)'Image;
-            auxromantointeger(auxString);
-            integerInputC := integerInputC + integerResultA;
-            -- saving the result in the integer that will eb checked
-            integerResultA:=integerInputC;
-
-        end romantointeger;
-
-        procedure longestcommonprefix is
-            letterPos : Integer := 0;
-            lastCommonPos : Integer := 1;
-            wordPos : Integer := 1;
-        begin
-            while letterPos < 10 loop
-                if letterPos < 10 then
-                    letterPos := letterPos + 1;
-                    bounStringResultA := To_Bounded_String(To_String(StrBounString(0))(1..letterPos));
-                    wordPos := 1;
-                    while wordPos < StrBounString'Length loop
-                        bounStringResultB := To_Bounded_String(To_String(StrBounString(wordPos))(1..letterPos));
-                        lastCommonPos := letterPos;
-                        if bounStringResultA /= bounStringResultB then
-                            lastCommonPos := letterPos - 1;
-                            letterPos := 20;
-                            wordPos := 20;
-                        end if;
-
-                        wordPos := wordPos + 1;
-                    end loop;
-                end if;
-            end loop;
-            bounStringResultA := To_Bounded_String(To_String(StrBounString(1))(1..lastCommonPos));
-        end longestcommonprefix;
-
-        procedure validparentheses  is
-            letterPos : Integer := 1;
-            openbracktypeI : Integer := 0;
-            closebracktypeI : Integer := 0;
-            openbracktypeII : Integer := 0;
-            closebracktypeII : Integer := 0;
-            openbracktypeIII : Integer := 0;
-            closebracktypeIII : Integer := 0;
-            prevParentesis : Integer := 0;
-        begin
-            while letterPos < To_String(bounStringInputB)'Length+1 loop
-                case To_String(bounStringInputB)(letterPos) is
-                    when '(' =>
-                        openbracktypeI := openbracktypeI + 1;
-                        prevParentesis := 1;
-                    when ')' =>
-                        closebracktypeI := closebracktypeI + 1;
-                        if openbracktypeI = 0 then -- breaking case when you close a parentesis without opening it first
-                            exit;
-                        end if;
-                        if prevParentesis /= 1 then-- condition in case one type of parentesis is closing another type
-                            if prevParentesis /= 0 then
-                                exit;
-                            end if;
-                        end if;
-                        prevParentesis := 0;
-
-                    when '[' =>
-                        openbracktypeII := openbracktypeII + 1;
-                        prevParentesis := 2;
-                    when ']' =>
-                        closebracktypeII := closebracktypeII + 1;
-                        if openbracktypeII = 0 then -- breaking case when you close a parentesis without opening it first
-                            exit;
-                        end if;
-                        if prevParentesis /= 2 then-- condition in case one type of parentesis is closing another type
-                            if prevParentesis /= 0 then
-                                exit;
-                            end if;
-                        end if;
-                        prevParentesis := 0;
-
-                    when '{' =>
-                        openbracktypeIII := openbracktypeIII + 1;
-                        prevParentesis := 3;
-                    when '}' =>
-                        closebracktypeIII := closebracktypeIII + 1;
-                        if openbracktypeIII = 0 then -- breaking case when you close a parentesis without opening it first
-                            exit;
-                        end if;
-                        if prevParentesis /= 3 then-- condition in case one type of parentesis is closing another type
-                            if prevParentesis /= 0 then
-                                exit;
-                            end if;
-                        end if;
-                        prevParentesis := 0;
-                    when others =>
-                        exit;
-                end case;
-               letterPos := letterPos + 1;
-            end loop;
+      procedure palindrome(number : Integer) is --ex 9
+         tempNum : Integer;
+         auxNum : Integer;
+         rest : Integer;
+         inverseNum : Integer := 0;
+      begin
+         tempNum := number;
+         while tempNum > 0 loop
+            auxNum := Integer(Float(tempNum) / 10.0);
+            rest := Integer(tempNum - auxNum * 10);
+            inverseNum := inverseNum * 10 + rest;
+            tempNum := auxNum;
+         end loop;
+         integerResultA := 0;
+         if inverseNum = number then
             integerResultA := 1;
-            if openbracktypeI /= closebracktypeI then
-                integerResultA := 0;
-            end if;
-            if openbracktypeII /= closebracktypeII then
-                integerResultA := 0;
-            end if;
-            if openbracktypeIII /= closebracktypeIII then
-                integerResultA := 0;
-            end if;
-        end validparentheses;
+         end if;
+      end Palindrome;
 
-        procedure mergetwosortedlists  is
-            -- indexes temporally removed
-            --indexA : arrayOf3Index := 1;
-            --indexB : arrayOf3Index := 1;
-            --pos : arrayOf6Index := 1;
-            indexA : Integer := 1;
-            indexB : Integer := 1;
-            pos : Integer := 1;
-            tempMax : Integer := 0;
-        begin
+      procedure auxromantointeger(romanNum : String) is
+         romanone                : String := "I";
+         romanfive               : String := "V";
+         romanten                : String := "X";
+         romanfifty              : String := "L";
+         romanonehundred         : String := "C";
+         romanfivehundred        : String := "D";
+         romanthousand           : String := "M";
+         count                   : Integer      ;
+      begin
+         integerResultA:=0;
+         count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanone);
+         integerResultA := Integer(count*1);
+         if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfive);
+            integerResultA := Integer(count*5);
+         end if;
+         if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanten);
+            integerResultA := Integer(count*10);
+         end if;
+         if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfifty);
+            integerResultA := Integer(count*50);
+         end if;
+         if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanonehundred);
+            integerResultA := Integer(count*100);
+         end if;
+         if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanfivehundred);
+            integerResultA := Integer(count*500);
+         end if;
+         if count = 0 then
+            count := Ada.Strings.Fixed.Count(Source => romanNum,Pattern => romanthousand);
+            integerResultA := Integer(count*1000);
+         end if;
+      end auxromantointeger;
 
-            while pos < array6A'Length+1 loop
-                if indexA < array3A'Length+1 then
-                    if indexB < array3B'Length+1 then
-                        if array3A(indexA) < array3B(indexB) then
-                            array6A(pos) := array3A(indexA);
-                            indexA := indexA + 1;
-                        elsif array3B(indexB) < array3A(indexA) then
-                            array6A(pos) := array3B(indexB);
-                            indexB := indexB + 1;
-                        else
-                            array6A(pos) := array3A(indexA);
-                            pos := pos + 1;
-                            array6A(pos) := array3B(indexB);
-                            indexA := indexA + 1;
-                            indexB := indexB + 1;
-                        end if;
-                    else
-                        array6A(pos) := array3A(indexA);
-                        indexA := indexA + 1;
-                    end if;
-                else
-                    if indexB < array3B'Length+1 then
-                        array6A(pos) := array3B(indexB);
-                        indexB := indexB + 1;
-                    end if;
-                end if;
-                pos := pos + 1;
-            end loop;
-        end mergetwosortedlists;
-
-        procedure removeduplicatesfromsortedarray is
-            pos : Integer := array10AInput'First;
-            newValPos : Integer := array10AOutput'First;
-        begin
-            array10AOutput(newValPos) := array10AInput(pos);
-            while pos < array10AInput'Length loop
-                if array10AOutput(newValPos) /= array10AInput(pos) then
-                    newValPos := newValPos + 1;
-                    array10AOutput(newValPos) := array10AInput(pos);
-                end if;
-                pos := pos + 1;
-            end loop;
-       end removeduplicatesfromsortedarray;
-
-        procedure removeelement is
-            pos : Integer := array10AInput'First;
-            newValPos : Integer := array10AOutput'First;
-        begin
-            while pos < array10AInput'Length loop
-                if array10AInput(pos) /= integerInputA then
-                    array10AOutput(newValPos) := array10AInput(pos);
-                    newValPos := newValPos + 1;
-                end if;
-                pos := pos + 1;
-            end loop;
-        end removeelement;
-
-
-       -- array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
-        --integerInputA := 7; -- element to be found
-        --integerResultA := 0;
-        procedure searchinsertposition is
-            lowPos : Integer := array10AInput'First;
-            highPos : Integer := array10AInput'Last;
-            newPos : Integer := 0;
-        begin
-            integerResultA := -1;
-            if integerInputA <= array10AInput(array10AInput'First) then
-                integerResultA := array10AInput'First;
-            elsif integerInputA > array10AInput(array10AInput'Last) then
-                integerResultA := array10AInput'Last+1;
-            elsif integerInputA = array10AInput(array10AInput'Last) then
-                integerResultA := array10AInput'Last;
+      procedure romantointeger(romanNum : String) is
+         auxString : String := "   ";
+      begin
+         integerInputC := 0;
+         for pos in 1 .. romanNum'Length-1 loop
+            -- getting a string with the char stringExample = "'I'"
+            auxString := romanNum(pos)'Image;
+            auxromantointeger(auxString);
+            -- Saving the old result
+            integerInputB := integerResultA;
+            auxString := romanNum(pos+1)'Image;
+            auxromantointeger(auxString);
+            -- roman calculus of the number
+            if integerInputB < integerResultA then
+               integerInputC := integerInputC - integerInputB;
             else
-                while integerResultA = -1 loop
-                    newPos := lowPos + Integer((highPos-lowPos)/2);
-                    if array10AInput(newPos) < integerInputA then
-                        if newPos = lowPos then
-                            integerResultA := newPos;
-                        end if;
-                        lowPos := newPos;
-                    elsif array10AInput(newPos) > integerInputA then
-                        highPos := newPos;
-                    else
-                        integerResultA := newPos;
-                    end if;
-                end loop;
+               integerInputC := integerInputC + integerInputB;
             end if;
-        end searchinsertposition;
+         end loop;
 
-        procedure lengthoflastword is
-            -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
-            token : constant String := " ";
-            I   : Natural := 1;
-            F   : Positive;
-            L   : Natural;
-            Fold   : Positive;
-            Lold   : Natural;
-            Whitespace : constant Character_Set :=To_Set (' ');
-        begin
-            while I in stringInputB'Range loop
-                Find_Token(
-                    Source => stringInputB,
-                    Set => Whitespace,
-                    From => I,
-                    Test => Outside,
-                    First => F,
-                    Last => L);
-                exit when L = 0;
-                Fold := F;
-                Lold := L;
-                I := L + 1;
+         -- adding the last number always
+         auxString := romanNum(romanNum'Last)'Image;
+         auxromantointeger(auxString);
+         integerInputC := integerInputC + integerResultA;
+         -- saving the result in the integer that will eb checked
+         integerResultA:=integerInputC;
+
+      end romantointeger;
+
+      procedure longestcommonprefix is
+         letterPos : Integer := 0;
+         lastCommonPos : Integer := 1;
+         wordPos : Integer := 1;
+      begin
+         while letterPos < 10 loop
+            if letterPos < 10 then
+               letterPos := letterPos + 1;
+               bounStringResultA := To_Bounded_String(To_String(StrBounString(0))(1..letterPos));
+               wordPos := 1;
+               while wordPos < StrBounString'Length loop
+                  bounStringResultB := To_Bounded_String(To_String(StrBounString(wordPos))(1..letterPos));
+                  lastCommonPos := letterPos;
+                  if bounStringResultA /= bounStringResultB then
+                     lastCommonPos := letterPos - 1;
+                     letterPos := 20;
+                     wordPos := 20;
+                  end if;
+
+                  wordPos := wordPos + 1;
+               end loop;
+            end if;
+         end loop;
+         bounStringResultA := To_Bounded_String(To_String(StrBounString(1))(1..lastCommonPos));
+      end longestcommonprefix;
+
+      procedure validparentheses  is
+         letterPos : Integer := 1;
+         openbracktypeI : Integer := 0;
+         closebracktypeI : Integer := 0;
+         openbracktypeII : Integer := 0;
+         closebracktypeII : Integer := 0;
+         openbracktypeIII : Integer := 0;
+         closebracktypeIII : Integer := 0;
+         prevParentesis : Integer := 0;
+      begin
+         while letterPos < To_String(bounStringInputB)'Length+1 loop
+            case To_String(bounStringInputB)(letterPos) is
+               when '(' =>
+                  openbracktypeI := openbracktypeI + 1;
+                  prevParentesis := 1;
+               when ')' =>
+                  closebracktypeI := closebracktypeI + 1;
+                  if openbracktypeI = 0 then -- breaking case when you close a parentesis without opening it first
+                     exit;
+                  end if;
+                  if prevParentesis /= 1 then-- condition in case one type of parentesis is closing another type
+                     if prevParentesis /= 0 then
+                        exit;
+                     end if;
+                  end if;
+                  prevParentesis := 0;
+
+               when '[' =>
+                  openbracktypeII := openbracktypeII + 1;
+                  prevParentesis := 2;
+               when ']' =>
+                  closebracktypeII := closebracktypeII + 1;
+                  if openbracktypeII = 0 then -- breaking case when you close a parentesis without opening it first
+                     exit;
+                  end if;
+                  if prevParentesis /= 2 then-- condition in case one type of parentesis is closing another type
+                     if prevParentesis /= 0 then
+                        exit;
+                     end if;
+                  end if;
+                  prevParentesis := 0;
+
+               when '{' =>
+                  openbracktypeIII := openbracktypeIII + 1;
+                  prevParentesis := 3;
+               when '}' =>
+                  closebracktypeIII := closebracktypeIII + 1;
+                  if openbracktypeIII = 0 then -- breaking case when you close a parentesis without opening it first
+                     exit;
+                  end if;
+                  if prevParentesis /= 3 then-- condition in case one type of parentesis is closing another type
+                     if prevParentesis /= 0 then
+                        exit;
+                     end if;
+                  end if;
+                  prevParentesis := 0;
+               when others =>
+                  exit;
+            end case;
+            letterPos := letterPos + 1;
+         end loop;
+         integerResultA := 1;
+         if openbracktypeI /= closebracktypeI then
+            integerResultA := 0;
+         end if;
+         if openbracktypeII /= closebracktypeII then
+            integerResultA := 0;
+         end if;
+         if openbracktypeIII /= closebracktypeIII then
+            integerResultA := 0;
+         end if;
+      end validparentheses;
+
+      procedure mergetwosortedlists  is
+         -- indexes temporally removed
+         --indexA : arrayOf3Index := 1;
+         --indexB : arrayOf3Index := 1;
+         --pos : arrayOf6Index := 1;
+         indexA : Integer := 1;
+         indexB : Integer := 1;
+         pos : Integer := 1;
+         tempMax : Integer := 0;
+      begin
+
+         while pos < array6A'Length+1 loop
+            if indexA < array3A'Length+1 then
+               if indexB < array3B'Length+1 then
+                  if array3A(indexA) < array3B(indexB) then
+                     array6A(pos) := array3A(indexA);
+                     indexA := indexA + 1;
+                  elsif array3B(indexB) < array3A(indexA) then
+                     array6A(pos) := array3B(indexB);
+                     indexB := indexB + 1;
+                  else
+                     array6A(pos) := array3A(indexA);
+                     pos := pos + 1;
+                     array6A(pos) := array3B(indexB);
+                     indexA := indexA + 1;
+                     indexB := indexB + 1;
+                  end if;
+               else
+                  array6A(pos) := array3A(indexA);
+                  indexA := indexA + 1;
+               end if;
+            else
+               if indexB < array3B'Length+1 then
+                  array6A(pos) := array3B(indexB);
+                  indexB := indexB + 1;
+               end if;
+            end if;
+            pos := pos + 1;
+         end loop;
+      end mergetwosortedlists;
+
+      procedure removeduplicatesfromsortedarray is
+         pos : Integer := array10AInput'First;
+         newValPos : Integer := array10AOutput'First;
+      begin
+         array10AOutput(newValPos) := array10AInput(pos);
+         while pos < array10AInput'Length loop
+            if array10AOutput(newValPos) /= array10AInput(pos) then
+               newValPos := newValPos + 1;
+               array10AOutput(newValPos) := array10AInput(pos);
+            end if;
+            pos := pos + 1;
+         end loop;
+      end removeduplicatesfromsortedarray;
+
+      procedure removeelement is
+         pos : Integer := array10AInput'First;
+         newValPos : Integer := array10AOutput'First;
+      begin
+         while pos < array10AInput'Length loop
+            if array10AInput(pos) /= integerInputA then
+               array10AOutput(newValPos) := array10AInput(pos);
+               newValPos := newValPos + 1;
+            end if;
+            pos := pos + 1;
+         end loop;
+      end removeelement;
+
+
+      -- array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
+      --integerInputA := 7; -- element to be found
+      --integerResultA := 0;
+      procedure searchinsertposition is
+         lowPos : Integer := array10AInput'First;
+         highPos : Integer := array10AInput'Last;
+         newPos : Integer := 0;
+      begin
+         integerResultA := -1;
+         if integerInputA <= array10AInput(array10AInput'First) then
+            integerResultA := array10AInput'First;
+         elsif integerInputA > array10AInput(array10AInput'Last) then
+            integerResultA := array10AInput'Last+1;
+         elsif integerInputA = array10AInput(array10AInput'Last) then
+            integerResultA := array10AInput'Last;
+         else
+            while integerResultA = -1 loop
+               newPos := lowPos + Integer((highPos-lowPos)/2);
+               if array10AInput(newPos) < integerInputA then
+                  if newPos = lowPos then
+                     integerResultA := newPos;
+                  end if;
+                  lowPos := newPos;
+               elsif array10AInput(newPos) > integerInputA then
+                  highPos := newPos;
+               else
+                  integerResultA := newPos;
+               end if;
             end loop;
-            integerResultA := Integer(Lold-Fold)+1;
-        end lengthoflastword;
+         end if;
+      end searchinsertposition;
 
-        procedure plusOne is
-            pos : Integer := array10'Last;
-            extra : Integer := 0;
-        begin
-            while pos > array10'First-1 loop
-                if pos = array10'Last then
-                    array10(pos) := array10(pos) + 1;
-                else
-                    array10(pos) := array10(pos)  + extra;
-                end if;
+      procedure lengthoflastword is
+         -- from https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
+         token : constant String := " ";
+         I   : Natural := 1;
+         F   : Positive;
+         L   : Natural;
+         Fold   : Positive;
+         Lold   : Natural;
+         Whitespace : constant Character_Set :=To_Set (' ');
+      begin
+         while I in stringInputB'Range loop
+            Find_Token(
+                       Source => stringInputB,
+                       Set => Whitespace,
+                       From => I,
+                       Test => Outside,
+                       First => F,
+                       Last => L);
+            exit when L = 0;
+            Fold := F;
+            Lold := L;
+            I := L + 1;
+         end loop;
+         integerResultA := Integer(Lold-Fold)+1;
+      end lengthoflastword;
 
-                if array10(pos) > 9 then
-                    array10(pos) := 0;
-                    extra := 1;
-                else
-                    extra := 0;
-                end if;
-                pos := pos - 1;
-            end loop;
-        end plusOne;
+      procedure plusOne is
+         pos : Integer := array10'Last;
+         extra : Integer := 0;
+      begin
+         while pos > array10'First-1 loop
+            if pos = array10'Last then
+               array10(pos) := array10(pos) + 1;
+            else
+               array10(pos) := array10(pos)  + extra;
+            end if;
+
+            if array10(pos) > 9 then
+               array10(pos) := 0;
+               extra := 1;
+            else
+               extra := 0;
+            end if;
+            pos := pos - 1;
+         end loop;
+      end plusOne;
 
 
-        procedure addbinary is
-            letterPos : Integer := To_String(bounStringInputB)'Last+1;
-            haulage : Integer := 1;
-            result : String := To_String(bounStringInputB)'Length*" ";
-        begin
+      procedure addbinary is
+         letterPos : Integer := To_String(bounStringInputB)'Last+1;
+         haulage : Integer := 1;
+         result : String := To_String(bounStringInputB)'Length*" ";
+      begin
+         letterPos := letterPos - 1;
+         result := To_String(bounStringInputB);
+         while haulage = 1 and then letterPos > To_String(bounStringInputB)'First-1 loop
+            if To_String(bounStringInputB)(letterPos) = '1' then
+               result(letterPos) := '0';
+               haulage := 1;
+            else
+               result(letterPos) := '1';
+               haulage := 0;
+            end if;
             letterPos := letterPos - 1;
-            result := To_String(bounStringInputB);
-            while haulage = 1 and then letterPos > To_String(bounStringInputB)'First-1 loop
-                if To_String(bounStringInputB)(letterPos) = '1' then
-                    result(letterPos) := '0';
-                    haulage := 1;
-                else
-                    result(letterPos) := '1';
-                    haulage := 0;
-                end if;
-                letterPos := letterPos - 1;
-            end loop;
-            bounStringResultA := To_Bounded_String(result);
-        end addbinary;
+         end loop;
+         bounStringResultA := To_Bounded_String(result);
+      end addbinary;
 
-        procedure SqrtX is
-            pos : Integer := 0;
-            aux : Integer := 0;
-            oldpos : Integer := 0;
-            oldaux : Integer := 0;
-            control : Integer := 1;
-        begin
-            integerResultA := 0;
-            while control = 1 and then integerResultA=0 loop
-                aux := pos * pos;
-                if aux > integerInputA then
-                    if (aux-integerInputA) > (integerInputA-oldaux) then
-                        integerResultA := oldpos;
-                    else
-                        integerResultA := pos;
-                    end if;
-                end if;
-
-                if pos > integerInputA then
-                    control := 0;
-                end if;
-
-                oldpos := pos;
-                oldaux := aux;
-                pos := pos + 1;
-            end loop;
-        end SqrtX;
-
-
-        procedure climbingstairsFibo is
-            actual : Integer := 1;
-            old : Integer := 0;
-            pos : integer := 0;
-        begin
-            integerResultA := 0;
-            if integerInputA > 2 then
-                while pos < integerInputA loop
-                    integerResultA := actual + old;
-                    old := actual;
-                    actual := integerResultA;
-                    pos := pos + 1;
-                end loop;
-            else
-                integerResultA := 1;
+      procedure SqrtX is
+         pos : Integer := 0;
+         aux : Integer := 0;
+         oldpos : Integer := 0;
+         oldaux : Integer := 0;
+         control : Integer := 1;
+      begin
+         integerResultA := 0;
+         while control = 1 and then integerResultA=0 loop
+            aux := pos * pos;
+            if aux > integerInputA then
+               if (aux-integerInputA) > (integerInputA-oldaux) then
+                  integerResultA := oldpos;
+               else
+                  integerResultA := pos;
+               end if;
             end if;
-        end climbingstairsFibo;
 
-        procedure climbingstairsFiboExtra is
-            GR : float := 1.618034;
-        begin
-            integerResultA := 0;
-            integerResultA := Integer((GR**(integerInputA+1) - (1.0-GR)**(integerInputA+1))/Sqrt(5.0));
-        end climbingstairsFiboExtra;
+            if pos > integerInputA then
+               control := 0;
+            end if;
 
-        procedure binarytreeinordertraversal is--ex94
-            pos : integer := 0;--considering the root of the tree index = 0
-            arrayResultpos : Integer := array100A'First;
+            oldpos := pos;
+            oldaux := aux;
+            pos := pos + 1;
+         end loop;
+      end SqrtX;
 
-            type arrayOf100 is array(0 .. 99) of Integer;
-            visitedElems : arrayOf100;
-            arrayposvisitedElems : Integer := 0;
 
-            auxCondition : integer;
-
-        begin
-
-            for pos in visitedElems'First .. visitedElems'Last loop
-                visitedElems(pos) := 0;
+      procedure climbingstairsFibo is
+         actual : Integer := 1;
+         old : Integer := 0;
+         pos : integer := 0;
+      begin
+         integerResultA := 0;
+         if integerInputA > 2 then
+            while pos < integerInputA loop
+               integerResultA := actual + old;
+               old := actual;
+               actual := integerResultA;
+               pos := pos + 1;
             end loop;
-            arrayposvisitedElems := arrayposvisitedElems + 1;
-            --Put_Line ("-->"&Integer'Image(inputTree.getlength(0)));
-            while arrayResultpos < inputTree.getlength(0) loop
-                --Put_Line ("/0>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
-                if inputTree.getFirstLink(pos) = 0 and inputTree.getSecondLink(pos) = 0 then --leaf
+         else
+            integerResultA := 1;
+         end if;
+      end climbingstairsFibo;
 
-                    array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value
-                    arrayResultpos := arrayResultpos + 1 ;
-                    --Put_Line ("saved>"&Integer'Image(inputTree.getElementValue(pos)));
+      procedure climbingstairsFiboExtra is
+         GR : float := 1.618034;
+      begin
+         integerResultA := 0;
+         integerResultA := Integer((GR**(integerInputA+1) - (1.0-GR)**(integerInputA+1))/Sqrt(5.0));
+      end climbingstairsFiboExtra;
 
-                    --point to the leaf
-                    visitedElems(arrayposvisitedElems) := pos;
-                    -- pos of the branch
-                    if arrayposvisitedElems > 0 then
-                        pos := visitedElems(arrayposvisitedElems-1);
-                    end if;
+      procedure binarytreeinordertraversal is--ex94
+         pos : integer := 0;--considering the root of the tree index = 0
+         arrayResultpos : Integer := array100A'First;
 
-                    --Put_Line ("/1>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos)&integer'image(visitedElems(arrayposvisitedElems)));
+         type arrayOf100 is array(0 .. 99) of Integer;
+         visitedElems : arrayOf100;
+         arrayposvisitedElems : Integer := 0;
 
-                else --branch
-                    if inputTree.getSecondLink(pos) /= 0 and inputTree.getSecondLink(pos) = visitedElems(arrayposvisitedElems) then -- pop the branch
+         auxCondition : integer;
+
+      begin
+
+         for pos in visitedElems'First .. visitedElems'Last loop
+            visitedElems(pos) := 0;
+         end loop;
+         arrayposvisitedElems := arrayposvisitedElems + 1;
+         --Put_Line ("-->"&Integer'Image(inputTree.getlength(0)));
+         while arrayResultpos < inputTree.getlength(0) loop
+            --Put_Line ("/0>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+            if inputTree.getFirstLink(pos) = 0 and inputTree.getSecondLink(pos) = 0 then --leaf
+
+               array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value
+               arrayResultpos := arrayResultpos + 1 ;
+               --Put_Line ("saved>"&Integer'Image(inputTree.getElementValue(pos)));
+
+               --point to the leaf
+               visitedElems(arrayposvisitedElems) := pos;
+               -- pos of the branch
+               if arrayposvisitedElems > 0 then
+                  pos := visitedElems(arrayposvisitedElems-1);
+               end if;
+
+               --Put_Line ("/1>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos)&integer'image(visitedElems(arrayposvisitedElems)));
+
+            else --branch
+               if inputTree.getSecondLink(pos) /= 0 and inputTree.getSecondLink(pos) = visitedElems(arrayposvisitedElems) then -- pop the branch
+                  arrayposvisitedElems := arrayposvisitedElems - 1;
+                  if arrayposvisitedElems > 0 then
+                     pos := visitedElems(arrayposvisitedElems-1);
+                  end if;
+                  --Put_Line ("/2-0>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+
+               elsif inputTree.getFirstLink(pos) /= 0 and inputTree.getFirstLink(pos) /= visitedElems(arrayposvisitedElems) then
+                  visitedElems(arrayposvisitedElems) := pos;
+                  arrayposvisitedElems := arrayposvisitedElems + 1;
+                  pos := inputTree.getFirstLink(pos);
+                  --Put_Line ("/2-1>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+                  --Put_Line ("/2-1F>"&integer'image(inputTree.getFirstLink(pos)));
+
+               elsif inputTree.getSecondLink(pos) /= 0 and inputTree.getSecondLink(pos) /= visitedElems(arrayposvisitedElems) then
+                  array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value of the branch
+                  arrayResultpos := arrayResultpos + 1 ;
+                  --Put_Line ("saved0>"&Integer'Image(inputTree.getElementValue(pos)));
+
+                  pos := inputTree.getSecondLink(pos);-- new branch
+                  --Put_Line ("/2-2>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+               elsif inputTree.getFirstLink(pos) = visitedElems(arrayposvisitedElems) then -- when there is no second link
+
+                  array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value of the branch
+                  --Put_Line ("saved1>"&Integer'Image(inputTree.getElementValue(pos)));
+                  arrayResultpos := arrayResultpos + 1 ;
+
+
+                  if inputTree.getFirstLink(inputTree.getFirstLink(pos)) /= 0 then
+                     auxCondition := 0;
+                     if arrayResultpos > 2 then
+                        if inputTree.getElementValue(inputTree.getFirstLink(pos)) /= array100A(arrayResultpos-2) then
+                           visitedElems(arrayposvisitedElems) := pos;
+                           arrayposvisitedElems := arrayposvisitedElems + 1;
+                           pos := inputTree.getFirstLink(pos);
+                           --Put_Line ("/2-3A>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+                           auxCondition := 1;
+                        end if;
+                     end if;
+                     if auxCondition = 0 then
                         arrayposvisitedElems := arrayposvisitedElems - 1;
                         if arrayposvisitedElems > 0 then
-                            pos := visitedElems(arrayposvisitedElems-1);
+                           pos := visitedElems(arrayposvisitedElems-1);
                         end if;
-                        --Put_Line ("/2-0>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+                        --Put_Line ("/2-3D>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
 
-                    elsif inputTree.getFirstLink(pos) /= 0 and inputTree.getFirstLink(pos) /= visitedElems(arrayposvisitedElems) then
-                        visitedElems(arrayposvisitedElems) := pos;
-                        arrayposvisitedElems := arrayposvisitedElems + 1;
-                        pos := inputTree.getFirstLink(pos);
-                        --Put_Line ("/2-1>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
-                        --Put_Line ("/2-1F>"&integer'image(inputTree.getFirstLink(pos)));
+                     end if;
+                     --Put_Line ("/2-3C>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
 
-                    elsif inputTree.getSecondLink(pos) /= 0 and inputTree.getSecondLink(pos) /= visitedElems(arrayposvisitedElems) then
-                        array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value of the branch
-                        arrayResultpos := arrayResultpos + 1 ;
-                        --Put_Line ("saved0>"&Integer'Image(inputTree.getElementValue(pos)));
+                  else
+                     arrayposvisitedElems := arrayposvisitedElems - 1;
+                     if arrayposvisitedElems > 0 then
+                        pos := visitedElems(arrayposvisitedElems-1);
+                     end if;
+                     --Put_Line ("/2-3>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
+                  end if;
+               end if;
 
-                        pos := inputTree.getSecondLink(pos);-- new branch
-                        --Put_Line ("/2-2>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
-                    elsif inputTree.getFirstLink(pos) = visitedElems(arrayposvisitedElems) then -- when there is no second link
+            end if;
+         end loop;
+         --for pos in 0 .. array100A'Length-1 loop
+         --  Put_Line ("->"&Integer'Image(array100A(pos) ));
+         --end loop;
+      end binarytreeinordertraversal;
 
-                        array100A(arrayResultpos) := inputTree.getElementValue(pos);--saved value of the branch
-                        --Put_Line ("saved1>"&Integer'Image(inputTree.getElementValue(pos)));
-                        arrayResultpos := arrayResultpos + 1 ;
-
-
-                        if inputTree.getFirstLink(inputTree.getFirstLink(pos)) /= 0 then
-                            auxCondition := 0;
-                             if arrayResultpos > 2 then
-                                if inputTree.getElementValue(inputTree.getFirstLink(pos)) /= array100A(arrayResultpos-2) then
-                                    visitedElems(arrayposvisitedElems) := pos;
-                                    arrayposvisitedElems := arrayposvisitedElems + 1;
-                                    pos := inputTree.getFirstLink(pos);
-                                    --Put_Line ("/2-3A>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
-                                    auxCondition := 1;
-                                end if;
-                             end if;
-                             if auxCondition = 0 then
-                                arrayposvisitedElems := arrayposvisitedElems - 1;
-                                if arrayposvisitedElems > 0 then
-                                    pos := visitedElems(arrayposvisitedElems-1);
-                                end if;
-                                --Put_Line ("/2-3D>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
-
-                             end if;
-                            --Put_Line ("/2-3C>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
-
-                        else
-                            arrayposvisitedElems := arrayposvisitedElems - 1;
-                            if arrayposvisitedElems > 0 then
-                                pos := visitedElems(arrayposvisitedElems-1);
-                            end if;
-                            --Put_Line ("/2-3>"&Integer'Image(inputTree.getElementValue(pos))&integer'image(pos));
-                        end if;
-                    end if;
-
-                end if;
-            end loop;
-            --for pos in 0 .. array100A'Length-1 loop
-              --  Put_Line ("->"&Integer'Image(array100A(pos) ));
-            --end loop;
-        end binarytreeinordertraversal;
-
-    begin
+   begin
 
       Start_Time := Clock;
       Put_Line ("Starting main execution");
