@@ -198,6 +198,111 @@ Example 3:
 Input: s = "A", numRows = 1  
 Output: "A"  
 
+#### Analisys of the problem
+We are gonna work for this analisys with numbers and later on translate into letters.
+Our set of data is a total amount of elements in a array setted in zigzag pattern
+The array starts at position 0 with element 1 and increase by 1, pos 1 element 2 etc.
+N representes the number of rows for the zigzag.
+The target is not to solve the problem itself, is to index the element distribution so
+getting the real value of an element knwoing the position inside the final array is O(1) or without cycles.
+
+First of all for the indexation we have to determine the distribution inside our final array.
+We know that is based on rows and the amount of rows determine the amount of columns, 
+shorting the elements in blocks, composed by the formula N+(N-2) from the zigzag pattern.
+
+In this example if we have 20 elements and 4 rows.
+The first part of the array can be defined by the amount of rows.
+NumElemns / (N+(N-2)) = 20 / 6 = 3.x
+Since 3.x > 3 we will know that the start of the array will have 4 elements, 
+because we have 3 fully blocks and 1 last partial block.
+
+So if we have 3 whole blocks of N=4 that means we have at least 2 rows of 3*2 elements
+so we know that the array will be like:
+
+4 | 6 + x | 6 + y | 3 + z
+
+To finish it we can calculate the amount of numbers to be asigned
+Then if they are less than N-1 then you can add then directly to the rows, 
+using priority from left to right starting in the first variable (x)
+
+20 - ( 2 * 6 ) + 4 + 3 = 1
+
+So we add the 1 to the x since is the most prioritary, and it ends like:
+
+4 | 7 | 6 | 3
+
+if we have 21 elements will be:
+
+21 - (2 * 6) + 4 + 3 = 2, so we will add a value to the two more prioritary rows:
+
+4 | 7 | 7 | 3
+
+And so on until filling a whole block.
+
+Special case in this example when you have more than 22 and less than 24.
+
+For 23 N=4
+Here the value is > than N-1
+So We have to distribute N-1 values into the rows in the normal priority
+
+23 - (2 * 6) + 4 + 3 = 4
+
+4 | 7 + x | 7 + y | 4 + z
+
+Reached this point we check if the last row has the same amount as the first one.
+If is the same then we cant add more values to the last row so:
+
+4 | 7 + x | 7 + y | 4
+
+And the rest of the values will be distributed in inversed priority, from rigth to left:
+4 - (N - 1) = 1
+
+4 | 7 | 8 | 4
+
+So the formula can be defined as:
+
+if posNewArray < numElemns/(2N-2)) -> elem = (posNewArray*(2N-2))+1
+| 0 | 1 | 2 | 3 |
+| 1 | 7 | 13| 19|
+
+whit numElemns/(2N-2)) as minrange = 3.8333
+if minrange < posNewArray < upperrange
+
+Being A := N+(N-2)
+LastBlockElemns or D := ElemensNum - ( (ElemensNum/A) * A  )
+If (D-R) > 0 rowlength + 1
+IF (N-Row-2)-(D-N) < 0 then rowlength + 1
+
+so the row 1 will have:
+rowlength : Int(ElemensNum/(N+(N-2))*2 =Int(23/(4+2))*2=3*2=6
+and since D = 23 - int(23/3) * 3 = 5 and 5 - 1 > 0 then rowlength = 7
+and since (4-1-2)-(5-4) = 1 - 1 is not < 0 then rowlength = 7
+
+so int(numElemns/(2N-2))) as lowerpart
+from lowerpart from lowerpart + rowlength will be row 1
+
+| 4 | 5 | 6 | 7 | 8 | 9 | 10| 
+| 2 | 6 | 8 | 12| 14| 18| 20|
+
+now for the row 2
+rowlength : Int(ElemensNum/(N+(N-2))*2 =Int(23/(4+2))*2=3*2=6
+and since D = 23 - int(23/3) * 3 = 5 and 5 - 2 > 0 then rowlength = 7
+and since (4-2-2) - (5-4) = -1 < 0 then rowlength = 8
+
+so 10 to 10 + rowlength -> 10 to 18
+| 11| 12| 13| 14| 15| 16| 17| 18| 
+| 3 | 5 | 9 | 11| 15| 17| 21| 23|
+
+Lest Start:
+N=4
+1     7      13      19
+2  6  8  12  14  18  20  
+3  5  9  11  15  17  21  23
+4     10     16      22
+
+So for row 1 we know that we can calculate the value with value=(2N-2)+1
+
+
 ### 2.9 Palindrome Number
 #### https://leetcode.com/problems/palindrome-number/
 Given an integer x, return true if x is a palindrome, and false otherwise.  
