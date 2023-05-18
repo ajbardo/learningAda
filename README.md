@@ -8,6 +8,7 @@
   * 2.4. Median-of-two-sorted-arrays - https://leetcode.com/problems/median-of-two-sorted-arrays/ 
   * 2.5. Longest Palindromic Substring - https://leetcode.com/problems/longest-palindromic-substring/
   * 2.6. Zigzag Conversion - https://leetcode.com/problems/zigzag-conversion/description/
+  * 2.7. Reverse Integer - https://leetcode.com/problems/reverse-integer/
   * 2.9. Palindrome Number - https://leetcode.com/problems/palindrome-number/   
   * 2.13. Roman to Integer  - https://leetcode.com/problems/roman-to-integer/
   * 2.14. Longest Common Prefix - https://leetcode.com/problems/longest-common-prefix/
@@ -270,16 +271,18 @@ if minrange < posNewArray < upperrange
 
 Being A := N+(N-2)
 LastBlockElemns or D := ElemensNum - ( (ElemensNum/A) * A  )
-If (D-R) > 0 rowlength + 1
+If (D-Row) > 0 rowlength + 1
 IF (N-Row-2)-(D-N) < 0 then rowlength + 1
 
 so the row 1 will have:
 rowlength : Int(ElemensNum/(N+(N-2))*2 =Int(23/(4+2))*2=3*2=6
-and since D = 23 - int(23/3) * 3 = 5 and 5 - 1 > 0 then rowlength = 7
-and since (4-1-2)-(5-4) = 1 - 1 is not < 0 then rowlength = 7
+and since D = 23 - int(23/3) * 3 = 5 and 5 - 1 > 0 then rowlength = prev + 1 = 6 + 1 = 7
+and since (N-Row-2)-(D-N)=(4-1-2)-(5-4) = 1 - 1 is not < 0 then rowlength = 7
 
-so int(numElemns/(2N-2))) as lowerpart
-from lowerpart from lowerpart + rowlength will be row 1
+
+
+so int(numElemns/(2N-2)))=int(23/6)=4 as lowerpart
+from lowerpart from lowerpart + rowlength (4 to 10 both included) will be row 1
 
 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 
 | 2 | 6 | 8 | 12| 14| 18| 20|
@@ -300,9 +303,64 @@ N=4
 3  5  9  11  15  17  21  23
 4     10     16      22
 
-So for row 1 we know that we can calculate the value with value=(2N-2)+1
+So reached this point, we will be able to determine the row that contains the element.
+
+If the positin searched is posNewArray < numElemns/(2N-2)), then is row 0.
+Being for the rest of the rows.
+
+Being A := N+(N-2)
+LastBlockElemns or D := ElemensNum - ( (ElemensNum/A) * A  )
+If (D-Row) > 0 rowlength + 1
+IF (N-Row-2)-(D-N) < 0 then rowlength + 1
+
+So now the target is to determine the colum of the element.
+
+Colum = NumElemes /
 
 
+
+N=5 m = 23
+
+1---9-----17
+2-8-10-16-18
+3-7-11-15-19-23
+4-6-12-14-20-22
+5---13----21
+
+N=6 m = 23
+1
+2-10
+3-9
+4-8
+5-7
+6
+
+###2.7. Reverse Integer
+Medium
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.  
+
+Assume the environment does not allow you to store 64-bit integers (signed or unsigned).  
+
+ 
+  
+Example 1:  
+
+Input: x = 123  
+Output: 321 
+Example 2:  
+  
+Input: x = -123  
+Output: -321 
+Example 3:  
+
+Input: x = 120  
+Output: 21 
+ 
+ 
+Constraints:  
+
+-231 <= x <= 231 - 1  
+  
 ### 2.9 Palindrome Number
 #### https://leetcode.com/problems/palindrome-number/
 Given an integer x, return true if x is a palindrome, and false otherwise.  
