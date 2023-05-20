@@ -31,6 +31,94 @@ As reference for the ADA programming language development will be used https://l
 
 ## Last execution results
 
+Starting main execution  
+Test for twoSum with status:  1  
+Test for twoSum with status:  1  
+Test for addtwonumbers with status:  1  
+Test for addtwonumbers with status:  1  
+Test for addtwonumbers with status:  1  
+Test for LongestSubstringWithoutRepeatingCharacters with status :  1  
+Test for LongestSubstringWithoutRepeatingCharacters with status :  1  
+Test for LongestSubstringWithoutRepeatingCharacters with status :  1  
+Test for MedianofTwoSortedArrays with status:  1  
+Test for MedianofTwoSortedArrays with status:  1  
+Test for MedianofTwoSortedArrays with status:  1  
+Test for MedianofTwoSortedArrays with status:  1  
+Test for MedianofTwoSortedArrays with status:  1  
+Test for longestpalindromicsubstring with status:  1  
+Test for longestpalindromicsubstring with status:  1  
+Test for longestpalindromicsubstring with status:  1  
+Test for longestpalindromicsubstring with status:  1  
+Test for longestpalindromicsubstring with status:  1  
+Test for longestpalindromicsubstring with status:  1  
+Test for reverseInteger with status:  1  
+Test for reverseInteger with status:  1  
+Test for reverseInteger with status:  1  
+Test for palindrome with status:  1  
+Test for palindrome with status:  1  
+Test for romantointeger with status:  1  
+Test for romantointeger with status:  1  
+Test for longestcommonprefix with status:  1  
+Test for longestcommonprefix with status:  1  
+Test for longestcommonprefix with status:  1  
+Test for longestcommonprefix with status:  1  
+Test for validparentheses with status:  1  
+Test for validparentheses with status:  1  
+Test for validparentheses with status:  1  
+Test for validparentheses with status:  1  
+Test for validparentheses with status:  1  
+Test for validparentheses with status:  1  
+Test for validparentheses with status:  1  
+Test for validparentheses with status:  1  
+Test for mergetwosortedlists with status:  1  
+Test for mergetwosortedlists with status:  1  
+Test for mergetwosortedlists with status:  1  
+Test for mergetwosortedlists with status:  1  
+Test for mergetwosortedlists with status:  1  
+Test for mergetwosortedlists with status:  1  
+Test for removeduplicatesfromsortedarray with status:  1  
+Test for removeduplicatesfromsortedarray with status:  1  
+Test for removeduplicatesfromsortedarray with status:  1  
+Test for removeduplicatesfromsortedarray with status:  1  
+Test for removeduplicatesfromsortedarray with status:  1  
+Test for removeduplicatesfromsortedarray with status:  1  
+Test for removeelement with status:  1  
+Test for removeelement with status:  1  
+Test for removeelement with status:  1  
+Test for removeelement with status:  1  
+Test for removeelement with status:  1  
+Test for removeelement with status:  1  
+Test for searchinsertposition with status:  1  
+Test for searchinsertposition with status:  1  
+Test for searchinsertposition with status:  1  
+Test for searchinsertposition with status:  1  
+Test for searchinsertposition with status:  1  
+Test for lengthoflastword with status:  1  
+Test for lengthoflastword with status:  1  
+Test for lengthoflastword with status:  1  
+Test for plusOne with status:  1  
+Test for plusOne with status:  1  
+Test for plusOne with status:  1  
+Test for plusOne with status:  1  
+Test for plusOne with status:  1  
+Test for plusOne with status:  1  
+Test for addbinary with status:  1  
+Test for addbinary with status:  1  
+Test for addbinary with status:  1  
+Test for addbinary with status:  1  
+Test for addbinary with status:  1  
+Test for SqrtX with status:  1  
+Test for SqrtX with status:  1  
+Test for SqrtX with status:  1  
+Test for climbingstairsFibo with status:  1  
+Test for climbingstairsFiboExtra with status:  0  
+Test for binarytreeinordertraversal with status:  1  
+Test for binarytreeinordertraversal with status:  1  
+Test for binarytreeinordertraversal with status:  1  
+Test for binarytreeinordertraversal with status:  1  
+Total test passed : 83 from:  84   
+Ending exercises1to100 execution - Elapsed time for all executions:  0.000273300 seconds   
+[2023-05-20 17:29:35] process terminated successfully, elapsed time: 00.34s   
 
 
 ***
