@@ -522,6 +522,19 @@ package body exercises1to100 is
          Put_Line ("Z10>");
       end zigzagconversion;
 
+	  procedure reverseInteger(integerToReverse : Integer) is
+			auxString : String := Integer'Image (integerToReverse);
+			resultString : String := Integer'Image (integerToReverse);
+			auxPos : Integer := 0;
+	  begin
+			for letterPos in 1..auxString'Length loop
+				auxPos := auxString'Length+1 - letterPos;
+				resultString(auxPos) := auxString(letterPos);
+
+			end loop;
+			integerResultA := Integer'Value(resultString);
+	  end reverseInteger;
+
       procedure palindrome(number : Integer) is --ex 9
          tempNum : Integer;
          auxNum : Integer;
@@ -1298,6 +1311,49 @@ package body exercises1to100 is
       end if;
       Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
 
+      -------------------------------------------------------------------------------
+      testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      integerInputA := 123;
+
+      reverseInteger(integerInputA);
+
+	 if integerResultA = 321 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+
+      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass));
+
+
+	  testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      integerInputA := 123456;
+
+      reverseInteger(integerInputA);
+
+	 if integerResultA = 654321 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+
+      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass));
+
+		testTotal := testTotal + 1;
+      testPass := 0;
+      integerResultA := 0;
+      integerInputA := 456789;
+
+      reverseInteger(integerInputA);
+
+	 if integerResultA = 987654 then
+         testPass := 1;
+         testPassed := testPassed + 1;
+      end if;
+
+      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass));
 
       -------------------------------------------------------------------------------
       testTotal := testTotal + 1;
