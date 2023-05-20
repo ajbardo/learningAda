@@ -26,6 +26,13 @@
 ## 1 - Abstract
 Project to store the results of the learning path from https://leetcode.com but using ADA programming language.  
 As reference for the ADA programming language development will be used https://learn.adacore.com/index.html.  
+
+***
+
+## Last execution results
+
+
+
 ***
 ## 2 - Exercises
 ### 2.1 Two Sum  

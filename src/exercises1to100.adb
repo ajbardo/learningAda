@@ -25,7 +25,8 @@ package body exercises1to100 is
       -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
       -- 2.0-2.0 MedianofTwoSortedArrays
       -- 1.0-1.0 longestpalindromicsubstring
-      -- +0.1-1.0 zigzagconversion
+      -- ?0.1-1.0 zigzagconversion
+      -- +1.0-1.0 reverseInteger
       -- 1.0-1.0 palindrome
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
@@ -1063,7 +1064,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
+      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1074,7 +1075,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass));
+      Put_Line ("Test for twoSum with status: "&Integer'Image(testPass)&"  ");
 
 
       --------------------------------------------------------------------------------------------
@@ -1095,7 +1096,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1114,7 +1115,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1135,7 +1136,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addtwonumbers with status: "&Integer'Image(testPass)&"  ");
       --------------------------------------------------------------------------------------------
 
       testTotal := testTotal + 1;
@@ -1146,7 +1147,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1156,7 +1157,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1166,7 +1167,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass));
+      Put_Line ("Test for LongestSubstringWithoutRepeatingCharacters with status : "&Integer'Image(testPass)&"  ");
 
 
       --------------------------------------------------------------------------------------------
@@ -1183,7 +1184,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass)&"  ");
 
       array10AInput := (1,3,5,7,0,0,0,0,0,0);
       integerInputA := 3;
@@ -1197,7 +1198,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass)&"  ");
 
 
       array10AInput := (1, 3, 5, 7, 0, 0, 0, 0, 0, 0);
@@ -1212,7 +1213,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass)&"  ");
 
       array10AInput := (1, 2, 3, 4, 0, 0, 0, 0, 0, 0);
       integerInputA := 3;
@@ -1226,7 +1227,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass)&"  ");
 
       array10AInput := (5, 6, 7, 8, 9, 10, 11, 0, 0, 0);
       integerInputA := 6;
@@ -1240,7 +1241,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass));
+      Put_Line ("Test for MedianofTwoSortedArrays with status: "&Integer'Image(testPass)&"  ");
       --------------------------------------------------------------------------------------------
 
 
@@ -1253,7 +1254,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1264,7 +1265,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass)&"  ");
 
 
       testTotal := testTotal + 1;
@@ -1276,7 +1277,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1287,7 +1288,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1298,7 +1299,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1309,7 +1310,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestpalindromicsubstring with status: "&Integer'Image(testPass)&"  ");
 
       -------------------------------------------------------------------------------
       testTotal := testTotal + 1;
@@ -1324,7 +1325,7 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
 
-      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass));
+      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass)&"  ");
 
 
 	  testTotal := testTotal + 1;
@@ -1339,7 +1340,7 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
 
-      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass));
+      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass)&"  ");
 
 		testTotal := testTotal + 1;
       testPass := 0;
@@ -1353,7 +1354,7 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
 
-      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass));
+      Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass)&"  ");
 
       -------------------------------------------------------------------------------
       testTotal := testTotal + 1;
@@ -1365,7 +1366,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
+      Put_Line ("Test for palindrome with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -1376,7 +1377,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for palindrome with status: "&Integer'Image(testPass));
+      Put_Line ("Test for palindrome with status: "&Integer'Image(testPass)&"  ");
       --------------------------------------------------------------------------------------------
       stringInputA := "   XLVIII";
       romantointeger(stringInputA);
@@ -1386,7 +1387,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+      Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass)&"  ");
 
       stringInputA := "     VIII";
       romantointeger(stringInputA);
@@ -1396,7 +1397,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass));
+      Put_Line ("Test for romantointeger with status: "&Integer'Image(testPass)&"  ");
 
       --------------------------------------------------------------------------------------------
       StrBounString(0) := To_Bounded_String("asdfghjklo");
@@ -1409,7 +1410,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass)&"  ");
 
       StrBounString(0) := To_Bounded_String("eraseunave");
       StrBounString(1) := To_Bounded_String("eraseunave");
@@ -1421,7 +1422,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass)&"  ");
 
       StrBounString(0) := To_Bounded_String("eraseunave");
       StrBounString(1) := To_Bounded_String("eraseunave");
@@ -1433,7 +1434,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass)&"  ");
 
       StrBounString(0) := To_Bounded_String("asdfsafasd");
       StrBounString(1) := To_Bounded_String("eraseunave");
@@ -1445,7 +1446,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass));
+      Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass)&"  ");
 
       --------------------------------------------------------------------------------------------
       bounStringInputB := To_Bounded_String("()()()()()");--Output: true
@@ -1456,7 +1457,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       bounStringInputB := To_Bounded_String("[][][][][]");--Output: true
       validparentheses;
@@ -1466,7 +1467,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       bounStringInputB := To_Bounded_String("{}{}{}{}{}");--Output: true
       validparentheses;
@@ -1476,7 +1477,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       bounStringInputB := To_Bounded_String("([{}]([]))");--Output: true
       validparentheses;
@@ -1486,7 +1487,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       bounStringInputB := To_Bounded_String("([{}](]]))");--Output: false
       validparentheses;
@@ -1496,7 +1497,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       bounStringInputB := To_Bounded_String("([{{{([]))");--Output: false
       validparentheses;
@@ -1506,7 +1507,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       bounStringInputB := To_Bounded_String("([{}]([]])");--Output: false
       validparentheses;
@@ -1516,7 +1517,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       bounStringInputB := To_Bounded_String("([{}]([])]");--Output: false
       validparentheses;
@@ -1526,7 +1527,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass));
+      Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
 
       --------------------------------------------------------------------------------------------
 
@@ -1540,7 +1541,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass)&"  ");
 
       testPass := 0;
       testTotal := testTotal + 1;
@@ -1551,7 +1552,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass)&"  ");
 
       testPass := 0;
       testTotal := testTotal + 1;
@@ -1562,7 +1563,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass)&"  ");
 
       testPass := 0;
       testTotal := testTotal + 1;
@@ -1573,7 +1574,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass)&"  ");
 
       testPass := 0;
       testTotal := testTotal + 1;
@@ -1584,7 +1585,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass)&"  ");
 
       testPass := 0;
       testTotal := testTotal + 1;
@@ -1596,7 +1597,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass));
+      Put_Line ("Test for mergetwosortedlists with status: "&Integer'Image(testPass)&"  ");
       --------------------------------------------------------------------------------------------
 
       testTotal := testTotal + 1;
@@ -1608,7 +1609,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,1,1,2,2,3,4,5,8,8);
@@ -1619,7 +1620,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,2,3,3,3,3,3,3,8,0);
@@ -1630,7 +1631,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,1,1,1,1,1,1,1,1,1);
@@ -1641,7 +1642,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (0,0,0,0,0,0,0,0,0,0);
@@ -1652,7 +1653,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,0,0,0,0,0,0,0,0,0);
@@ -1663,7 +1664,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeduplicatesfromsortedarray with status: "&Integer'Image(testPass)&"  ");
 
       --------------------------------------------------------------------------------------------
 
@@ -1677,7 +1678,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,1,1,1,1,1,1,1,1,1); -- array input
@@ -1689,7 +1690,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,1,1,2,2,2,1,1,1,2); -- array input
@@ -1701,7 +1702,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
@@ -1713,7 +1714,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (7,3,2,5,4,6,2,3,3,1); -- array input
@@ -1725,7 +1726,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (4,3,2,5,4,6,2,3,3,1); -- array input
@@ -1737,7 +1738,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass));
+      Put_Line ("Test for removeelement with status: "&Integer'Image(testPass)&"  ");
       --------------------------------------------------------------------------------------------
 
 
@@ -1751,7 +1752,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
@@ -1763,7 +1764,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
@@ -1775,7 +1776,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
@@ -1787,7 +1788,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10AInput := (1,4,7,8,12,27,51,65,72,100); -- array input,
@@ -1799,7 +1800,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass));
+      Put_Line ("Test for searchinsertposition with status: "&Integer'Image(testPass)&"  ");
 
 
       --------------------------------------------------------------------------------------------
@@ -1813,7 +1814,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
+      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       stringInputB := "aaa" & 17 * " ";
@@ -1824,7 +1825,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
+      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       stringInputB := 17 * " " & "aaa";
@@ -1835,7 +1836,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass));
+      Put_Line ("Test for lengthoflastword with status: "&Integer'Image(testPass)&"  ");
 
       --------------------------------------------------------------------------------------------
 
@@ -1847,7 +1848,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10 := (0,0,0,0,0,0,0,0,0,9);
@@ -1857,7 +1858,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass)&"  ");
 
 
       testTotal := testTotal + 1;
@@ -1868,7 +1869,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass)&"  ");
 
 
       testTotal := testTotal + 1;
@@ -1879,7 +1880,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10 := (9,0,0,0,0,0,0,0,2,0);
@@ -1889,7 +1890,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       array10 := (9,9,9,9,9,9,9,9,9,9);
@@ -1899,7 +1900,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass));
+      Put_Line ("Test for plusOne with status: "&Integer'Image(testPass)&"  ");
 
 
       --------------------------------------------------------------------------------------------
@@ -1913,7 +1914,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       bounStringInputB := To_Bounded_String("0010100111");
@@ -1923,7 +1924,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       bounStringInputB := To_Bounded_String("1000000000");
@@ -1933,7 +1934,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       bounStringInputB := To_Bounded_String("0000000000");
@@ -1943,7 +1944,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       bounStringInputB := To_Bounded_String("1111111111");
@@ -1953,7 +1954,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass));
+      Put_Line ("Test for addbinary with status: "&Integer'Image(testPass)&"  ");
       --------------------------------------------------------------------------------------------
 
       testTotal := testTotal + 1;
@@ -1964,7 +1965,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass)&"  ");
 
 
       testTotal := testTotal + 1;
@@ -1975,7 +1976,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       integerInputA := 32;
@@ -1985,7 +1986,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass));
+      Put_Line ("Test for SqrtX with status: "&Integer'Image(testPass)&"  ");
 
 
       --------------------------------------------------------------------------------------------
@@ -1997,7 +1998,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for climbingstairsFibo with status: "&Integer'Image(testPass));
+      Put_Line ("Test for climbingstairsFibo with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -2006,7 +2007,7 @@ package body exercises1to100 is
          testPass := 1;
          testPassed := testPassed + 1;
       end if;
-      Put_Line ("Test for climbingstairsFiboExtra with status: "&Integer'Image(testPass));
+      Put_Line ("Test for climbingstairsFiboExtra with status: "&Integer'Image(testPass)&"  ");
 
 
 
@@ -2031,7 +2032,7 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
       integerInputA := inputTree.cleanData(0);
-      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass)&"  ");
 
 
       testTotal := testTotal + 1;
@@ -2053,7 +2054,7 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
       integerInputA := inputTree.cleanData(0);
-      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass)&"  ");
 
 
       testTotal := testTotal + 1;
@@ -2075,7 +2076,7 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
       integerInputA := inputTree.cleanData(0);
-      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass)&"  ");
 
       testTotal := testTotal + 1;
       testPass := 0;
@@ -2096,17 +2097,17 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
       integerInputA := inputTree.cleanData(0);
-      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass));
+      Put_Line ("Test for binarytreeinordertraversal with status: "&Integer'Image(testPass)&"  ");
 
       --------------------------------------------------------------------------------------------
-      Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal));
+      Put_Line ("Total test passed :"&Integer'Image(testPassed)&" from: "&Integer'Image(testTotal)&"  ");
 
 
       Stop_Time    := Clock;
       Elapsed_Time := Stop_Time - Start_Time;
       Put_Line ("Ending exercises1to100 execution - Elapsed time for all executions: "
                 & Duration'Image (To_Duration (Elapsed_Time))
-                & " seconds");
+                & " seconds"&"  ");
 
    end oneTo100;
 end exercises1to100;
