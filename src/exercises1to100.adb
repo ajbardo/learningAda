@@ -26,7 +26,8 @@ package body exercises1to100 is
       -- 2.0-2.0 MedianofTwoSortedArrays
       -- 1.0-1.0 longestpalindromicsubstring
       -- ?0.1-1.0 zigzagconversion
-      -- +1.0-1.0 reverseInteger
+      -- 1.0-1.0 reverseInteger
+      --
       -- 1.0-1.0 palindrome
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
@@ -535,6 +536,50 @@ package body exercises1to100 is
 			end loop;
 			integerResultA := Integer'Value(resultString);
 	  end reverseInteger;
+
+		procedure StringtoInteger_8 (stringInput : String) is
+			auxInt   : Integer := 0; -- to check the amount of nums already added
+			signDetected : Integer := 1;
+		begin
+			integerResultA := 0;
+			for letterPos in 1 .. stringInput'Length loop
+				if stringInput (letterPos) = '-' then
+					signDetected := -1;
+				elsif stringInput (letterPos) = '0' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 0;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '1' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 1;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '2' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 2;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '3' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 3;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '4' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 4;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '5' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 5;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '6' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 6;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '7' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 7;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '8' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 8;
+					auxInt := auxInt + 1;
+				elsif stringInput (letterPos) = '9' then
+					integerResultA := (integerResultA * (10 ** auxInt)) + 9;
+					auxInt := auxInt + 1;
+
+				end if;
+			end loop;
+			integerResultA := integerResultA * signDetected;
+		end StringtoInteger_8;
 
       procedure palindrome(number : Integer) is --ex 9
          tempNum : Integer;
@@ -1356,6 +1401,46 @@ package body exercises1to100 is
 
       Put_Line ("Test for reverseInteger with status: "&Integer'Image(testPass)&"  ");
 
+
+      -------------------------------------------------------------------------------
+		testTotal := testTotal + 1;
+		testPass := 0;
+		integerResultA := 0;
+		stringInputA := "-42      ";
+		StringtoInteger_8 (stringInputA);
+
+		if integerResultA = -42 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+
+		Put_Line ("Test for StringtoInteger_8 with status: " & Integer'Image (testPass) & "  ");
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		integerResultA := 0;
+		stringInputA := "  -42    ";
+		StringtoInteger_8 (stringInputA);
+
+		if integerResultA = -42 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+
+		Put_Line ("Test for StringtoInteger_8 with status: " & Integer'Image (testPass) & "  ");
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		integerResultA := 0;
+		stringInputA := "-42  word";
+		StringtoInteger_8 (stringInputA);
+
+		if integerResultA = -42 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+
+		Put_Line ("Test for StringtoInteger_8 with status: " & Integer'Image (testPass) & "  ");
       -------------------------------------------------------------------------------
       testTotal := testTotal + 1;
       testPass := 0;

@@ -55,6 +55,9 @@ Test for longestpalindromicsubstring with status:  1
 Test for reverseInteger with status:  1  
 Test for reverseInteger with status:  1  
 Test for reverseInteger with status:  1  
+Test for StringtoInteger_8 with status:  1  
+Test for StringtoInteger_8 with status:  1  
+Test for StringtoInteger_8 with status:  1  
 Test for palindrome with status:  1  
 Test for palindrome with status:  1  
 Test for romantointeger with status:  1  
@@ -117,9 +120,9 @@ Test for binarytreeinordertraversal with status:  1
 Test for binarytreeinordertraversal with status:  1  
 Test for binarytreeinordertraversal with status:  1  
 Test for binarytreeinordertraversal with status:  1  
-Total test passed : 83 from:  84   
-Ending exercises1to100 execution - Elapsed time for all executions:  0.000273300 seconds   
-[2023-05-20 17:29:35] process terminated successfully, elapsed time: 00.34s   
+Total test passed : 86 from:  87   
+Ending exercises1to100 execution - Elapsed time for all executions:  0.028381500 seconds   
+[2023-05-21 16:10:40] process terminated successfully, elapsed time: 00.53s   
 
 
 ***
