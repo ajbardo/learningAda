@@ -11,6 +11,7 @@
   * 2.7. Reverse Integer - https://leetcode.com/problems/reverse-integer/
   * 2.8. String to Integer (atoi) - https://leetcode.com/problems/string-to-integer-atoi/
   * 2.9. Palindrome Number - https://leetcode.com/problems/palindrome-number/     
+  * 2.10. Regular Expression Matching - https://leetcode.com/problems/regular-expression-matching/
   * 2.13. Roman to Integer  - https://leetcode.com/problems/roman-to-integer/
   * 2.14. Longest Common Prefix - https://leetcode.com/problems/longest-common-prefix/
   * 2.20. Valid Parentheses  - https://leetcode.com/problems/valid-parentheses/
@@ -542,31 +543,28 @@ Constraints:
 
 ### 2.10. Regular Expression Matching
 #### https://leetcode.com/problems/regular-expression-matching/
-Hard  
-Companies  
-Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:  
-
-
-'*' Matches zero or more of the preceding element.  
-The matching should cover the entire input string (not partial).  
-
+Hard 
+Companies
+Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+The matching should cover the entire input string (not partial). 
  
 
-Example 1:  
+Example 1:
 
-Input: s = "aa", p = "a"  
-Output: false  
-Explanation: "a" does not match the entire string "aa".  
-Example 2:  
+Input: s = "aa", p = "a"
+Output: false
+Explanation: "a" does not match the entire string "aa".
+Example 2:
 
-Input: s = "aa", p = "a*"  
-Output: true  
-Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".  
-Example 3:  
+Input: s = "aa", p = "a*"
+Output: true
+Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+Example 3:
 
-Input: s = "ab", p = ".*"  
-Output: true  
-Explanation: ".*" means "zero or more (*) of any character (.)".  
+Input: s = "ab", p = ".*"
+Output: true
+Explanation: ".*" means "zero or more (*) of any character (.)".
+
 
 ### 2.13 Roman to Integer  
 #### https://leetcode.com/problems/roman-to-integer/
