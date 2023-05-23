@@ -29,6 +29,7 @@ package body exercises1to100 is
       -- 1.0-1.0 reverseInteger
       -- 1.0-1.0 StringtoInteger_8
       -- 1.0-1.0 palindrome
+	  -- +0.1-0.1 RegularExpressionMatching10
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
       -- 1.0-1.0 validparentheses
@@ -599,6 +600,12 @@ package body exercises1to100 is
             integerResultA := 1;
          end if;
       end Palindrome;
+
+		procedure RegularExpressionMatching10 (stringToMatch : String) is
+
+		begin
+
+		end RegularExpressionMatching10;
 
       procedure auxromantointeger(romanNum : String) is
          romanone                : String := "I";
