@@ -183,6 +183,7 @@ package body exercises1to100 is
       integerInputC : Integer;
       stringInputA : String := "         ";
       stringInputB : String := 20*" ";
+	  stringInputC  : String := "         ";
       bounStringInputB : Bounded_String;
       array10AInput : arrayOf10;
       array10BInput    : arrayOf10;
@@ -601,10 +602,44 @@ package body exercises1to100 is
          end if;
       end Palindrome;
 
-		procedure RegularExpressionMatching10 (stringToMatch : String) is
-
+		procedure RegularExpressionMatching10 (stringToMatch : String; pattern : String) is
+			lastLetterPos : Integer := 1;
+			patternPos : Integer := 1;
+			patternIsAccepted : Integer := 1;
 		begin
+			integerResultA := 0;
+			while patternPos < pattern'Length + 1 or lastLetterPos < stringToMatch'Length + 1 loop
+				if patternIsAccepted = 1 then-- works while the pattern is correct
+					if pattern (patternPos) = ' ' then--consider as found the alst part of the pattern
+						lastLetterPos := stringToMatch'Length + 1;
+						patternPos := pattern'Length+1;
+					elsif pattern (patternPos) = '.' then
+						lastLetterPos := lastLetterPos + 1;
+						patternPos := patternPos + 1;
+					elsif pattern (patternPos) = '*' then
+						lastLetterPos := lastLetterPos + 1;
+						if patternPos < pattern'Length + 1 then--only if is not the last * of the string
+							if stringToMatch (lastLetterPos) = pattern (patternPos + 1) then
 
+								patternPos := patternPos + 1;
+							end if;
+						else
+							patternPos := pattern'Length; --if the * is the last part of the pattern it will be always correct so we skip the rest of checks
+						end if;
+
+					else
+						if stringToMatch (lastLetterPos) = pattern (patternPos) then
+							lastLetterPos := lastLetterPos + 1;
+							patternPos := patternPos + 1;
+						else
+							patternIsAccepted := 0;
+						end if;
+					end if;
+				else--exit in case of pattern not accepted
+					patternPos := pattern'Length;
+				end if;
+			end loop;
+			integerResultA := patternIsAccepted;
 		end RegularExpressionMatching10;
 
       procedure auxromantointeger(romanNum : String) is
@@ -1470,6 +1505,40 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
       Put_Line ("Test for palindrome with status: "&Integer'Image(testPass)&"  ");
+      --------------------------------------------------------------------------------------------
+
+		stringInputA := "abcd     ";
+		stringInputC := "abcd     ";
+		testTotal := testTotal + 1;
+		testPass := 0;
+		RegularExpressionMatching10(stringInputA,stringInputC);
+		if integerResultA = 1 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for RegularExpressionMatching10 with status: " & Integer'Image (testPass) & "  ");
+
+		stringInputA := "abcd     ";
+		stringInputC := "a*       ";
+		testTotal := testTotal + 1;
+		testPass := 0;
+		RegularExpressionMatching10(stringInputA,stringInputC);
+		if integerResultA = 1 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for RegularExpressionMatching10 with status: " & Integer'Image (testPass) & "  ");
+
+		stringInputA := "abcd     ";
+		stringInputC := ".b*      ";
+		testTotal := testTotal + 1;
+		testPass := 0;
+		RegularExpressionMatching10(stringInputA,stringInputC);
+		if integerResultA = 1 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for RegularExpressionMatching10 with status: " & Integer'Image (testPass) & "  ");
       --------------------------------------------------------------------------------------------
       stringInputA := "   XLVIII";
       romantointeger(stringInputA);
