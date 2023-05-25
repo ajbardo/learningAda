@@ -33,7 +33,7 @@ As reference for the ADA programming language development will be used https://l
 
 ## Last execution results
 
-Starting main execution  
+Starting main execution
 Test for twoSum with status:  1  
 Test for twoSum with status:  1  
 Test for addtwonumbers with status:  1  
@@ -61,6 +61,9 @@ Test for StringtoInteger_8 with status:  1
 Test for StringtoInteger_8 with status:  1  
 Test for palindrome with status:  1  
 Test for palindrome with status:  1  
+Test for RegularExpressionMatching10 with status:  1  
+Test for RegularExpressionMatching10 with status:  1  
+Test for RegularExpressionMatching10 with status:  1  
 Test for romantointeger with status:  1  
 Test for romantointeger with status:  1  
 Test for longestcommonprefix with status:  1  
@@ -121,10 +124,9 @@ Test for binarytreeinordertraversal with status:  1
 Test for binarytreeinordertraversal with status:  1  
 Test for binarytreeinordertraversal with status:  1  
 Test for binarytreeinordertraversal with status:  1  
-Total test passed : 86 from:  87   
-Ending exercises1to100 execution - Elapsed time for all executions:  0.028381500 seconds   
-[2023-05-21 16:10:40] process terminated successfully, elapsed time: 00.53s   
-
+Total test passed : 89 from:  90  
+Ending exercises1to100 execution - Elapsed time for all executions:  0.031948000 seconds    
+[2023-05-26 01:00:34] process terminated successfully, elapsed time: 00.38s  
 
 ***
 ## 2 - Exercises
