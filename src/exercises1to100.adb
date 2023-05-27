@@ -29,7 +29,7 @@ package body exercises1to100 is
       -- 1.0-1.0 reverseInteger
       -- 1.0-1.0 StringtoInteger_8
       -- 1.0-1.0 palindrome
-	  -- +0.1-0.1 RegularExpressionMatching10
+	  -- +1.0-1.0 RegularExpressionMatching10
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
       -- 1.0-1.0 validparentheses
