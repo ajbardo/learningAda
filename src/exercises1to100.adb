@@ -29,7 +29,8 @@ package body exercises1to100 is
       -- 1.0-1.0 reverseInteger
       -- 1.0-1.0 StringtoInteger_8
       -- 1.0-1.0 palindrome
-	  -- +1.0-1.0 RegularExpressionMatching10
+	  -- 1.0-1.0 RegularExpressionMatching10
+      -- +0.1-0.1 ContainerWithMostWater11
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
       -- 1.0-1.0 validparentheses
@@ -641,6 +642,14 @@ package body exercises1to100 is
 			end loop;
 			integerResultA := patternIsAccepted;
 		end RegularExpressionMatching10;
+
+		procedure ContainerWithMostWater11 () is
+		begin
+			for dataPos in 1 .. array10BInput'Length loop
+				--array10BInput as container data
+				end loop;
+
+		end ContainerWithMostWater11;
 
       procedure auxromantointeger(romanNum : String) is
          romanone                : String := "I";
