@@ -644,9 +644,15 @@ package body exercises1to100 is
 		end RegularExpressionMatching10;
 
 		procedure ContainerWithMostWater11 () is
+			highestPointPos : Integer := 0;
+			highestPointData : Integer := 0;
 		begin
 			for dataPos in 1 .. array10BInput'Length loop
 				--array10BInput as container data
+				if array10AInput (dataPos) > highestPointData then
+					highestPointPos := dataPos;
+					highestPointData := array10AInput (dataPos);
+				end if;
 				end loop;
 
 		end ContainerWithMostWater11;
