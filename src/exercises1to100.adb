@@ -30,7 +30,7 @@ package body exercises1to100 is
       -- 1.0-1.0 StringtoInteger_8
       -- 1.0-1.0 palindrome
 	  -- 1.0-1.0 RegularExpressionMatching10
-      -- +0.1-0.1 ContainerWithMostWater11
+      -- +0.2-0.2 ContainerWithMostWater11
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
       -- 1.0-1.0 validparentheses
@@ -646,15 +646,30 @@ package body exercises1to100 is
 		procedure ContainerWithMostWater11 () is
 			highestPointPos : Integer := 0;
 			highestPointData : Integer := 0;
+
+			highestSecondPointPos : Integer := 0;
+			highestSecondPointData : Integer := 0;
+
+
+			highestVol : Integer := 0;
+			vol : Integer := 0;
 		begin
-			for dataPos in 1 .. array10BInput'Length loop
-				--array10BInput as container data
+			for dataPos in 1 .. array10AInput'Length loop
+				--array10AInput as container data
 				if array10AInput (dataPos) > highestPointData then
+					highestSecondPointData := array10AInput (dataPos);
+					  highestSecondPointPos := highestPointPos;
+
 					highestPointPos := dataPos;
 					highestPointData := array10AInput (dataPos);
-				end if;
-				end loop;
 
+					vol := (highestSecondPointData * abs (highestPointPos - highestSecondPointPos));
+					if vol > highestVol then
+						highestVol := vol;
+					end if;
+				end if;
+			end loop;
+			integerResultA := highestVol;
 		end ContainerWithMostWater11;
 
       procedure auxromantointeger(romanNum : String) is
@@ -1554,6 +1569,39 @@ package body exercises1to100 is
 			testPassed := testPassed + 1;
 		end if;
 		Put_Line ("Test for RegularExpressionMatching10 with status: " & Integer'Image (testPass) & "  ");
+
+      --------------------------------------------------------------------------------------------
+
+
+		array10AInput := (1, 1, 1, 2, 2, 3, 4, 8, 8, 8);
+		testTotal := testTotal + 1;
+		testPass := 0;
+		ContainerWithMostWater11 ();
+		if integerResultA = 16 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for ContainerWithMostWater11 with status: " & Integer'Image (testPass) & "  ");
+
+		array10AInput := (7, 1, 1, 2, 9, 3, 4, 8, 8, 8);
+		testTotal := testTotal + 1;
+		testPass := 0;
+		ContainerWithMostWater11 ();
+		if integerResultA = 36 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for ContainerWithMostWater11 with status: " & Integer'Image (testPass) & "  ");
+
+		array10AInput := (1, 1, 4, 2, 2, 3, 4, 3, 3, 3);
+		testTotal := testTotal + 1;
+		testPass := 0;
+		ContainerWithMostWater11 ();
+		if integerResultA = 16 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for ContainerWithMostWater11 with status: " & Integer'Image (testPass) & "  ");
       --------------------------------------------------------------------------------------------
       stringInputA := "   XLVIII";
       romantointeger(stringInputA);
