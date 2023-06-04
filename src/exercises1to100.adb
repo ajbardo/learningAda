@@ -643,38 +643,35 @@ package body exercises1to100 is
 			integerResultA := patternIsAccepted;
 		end RegularExpressionMatching10;
 
-		procedure ContainerWithMostWater11 () is
-			highestPointPos : Integer := 0;
-			highestPointData : Integer := 0;
+		procedure ContainerWithMostWater11 is
+			point1 : Integer := 1;
+			point2 : Integer := 1;
 
 			highestSecondPointPos : Integer := 0;
 			highestSecondPointData : Integer := 0;
 
 
 			highestVol : Integer := 0;
-			vol : Integer := 0;
+			vol        : Integer := 0;
 		begin
-			for dataPos in 1 .. array10AInput'Length loop
-				--array10AInput as container data
-				if array10AInput (dataPos) > highestPointData then
-					highestSecondPointData := array10AInput (dataPos);
-					  highestSecondPointPos := highestPointPos;
-
-					highestPointPos := dataPos;
-					highestPointData := array10AInput (dataPos);
-
-					vol := (highestSecondPointData * abs (highestPointPos - highestSecondPointPos));
-					if vol > highestVol then
-						highestVol := vol;
-					end if;
+			for dataPos in 2 .. array10AInput'Length-1 loop
+				if array10AInput(dataPos) > (array10AInput(point1)*abs(dataPos - point1)) then
+					point2 := point1;
+					point1 := dataPos;
+					Put_Line ("point-1" & Integer'Image (point1));
 				end if;
 			end loop;
-			integerResultA := highestVol;
-		end ContainerWithMostWater11;
+		if array10AInput(point1) > array10AInput(point2) then
+			vol := array10AInput(point2) * abs(point1 - point2);
+		else
+			vol := array10AInput(point1) * abs(point1 - point2);
+		end if;
+		integerResultA := vol;
+	end ContainerWithMostWater11;
 
-      procedure auxromantointeger(romanNum : String) is
-         romanone                : String := "I";
-         romanfive               : String := "V";
+	procedure auxromantointeger (romanNum : String) is
+		romanone                : String := "I";
+		romanfive               : String := "V";
          romanten                : String := "X";
          romanfifty              : String := "L";
          romanonehundred         : String := "C";
@@ -1573,10 +1570,11 @@ package body exercises1to100 is
       --------------------------------------------------------------------------------------------
 
 
-		array10AInput := (1, 1, 1, 2, 2, 3, 4, 8, 8, 8);
+		array10AInput := (0, 0, 0, 0, 0, 0, 4, 8, 5, 8);
 		testTotal := testTotal + 1;
 		testPass := 0;
-		ContainerWithMostWater11 ();
+		ContainerWithMostWater11;
+		Put_Line("----->"& Integer'Image (integerResultA));
 		if integerResultA = 16 then
 			testPass := 1;
 			testPassed := testPassed + 1;
@@ -1586,7 +1584,7 @@ package body exercises1to100 is
 		array10AInput := (7, 1, 1, 2, 9, 3, 4, 8, 8, 8);
 		testTotal := testTotal + 1;
 		testPass := 0;
-		ContainerWithMostWater11 ();
+		ContainerWithMostWater11;
 		if integerResultA = 36 then
 			testPass := 1;
 			testPassed := testPassed + 1;
@@ -1596,7 +1594,7 @@ package body exercises1to100 is
 		array10AInput := (1, 1, 4, 2, 2, 3, 4, 3, 3, 3);
 		testTotal := testTotal + 1;
 		testPass := 0;
-		ContainerWithMostWater11 ();
+		ContainerWithMostWater11;
 		if integerResultA = 16 then
 			testPass := 1;
 			testPassed := testPassed + 1;
