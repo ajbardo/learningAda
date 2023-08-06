@@ -30,7 +30,7 @@ package body exercises1to100 is
       -- 1.0-1.0 StringtoInteger_8
       -- 1.0-1.0 palindrome
 	  -- 1.0-1.0 RegularExpressionMatching10
-      -- +0.2-0.2 ContainerWithMostWater11
+      -- +1.0-1.0 ContainerWithMostWater11
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
       -- 1.0-1.0 validparentheses
@@ -654,19 +654,27 @@ package body exercises1to100 is
 			highestVol : Integer := 0;
 			vol        : Integer := 0;
 		begin
-			for dataPos in 2 .. array10AInput'Length-1 loop
-				if array10AInput(dataPos) > (array10AInput(point1)*abs(dataPos - point1)) then
-					point2 := point1;
-					point1 := dataPos;
-					Put_Line ("point-1" & Integer'Image (point1));
-				end if;
+			for dataPos1 in 0 .. array10AInput'Length-2 loop
+
+				for dataPos2 in dataPos1+1 .. array10AInput'Length-1 loop
+
+					if array10AInput (dataPos1) > array10AInput (dataPos2) then
+						vol := array10AInput (dataPos2) * (dataPos2-dataPos1);
+					elsif array10AInput (dataPos1) < array10AInput (dataPos2) then
+						vol := array10AInput (dataPos1) * (dataPos2-dataPos1);
+					elsif array10AInput (dataPos1) = array10AInput (dataPos2) then
+						vol := array10AInput (dataPos1) * (dataPos2-dataPos1);
+					end if;
+
+					if vol > highestVol then
+						highestVol := vol;
+					end if;
+
+				end loop;
+
 			end loop;
-		if array10AInput(point1) > array10AInput(point2) then
-			vol := array10AInput(point2) * abs(point1 - point2);
-		else
-			vol := array10AInput(point1) * abs(point1 - point2);
-		end if;
-		integerResultA := vol;
+			integerResultA := highestVol;
+			Put_Line ("integerResultA-->"&Integer'Image(integerResultA));
 	end ContainerWithMostWater11;
 
 	procedure auxromantointeger (romanNum : String) is
@@ -1581,11 +1589,11 @@ package body exercises1to100 is
 		end if;
 		Put_Line ("Test for ContainerWithMostWater11 with status: " & Integer'Image (testPass) & "  ");
 
-		array10AInput := (7, 1, 1, 2, 9, 3, 4, 8, 8, 8);
+		array10AInput := (7, 1, 1, 2, 9, 3, 4, 7, 7, 8);
 		testTotal := testTotal + 1;
 		testPass := 0;
 		ContainerWithMostWater11;
-		if integerResultA = 36 then
+		if integerResultA = 63 then
 			testPass := 1;
 			testPassed := testPassed + 1;
 		end if;
@@ -1595,7 +1603,7 @@ package body exercises1to100 is
 		testTotal := testTotal + 1;
 		testPass := 0;
 		ContainerWithMostWater11;
-		if integerResultA = 16 then
+		if integerResultA = 21 then
 			testPass := 1;
 			testPassed := testPassed + 1;
 		end if;
