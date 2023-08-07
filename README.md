@@ -13,6 +13,7 @@
   * 2.9. Palindrome Number - https://leetcode.com/problems/palindrome-number/     
   * 2.10. Regular Expression Matching - https://leetcode.com/problems/regular-expression-matching/
   * 2.11. Container With Most Water - https://leetcode.com/problems/container-with-most-water/
+  * 2.12. Index of the First Occurrence in a String - https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
   * 2.13. Roman to Integer  - https://leetcode.com/problems/roman-to-integer/
   * 2.14. Longest Common Prefix - https://leetcode.com/problems/longest-common-prefix/
   * 2.20. Valid Parentheses  - https://leetcode.com/problems/valid-parentheses/
@@ -589,6 +590,24 @@ Example 2:
 
 Input: height = [1,1]  
 Output: 1  
+
+### 2.12 Index of the First Occurrence in a String
+#### https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+Easy
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+Example 1:  
+
+Input: haystack = "sadbutsad", needle = "sad"  
+Output: 0  
+Explanation: "sad" occurs at index 0 and 6.  
+The first occurrence is at index 0, so we return 0.  
+
+Example 2:  
+
+Input: haystack = "leetcode", needle = "leeto"  
+Output: -1  
+Explanation: "leeto" did not occur in "leetcode", so we return -1.  
 
 ### 2.13 Roman to Integer  
 #### https://leetcode.com/problems/roman-to-integer/

@@ -30,7 +30,8 @@ package body exercises1to100 is
       -- 1.0-1.0 StringtoInteger_8
       -- 1.0-1.0 palindrome
 	  -- 1.0-1.0 RegularExpressionMatching10
-      -- +1.0-1.0 ContainerWithMostWater11
+      -- 1.0-1.0 ContainerWithMostWater11
+	  -- +0.1-0.1 IndexOfTheFirstOccurrenceInAString12
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
       -- 1.0-1.0 validparentheses
@@ -676,6 +677,16 @@ package body exercises1to100 is
 			integerResultA := highestVol;
 			Put_Line ("integerResultA-->"&Integer'Image(integerResultA));
 	end ContainerWithMostWater11;
+
+
+		procedure IndexOfTheFirstOccurrenceInAString12 is
+		begin
+			--StrBounString(0)()
+			--StrBounString(1)()
+
+
+		end IndexOfTheFirstOccurrenceInAString12;
+
 
 	procedure auxromantointeger (romanNum : String) is
 		romanone                : String := "I";
