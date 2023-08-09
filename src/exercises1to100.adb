@@ -680,10 +680,22 @@ package body exercises1to100 is
 
 
 		procedure IndexOfTheFirstOccurrenceInAString12 is
+			pos1 : Integer;
+			pos2    : Integer;
 		begin
-			--StrBounString(0)()
-			--StrBounString(1)()
-
+			pos1 := 1;
+			pos2 := 1;
+			while pos1 < StrBounString (0)'Range and pos2 < StrBounString (0)'Range loop
+				pos1 := pos1 + 1;
+				if StrBounString (0) (pos1) = StrBounString (0) (pos2) then
+					if pos2 = 1 then
+						integerResultA := 1;
+					end if;
+					pos2 := pos2 + 1;
+				else
+					pos2 := 1;
+				end if;
+			end loop;
 
 		end IndexOfTheFirstOccurrenceInAString12;
 
@@ -1620,6 +1632,21 @@ package body exercises1to100 is
 		end if;
 		Put_Line ("Test for ContainerWithMostWater11 with status: " & Integer'Image (testPass) & "  ");
       --------------------------------------------------------------------------------------------
+
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		integerResultA := 0;
+		StrBounString (0) := To_Bounded_String ("babad");
+		StrBounString (1) := To_Bounded_String ("ab");
+		IndexOfTheFirstOccurrenceInAString12;
+		if integerResultA = 1 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for IndexOfTheFirstOccurrenceInAString12 with status: " & Integer'Image (testPass) & "  ");
+
+	--------------------------------------------------------------------------------------------
       stringInputA := "   XLVIII";
       romantointeger(stringInputA);
       testPass := 0;
