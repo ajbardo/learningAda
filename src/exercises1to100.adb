@@ -685,7 +685,7 @@ package body exercises1to100 is
 		begin
 			pos1 := 1;
 			pos2 := 1;
-			while pos1 < StrBounString (0)'Range and pos2 < StrBounString (0)'Range loop
+w			while pos1 < StrBounString (0)'Range and pos2 < StrBounString (0)'Range loop
 				pos1 := pos1 + 1;
 				if StrBounString (0) (pos1) = StrBounString (0) (pos2) then
 					if pos2 = 1 then
