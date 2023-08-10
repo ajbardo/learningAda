@@ -34,7 +34,6 @@ As reference for the ADA programming language development will be used https://l
 ***
 
 ## Last execution results
-
 Starting main execution
 Test for twoSum with status:  1  
 Test for twoSum with status:  1  
@@ -66,6 +65,12 @@ Test for palindrome with status:  1
 Test for RegularExpressionMatching10 with status:  1  
 Test for RegularExpressionMatching10 with status:  1  
 Test for RegularExpressionMatching10 with status:  1  
+Test for ContainerWithMostWater11 with status:  1  
+Test for ContainerWithMostWater11 with status:  1  
+Test for ContainerWithMostWater11 with status:  1  
+Test for IndexOfTheFirstOccurrenceInAString12 with status:  1  
+Test for IndexOfTheFirstOccurrenceInAString12 with status:  1  
+Test for IndexOfTheFirstOccurrenceInAString12 with status:  1  
 Test for romantointeger with status:  1  
 Test for romantointeger with status:  1  
 Test for longestcommonprefix with status:  1  
@@ -126,9 +131,10 @@ Test for binarytreeinordertraversal with status:  1
 Test for binarytreeinordertraversal with status:  1  
 Test for binarytreeinordertraversal with status:  1  
 Test for binarytreeinordertraversal with status:  1  
-Total test passed : 89 from:  90  
-Ending exercises1to100 execution - Elapsed time for all executions:  0.031948000 seconds    
-[2023-05-26 01:00:34] process terminated successfully, elapsed time: 00.38s  
+Total test passed : 95 from:  96  
+Ending exercises1to100 execution - Elapsed time for all executions:  0.003841200 seconds  
+[2023-08-10 20:05:53] process terminated successfully, elapsed time: 00.21s
+
 
 ***
 ## 2 - Exercises

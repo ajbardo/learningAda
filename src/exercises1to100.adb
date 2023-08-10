@@ -31,7 +31,7 @@ package body exercises1to100 is
       -- 1.0-1.0 palindrome
 	  -- 1.0-1.0 RegularExpressionMatching10
       -- 1.0-1.0 ContainerWithMostWater11
-	  -- +0.1-0.1 IndexOfTheFirstOccurrenceInAString12
+	  -- +1.0-1.0 IndexOfTheFirstOccurrenceInAString12
       -- 1.1-1.1 romantointeger
       -- 1.0-1.0 longestcommonprefix
       -- 1.0-1.0 validparentheses
@@ -675,7 +675,6 @@ package body exercises1to100 is
 
 			end loop;
 			integerResultA := highestVol;
-			Put_Line ("integerResultA-->"&Integer'Image(integerResultA));
 	end ContainerWithMostWater11;
 
 
@@ -685,17 +684,22 @@ package body exercises1to100 is
 		begin
 			pos1 := 1;
 			pos2 := 1;
-w			while pos1 < StrBounString (0)'Range and pos2 < StrBounString (0)'Range loop
-				pos1 := pos1 + 1;
-				if StrBounString (0) (pos1) = StrBounString (0) (pos2) then
+			integerResultA := 0;
+			while pos1 < Length (StrBounString (0))+1 and pos2 < Length (StrBounString (1))+1 loop
+				if To_String (StrBounString (0)) (pos1) = To_String (StrBounString (1)) (pos2) then
 					if pos2 = 1 then
-						integerResultA := 1;
+						integerResultA := pos1;
 					end if;
 					pos2 := pos2 + 1;
-				else
-					pos2 := 1;
-				end if;
-			end loop;
+				elsif To_String (StrBounString (0)) (pos1) = To_String (StrBounString (1)) (1) then
+						pos2 := 1;
+						integerResultA := pos1;
+					else
+						pos2 := 1;
+					end if;
+					pos1 := pos1 + 1;
+				end loop;
+
 
 		end IndexOfTheFirstOccurrenceInAString12;
 
@@ -1605,7 +1609,6 @@ w			while pos1 < StrBounString (0)'Range and pos2 < StrBounString (0)'Range loop
 		testTotal := testTotal + 1;
 		testPass := 0;
 		ContainerWithMostWater11;
-		Put_Line("----->"& Integer'Image (integerResultA));
 		if integerResultA = 16 then
 			testPass := 1;
 			testPassed := testPassed + 1;
@@ -1640,11 +1643,38 @@ w			while pos1 < StrBounString (0)'Range and pos2 < StrBounString (0)'Range loop
 		StrBounString (0) := To_Bounded_String ("babad");
 		StrBounString (1) := To_Bounded_String ("ab");
 		IndexOfTheFirstOccurrenceInAString12;
-		if integerResultA = 1 then
+		if integerResultA = 2 then
 			testPass := 1;
 			testPassed := testPassed + 1;
 		end if;
 		Put_Line ("Test for IndexOfTheFirstOccurrenceInAString12 with status: " & Integer'Image (testPass) & "  ");
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		integerResultA := 0;
+		StrBounString (0) := To_Bounded_String ("babad");
+		StrBounString (1) := To_Bounded_String ("bad");
+		IndexOfTheFirstOccurrenceInAString12;
+		if integerResultA = 3 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for IndexOfTheFirstOccurrenceInAString12 with status: " & Integer'Image (testPass) & "  ");
+
+
+
+		testTotal := testTotal + 1;
+		testPass := 0;
+		integerResultA := 0;
+		StrBounString (0) := To_Bounded_String ("babade");
+		StrBounString (1) := To_Bounded_String ("de");
+		IndexOfTheFirstOccurrenceInAString12;
+		if integerResultA = 5 then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for IndexOfTheFirstOccurrenceInAString12 with status: " & Integer'Image (testPass) & "  ");
+
 
 	--------------------------------------------------------------------------------------------
       stringInputA := "   XLVIII";
