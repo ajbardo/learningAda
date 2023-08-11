@@ -15,7 +15,7 @@
   * 2.11. Container With Most Water - https://leetcode.com/problems/container-with-most-water/
   * 2.12. Index of the First Occurrence in a String - https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
   * 2.13. Roman to Integer  - https://leetcode.com/problems/roman-to-integer/
-  * 2.14. Longest Common Prefix - https://leetcode.com/problems/longest-common-prefix/
+  * 2.14. Longest Common Prefix - w
   * 2.20. Valid Parentheses  - https://leetcode.com/problems/valid-parentheses/
   * 2.21. Merge Two Sorted Lists - https://leetcode.com/problems/merge-two-sorted-lists/
   * 2.27. Remove Element - https://leetcode.com/problems/remove-element/
@@ -675,6 +675,34 @@ Input: strs = ["dog","racecar","car"]
 Output: ""  
 Explanation: There is no common prefix among the input strings.
 
+### 2.15. 3Sum
+#### https://leetcode.com/problems/merge-two-sorted-lists/
+Medium  
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.  
+
+Notice that the solution set must not contain duplicate triplets.  
+
+Example 1:  
+
+Input: nums = [-1,0,1,2,-1,-4]  
+Output: [[-1,-1,2],[-1,0,1]]  
+Explanation:   
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.  
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.  
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.  
+The distinct triplets are [-1,0,1] and [-1,-1,2].  
+Notice that the order of the output and the order of the triplets does not matter.  
+Example 2:  
+
+Input: nums = [0,1,1]  
+Output: []  
+Explanation: The only possible triplet does not sum up to 0.  
+Example 3:  
+
+Input: nums = [0,0,0]  
+Output: [[0,0,0]]  
+Explanation: The only possible triplet sums up to 0.  
+
 ### 2.20 Valid Parentheses  
 #### https://leetcode.com/problems/valid-parentheses/
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.  
@@ -704,7 +732,6 @@ Constraints:
 
 1 <= s.length <= 104
 s consists of parentheses only '()[]{}'.
-
 
 ### 2.21 Merge Two Sorted Lists
 #### https://leetcode.com/problems/merge-two-sorted-lists/
