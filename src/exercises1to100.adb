@@ -19,135 +19,136 @@ with linkedstructure; use linkedstructure;
 
 package body exercises1to100 is
    procedure oneTo100(Self : in out My_Class) is
-      -- exercises1to100
-      -- 1.0-1.1 twoSum
-      -- 1.0-1.0 procedure addtwonumbers()
-      -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-      -- 2.0-2.0 MedianofTwoSortedArrays
-      -- 1.0-1.0 longestpalindromicsubstring
-      -- ?0.1-1.0 zigzagconversion
-      -- 1.0-1.0 reverseInteger
-      -- 1.0-1.0 StringtoInteger_8
-      -- 1.0-1.0 palindrome
-	  -- 1.0-1.0 RegularExpressionMatching10
-      -- 1.0-1.0 ContainerWithMostWater11
-	  -- +1.0-1.0 IndexOfTheFirstOccurrenceInAString12
-      -- 1.1-1.1 romantointeger
-      -- 1.0-1.0 longestcommonprefix
-      -- 1.0-1.0 validparentheses
-      -- 1.0-1.0 mergetwosortedlists
-      -- 1.0-1.0 removeduplicatesfromsortedarray
-      -- 1.0-1.0 removeelement
-      -- 1.0-1.0 lengthoflastword
-      -- 1.0-1.0 plusOne
-      -- 1.0-1.0 addbinary
-      -- 1.0-1.0 SqrtX
-      -- 2.0-1.0 climbingstairs
-      -- 1.0-1.0 binarytreeinordertraversal
-      -- ____ notes ____
-      -- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
-      -- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
-      -- * Second digit for functionalities under development (0.1,0.11,0.23,1.35,2.56)
-      -- * Possible third digit to track minor changes that do not affect functionality (0.0.3,0.1.7)
-      -- * Comments with the resume of the content with * character
-      -- _______________
-      -- 0.2-0.0 Global variables
-      -- Global use arrays
-      -- maxIndex10 : Integer
-      -- type arrayOf10 is array(0 .. 9) of Integer
-      -- array10 : arrayOf10
-      --
-      -- type arrayOf2 is array(0 .. 1) of Integer
-      -- array2 : arrayOf2;
-      --
-      -- package B_Str
-      -- type StringBounArray
-      -- StrBounString
-      --
-      -- input variables for the functions
-      -- integerInputA : Integer;
-      -- integerInputB : Integer;
-      -- integerInputC : Integer;
-      -- stringInputA : String := "         ";
-      -- bounStringInputB : Bounded_String;
-      --
-      -- output variables for the functions
-      -- integerResultA : Integer;
-      -- bounStringResultA : Bounded_String;
-      -- bounStringResultB : Bounded_String;
-      --
-      -- variables for the test stadistics
-      -- testPass : Integer;
-      -- testPassed : Integer;
-      -- testTotal : Integer;
-      -- _______________
-      -- 1.0-1.1 procedure twoSum(target : Integer:=0)
-      -- * Calculate positions of two numbers in an array such that they add matches the target
-      -- * Static test with 10 position array
-      -- * New static test for the negative conditional
-      -- 1.0-1.0 procedure addtwonumbers()
-      -- * Adittion of two numbers represented by linked lists
-      -- * Defined 3 static test cases
-      -- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
-      -- * Calculate find the length of the longest substring without repeating characters.
-      -- * Defined 3 static test cases to verify behaviour
-      -- 2.0-2.0 MedianofTwoSortedArrays
-      -- * Expected worst case solution in O(log(n)) best case in O(1)
-      -- * 5 Static test cases
-      -- 1.0-1.0 longestpalindromicsubstring
-      -- * obtains the result worst case O(2n)
-      -- * 6 static test cases with array of length 10
-      -- 2 Static test cases defined
-      -- +0.1-1.0 zigzagconversion
-      --
-      -- 1.0-1.0 procedure palindrome(number : Integer)
-      -- * Check if number is palindrome
-      -- * Static test with input integer
-      -- * Static test with input integer for the negative conditional
-      -- 1.1-1.1 procedure romantointeger(romanNum : String)
-      -- 1.0 procedure auxromantointeger(romanNum : String)
-      -- * Transform from roman number to integer
-      -- * Static positive test for the method
-      -- 1.0-1.0 longestcommonprefix
-      -- Procedure working with array of 3 Bounded string of length = 10
-      -- 4 static tests, 2 with partial positive cases, 1 with total positive case and 1 with negative case
-      -- 1.0-1.0 validparentheses
-      -- Procedure working with Bounded string of length = 10
-      -- 8 static test cases, 4 positives and 4 negatives
-      -- 1.0-1.0 mergetwosortedlists
-      -- working with 2 arrays of length 3
-      -- outputt: array of 6 integers
-      -- 6 static test cases
-      -- 1.0-1.0 removeduplicatesfromsortedarray
-      -- Solved with complexity O(n), using two arrays of numbers (dataComplexity O(2n))
-      -- 6 static test cases defined
-      -- 1.0-1.0 removeelement
-      -- Solved Complexity O(n)
-      -- 5 static test cases to verify behaviour
-      -- 1.0-1.0 searchinsertposition
-      -- Solved expected complexity O(logN)
-      -- 5 static test cases to verify behaviour
-      -- 1.0-1.0 lengthoflastword
-      -- solved using https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
-      -- 3 static test to verify behaviour
-      -- 1.0-1.0 plusOne
-      -- Solved with complexity O(n)
-      -- 6 static test cases to verify behaviour
-      -- 1.0-1.0 addbinary
-      -- Solved with complexity O(n)
-      -- 5 static test cases to verify behaviour
-      -- 1.0-1.0 SqrtX
-      -- Solved with complexity O(n) in the not ^2 space, O(lgn) expected for the ^2 space
-      -- 3 static test cases to verify behaviour
-      -- 2.0-1.0 climbingstairs
-      -- Solved with complexity O(n) - climbingstairsFibo
-      -- Solved with complexity O(1) - climbingstairsFiboExtra
-      -- 1 static test case with two checks to verify behaviour
-      -- climbingstairsFibo is correct
-      -- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
-      -- 2.0-1.0 binarytreeinordertraversal
-      -- Getting the tree with help of auxiliary array
-      -- 4 static test cases to verify behaviour
+		-- exercises1to100
+		-- 1.0-1.1 twoSum
+		-- 1.0-1.0 procedure addtwonumbers()
+		-- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
+		-- 2.0-2.0 MedianofTwoSortedArrays
+		-- 1.0-1.0 longestpalindromicsubstring
+		-- ?0.1-1.0 zigzagconversion
+		-- 1.0-1.0 reverseInteger
+		-- 1.0-1.0 StringtoInteger_8
+		-- 1.0-1.0 palindrome
+		-- 1.0-1.0 RegularExpressionMatching10
+		-- 1.0-1.0 ContainerWithMostWater11
+		-- 1.0-1.0 IndexOfTheFirstOccurrenceInAString12
+		-- 1.1-1.1 romantointeger
+		-- 1.0-1.0 longestcommonprefix
+		-- +0.1-0.1 Sum3_15
+		-- 1.0-1.0 validparentheses
+		-- 1.0-1.0 mergetwosortedlists
+		-- 1.0-1.0 removeduplicatesfromsortedarray
+		-- 1.0-1.0 removeelement
+		-- 1.0-1.0 lengthoflastword
+		-- 1.0-1.0 plusOne
+		-- 1.0-1.0 addbinary
+		-- 1.0-1.0 SqrtX
+		-- 2.0-1.0 climbingstairs
+		-- 1.0-1.0 binarytreeinordertraversal
+		-- ____ notes ____
+		-- 1.0 - Nomenclature : versionOfProcedureOrFunction-versionOfTest
+		-- * First digit for functionalities already completed an closed (1.0,2.0,3.0)
+		-- * Second digit for functionalities under development (0.1,0.11,0.23,1.35,2.56)
+		-- * Possible third digit to track minor changes that do not affect functionality (0.0.3,0.1.7)
+		-- * Comments with the resume of the content with * character
+		-- _______________
+		-- 0.2-0.0 Global variables
+		-- Global use arrays
+		-- maxIndex10 : Integer
+		-- type arrayOf10 is array(0 .. 9) of Integer
+		-- array10 : arrayOf10
+		--
+		-- type arrayOf2 is array(0 .. 1) of Integer
+		-- array2 : arrayOf2;
+		--
+		-- package B_Str
+		-- type StringBounArray
+		-- StrBounString
+		--
+		-- input variables for the functions
+		-- integerInputA : Integer;
+		-- integerInputB : Integer;
+		-- integerInputC : Integer;
+		-- stringInputA : String := "         ";
+		-- bounStringInputB : Bounded_String;
+		--
+		-- output variables for the functions
+		-- integerResultA : Integer;
+		-- bounStringResultA : Bounded_String;
+		-- bounStringResultB : Bounded_String;
+		--
+		-- variables for the test stadistics
+		-- testPass : Integer;
+		-- testPassed : Integer;
+		-- testTotal : Integer;
+		-- _______________
+		-- 1.0-1.1 procedure twoSum(target : Integer:=0)
+		-- * Calculate positions of two numbers in an array such that they add matches the target
+		-- * Static test with 10 position array
+		-- * New static test for the negative conditional
+		-- 1.0-1.0 procedure addtwonumbers()
+		-- * Adittion of two numbers represented by linked lists
+		-- * Defined 3 static test cases
+		-- 1.0-1.0 LongestSubstringWithoutRepeatingCharacters
+		-- * Calculate find the length of the longest substring without repeating characters.
+		-- * Defined 3 static test cases to verify behaviour
+		-- 2.0-2.0 MedianofTwoSortedArrays
+		-- * Expected worst case solution in O(log(n)) best case in O(1)
+		-- * 5 Static test cases
+		-- 1.0-1.0 longestpalindromicsubstring
+		-- * obtains the result worst case O(2n)
+		-- * 6 static test cases with array of length 10
+		-- 2 Static test cases defined
+		-- +0.1-1.0 zigzagconversion
+		--
+		-- 1.0-1.0 procedure palindrome(number : Integer)
+		-- * Check if number is palindrome
+		-- * Static test with input integer
+		-- * Static test with input integer for the negative conditional
+		-- 1.1-1.1 procedure romantointeger(romanNum : String)
+		-- 1.0 procedure auxromantointeger(romanNum : String)
+		-- * Transform from roman number to integer
+		-- * Static positive test for the method
+		-- 1.0-1.0 longestcommonprefix
+		-- Procedure working with array of 3 Bounded string of length = 10
+		-- 4 static tests, 2 with partial positive cases, 1 with total positive case and 1 with negative case
+		-- 1.0-1.0 validparentheses
+		-- Procedure working with Bounded string of length = 10
+		-- 8 static test cases, 4 positives and 4 negatives
+		-- 1.0-1.0 mergetwosortedlists
+		-- working with 2 arrays of length 3
+		-- outputt: array of 6 integers
+		-- 6 static test cases
+		-- 1.0-1.0 removeduplicatesfromsortedarray
+		-- Solved with complexity O(n), using two arrays of numbers (dataComplexity O(2n))
+		-- 6 static test cases defined
+		-- 1.0-1.0 removeelement
+		-- Solved Complexity O(n)
+		-- 5 static test cases to verify behaviour
+		-- 1.0-1.0 searchinsertposition
+		-- Solved expected complexity O(logN)
+		-- 5 static test cases to verify behaviour
+		-- 1.0-1.0 lengthoflastword
+		-- solved using https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_strings.html
+		-- 3 static test to verify behaviour
+		-- 1.0-1.0 plusOne
+		-- Solved with complexity O(n)
+		-- 6 static test cases to verify behaviour
+		-- 1.0-1.0 addbinary
+		-- Solved with complexity O(n)
+		-- 5 static test cases to verify behaviour
+		-- 1.0-1.0 SqrtX
+		-- Solved with complexity O(n) in the not ^2 space, O(lgn) expected for the ^2 space
+		-- 3 static test cases to verify behaviour
+		-- 2.0-1.0 climbingstairs
+		-- Solved with complexity O(n) - climbingstairsFibo
+		-- Solved with complexity O(1) - climbingstairsFiboExtra
+		-- 1 static test case with two checks to verify behaviour
+		-- climbingstairsFibo is correct
+		-- climbingstairsFiboExtra presents a divergence due to differences between the equation and the actual series
+		-- 2.0-1.0 binarytreeinordertraversal
+		-- Getting the tree with help of auxiliary array
+		-- 4 static test cases to verify behaviour
 
 
 
@@ -870,6 +871,15 @@ package body exercises1to100 is
             integerResultA := 0;
          end if;
       end validparentheses;
+
+		procedure Sum3_15 is
+			--array10AInput := [-1, 0, 1, 2, -1, -4, 0, 0, 0, 0]
+			--array10AOutput := [-1, -1, 2, -1, 0, 1, 0, 0, 0, 0]
+
+		begin
+			Put_Line ("---->" );
+
+		end Sum3_15;
 
       procedure mergetwosortedlists  is
          -- indexes temporally removed
@@ -1747,6 +1757,23 @@ package body exercises1to100 is
       Put_Line ("Test for longestcommonprefix with status: "&Integer'Image(testPass)&"  ");
 
       --------------------------------------------------------------------------------------------
+
+		array10AInput := (-1, 0, 1, 2, -1, -4, 0, 0, 0, 0);
+		array10AOutput := (-1, -1, 2, -1, 0, 1, 0, 0, 0, 0);
+		Sum3_15;
+		testPass := 0;
+		testTotal := testTotal + 1;
+		if bounStringResultA = To_Bounded_String ("") then
+			testPass := 1;
+			testPassed := testPassed + 1;
+		end if;
+		Put_Line ("Test for Sum3_15 with status: " & Integer'Image (testPass) & "  ");
+
+
+
+      --------------------------------------------------------------------------------------------
+
+
       bounStringInputB := To_Bounded_String("()()()()()");--Output: true
       validparentheses;
       testPass := 0;
@@ -1826,6 +1853,7 @@ package body exercises1to100 is
          testPassed := testPassed + 1;
       end if;
       Put_Line ("Test for validparentheses with status: "&Integer'Image(testPass)&"  ");
+
 
       --------------------------------------------------------------------------------------------
 
